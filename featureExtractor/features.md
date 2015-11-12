@@ -1,7 +1,8 @@
 # Features
 * Loop nest level
 * No. of ops in loop body
-  Refers to the size of the loop.
+  
+Refers to the size of the loop.
 * No. of floating point ops in loop
 * No. of branches in loop body
 * No. of memory ops in loop body (have separate features for no. of loads and no. of stores?)
@@ -19,8 +20,10 @@
 * Min memory-to-memory loop-carried dependence?
 * No. of memory-to-memory dependencies
 * Tripcount of the loop?
-  Number of times the body of the loop is executed.Given that for most of the loops this feature is unknown at compilation time, it has to be determined during the execution of the programs.
+  
+Number of times the body of the loop is executed.Given that for most of the loops this feature is unknown at compilation time, it has to be determined during the execution of the programs.
 * No. of uses in the loop
 * No. of defs in the loop
 * No. of times the loop is called?
-  No. of times the outer loops are executed and the subroutine containing the loop is called.  
+  
+No. of times the outer loops are executed and the subroutine containing the loop is called.  
