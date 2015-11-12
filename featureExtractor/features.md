@@ -2,7 +2,7 @@
 * Loop nest level
 * No. of ops in loop body
   Refers to the size of the loop.
-* No. of floating point ops in loop
+* No. of floating point ops in loop body
 * No. of branches in loop body
 * No. of memory ops in loop body (have separate features for no. of loads and no. of stores?)
 * No. of operands in loop body
