@@ -120,6 +120,8 @@ namespace {
     int getBranchOpCount(std::vector<Instruction*> instructions);
     int getMemOpCount(std::vector<Instruction*> instructions);
     int getOperandsCount(std::vector<Instruction*> instructions);
+    int getImplicitInstructionsCount(std::vector<Instruction*> instructions);
+    int getUniquePredicatesCount(std::vector<Instruction*> instructions);
   };
 }  
 
@@ -173,6 +175,8 @@ bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
   f4 = getBranchOpCount(instructions);
   f5 = getMemOpCount(instructions);
   f6 = getOperandsCount(instructions);
+  f7 = getImplicitInstructionsCount(instructions);
+  f8 = getUniquePredicatesCount(instructions);
 
   // Clear out loops state information for the next iteration
   CurLoop = 0;
@@ -274,4 +278,27 @@ int FeatureExtractor::getOperandsCount(std::vector<Instruction*> instructions) {
     operandsCount += I->getNumOperands();
   }
   return operandsCount;
+}
+
+//instructions that are either shift or cast. Should binary op be included?
+int FeatureExtractor::getImplicitInstructionsCount(std::vector<Instruction*> instructions) {
+  int implictInstrCount = 0;
+  for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
+    Instruction *I = *II;
+    if (Instruction::isShift(I->getOpcode()) || Instruction::isCast(I->getOpcode())) {
+      implictInstrCount++;
+    }
+  }
+  return implictInstrCount;
+}
+
+int FeatureExtractor::getUniquePredicatesCount(std::vector<Instruction*> instructions) {
+  std::set<CmpInst::Predicate> predicates;
+  for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
+    Instruction *I = *II;
+    if (CmpInst *compInst = dyn_cast<CmpInst>(I)) {
+      predicates.insert(compInst->getPredicate());
+    }
+  }
+  return predicates.size();
 }

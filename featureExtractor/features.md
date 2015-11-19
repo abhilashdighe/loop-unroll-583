@@ -1,17 +1,12 @@
 # Features
-* Loop nest level
-* No. of ops in loop body
-
-  Refers to the size of the loop.
-* No. of floating point ops in loop body
-
-Refers to the size of the loop.
-* No. of floating point ops in loop
-* No. of branches in loop body
-* No. of memory ops in loop body (have separate features for no. of loads and no. of stores?)
-* No. of operands in loop body
-* No. of implicit instructions in loop body?
-* No. of unique predicates in loop body
+* Loop nest level (done)
+* No. of ops in loop body (done)
+* No. of floating point ops in loop body (done)
+* No. of branches in loop body (done)
+* No. of memory ops in loop body (done)
+* No. of operands in loop body (done)
+* No. of implicit instructions in loop body (done)
+* No. of unique predicates in loop body (done)
 * Estimated latency of the critical path of loop?
 * Estimated cycle length of loop body?
 * No. of parallel “computations” in loop?
