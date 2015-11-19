@@ -22,7 +22,8 @@ Unroll Factor refers to the unrolling factor which performs best for these featu
 
 ## Dependencies: 
 
-**FANN**\
+**FANN**
+
 [Download here](http://sourceforge.net/projects/fann/files/fann/2.2.0/FANN-2.2.0-Source.zip/download)
 Inside the folder run:
 ```
