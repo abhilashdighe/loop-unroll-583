@@ -2,13 +2,20 @@
 Contains code for learning a multiclass classifier for predicting the unrolling factor.
 
 ## Format
-NumSamples NumFeatures NumOutputs(8)\
-f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 f13 f14 f15 .... f22 \
-0 0 0 0 0 1 0 0 (if unroll factor is 6)\
-f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 f13 f14 f15 .... f22\
-0 0 0 1 0 0 0 0 (if unroll factor is 4)\
-f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 f13 f14 f15 .... f22\
-1 0 0 0 0 0 0 0 (if unroll factor is 1)\
+NumSamples NumFeatures NumOutputs(8)
+
+f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 f13 f14 f15 .... f22
+
+0 0 0 0 0 1 0 0 (if unroll factor is 6)
+
+f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 f13 f14 f15 .... f22
+
+0 0 0 1 0 0 0 0 (if unroll factor is 4)
+
+f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12 f13 f14 f15 .... f22
+
+1 0 0 0 0 0 0 0 (if unroll factor is 1)
+
 ...
 
 Unroll Factor refers to the unrolling factor which performs best for these features.
