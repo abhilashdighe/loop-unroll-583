@@ -17,7 +17,7 @@
 * No. of indirect references in loop body
 * Min memory-to-memory loop-carried dependence?
 * No. of memory-to-memory dependencies
-* Tripcount of the loop? **
+* Tripcount of the loop? (done - required another pass)
 * Live range size **
 * Criticial path length **
 Number of times the body of the loop is executed.Given that for most of the loops this feature is unknown at compilation time, it has to be determined during the execution of the programs.

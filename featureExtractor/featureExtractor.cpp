@@ -12,6 +12,7 @@
 #include "llvm/Analysis/AliasAnalysis.h"
 #include "llvm/Analysis/AliasSetTracker.h"
 #include "llvm/Analysis/ConstantFolding.h"
+#include "llvm/Analysis/ScalarEvolution.h"
 #include "llvm/Analysis/Dominators.h"
 #include "llvm/Analysis/LoopInfo.h"
 #include "llvm/Analysis/LoopPass.h"
@@ -30,6 +31,7 @@
 #include "llvm/Target/TargetLibraryInfo.h"
 #include "llvm/Transforms/Utils/Local.h"
 #include "llvm/Transforms/Utils/SSAUpdater.h"
+
 #include <algorithm>
 
 
@@ -88,6 +90,7 @@ namespace {
       AU.addRequired<TargetLibraryInfo>();
       AU.addRequired<ProfileInfo>();
       AU.addRequired<LAMPLoadProfile>();
+      AU.addRequired<ScalarEvolution>();
     }
 
   private:
@@ -97,6 +100,8 @@ namespace {
 
     DataLayout *TD;          // DataLayout for constant folding.
     TargetLibraryInfo *TLI;  // TargetLibraryInfo for constant folding.
+    ScalarEvolution *SE;
+
 
     // State that is updated as we process loops.
     bool Changed;            // Set to true when we change anything.
@@ -122,6 +127,7 @@ namespace {
     int getOperandsCount(std::vector<Instruction*> instructions);
     int getImplicitInstructionsCount(std::vector<Instruction*> instructions);
     int getUniquePredicatesCount(std::vector<Instruction*> instructions);
+    int getTripCount();
   };
 }  
 
@@ -138,6 +144,7 @@ bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
 
   TD = getAnalysisIfAvailable<DataLayout>();
   TLI = &getAnalysis<TargetLibraryInfo>();
+  SE = &getAnalysis<ScalarEvolution>();
 
   CurAST = new AliasSetTracker(*AA);
   // Collect Alias info from subloops.
@@ -177,6 +184,7 @@ bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
   f6 = getOperandsCount(instructions);
   f7 = getImplicitInstructionsCount(instructions);
   f8 = getUniquePredicatesCount(instructions);
+  f19 = getTripCount();
 
   // Clear out loops state information for the next iteration
   CurLoop = 0;
@@ -301,4 +309,11 @@ int FeatureExtractor::getUniquePredicatesCount(std::vector<Instruction*> instruc
     }
   }
   return predicates.size();
+}
+
+int FeatureExtractor::getTripCount() {
+  if (BasicBlock *ExitingBB = CurLoop->getExitingBlock()) {
+    return SE->getSmallConstantTripMultiple(CurLoop, ExitingBB);
+  }
+  return -1;
 }
