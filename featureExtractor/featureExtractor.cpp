@@ -57,20 +57,23 @@ STATISTIC(f5, "No. of memory ops in loop body");
 STATISTIC(f6, "No. of operands in loop body");
 STATISTIC(f7, "No. of implicit instructions in loop body");
 STATISTIC(f8, "No. of unique predicates in loop body");
-STATISTIC(f9, "Estimated latency of the critical path of loop");
-STATISTIC(f10, "Estimated cycle length of loop body");
-STATISTIC(f11, "No. of parallel computations in loop");
-STATISTIC(f12, "Max dependence height of computations");
-STATISTIC(f13, "Max height of memory dependencies of computations");
-STATISTIC(f14, "Max height of control dependencies of computations");
-STATISTIC(f15, "Average dependence height of computations");
-STATISTIC(f16, "No. of indirect references in loop body");
-STATISTIC(f17, "Min memory-to-memory loop-carried dependence");
-STATISTIC(f18, "No. of memory-to-memory dependencies");
-STATISTIC(f19, "Tripcount of the loop");
-STATISTIC(f20, "No. of uses in the loop");
-STATISTIC(f21, "No. of defs in the loop");
-STATISTIC(f22, "No. of times the loop is called");
+STATISTIC(f9, "Tripcount of the loop");
+STATISTIC(f10, "No. of times the loop is called");
+STATISTIC(f11, "No. of array element reuses");
+STATISTIC(f12, "No. of indirect array element accesses");
+STATISTIC(f13, "No. of uses in the loop");
+STATISTIC(f14, "No. of defs in the loop");
+STATISTIC(f15, "Estimated latency of the critical path of loop");
+STATISTIC(f16, "Estimated cycle length of loop body");
+STATISTIC(f17, "No. of parallel computations in loop");
+STATISTIC(f18, "Max dependence height of computations");
+STATISTIC(f19, "Max height of memory dependencies of computations");
+STATISTIC(f20, "Max height of control dependencies of computations");
+STATISTIC(f21, "Average dependence height of computations");
+STATISTIC(f22, "No. of indirect references in loop body");
+STATISTIC(f23, "Min memory-to-memory loop-carried dependence");
+STATISTIC(f24, "No. of memory-to-memory dependencies");
+
 
 
 namespace {
@@ -97,6 +100,7 @@ namespace {
     AliasAnalysis *AA;       // Current AliasAnalysis information
     LoopInfo      *LI;       // Current LoopInfo
     DominatorTree *DT;       // Dominator Tree for the current Loop.
+    ProfileInfo* PI;
 
     DataLayout *TD;          // DataLayout for constant folding.
     TargetLibraryInfo *TLI;  // TargetLibraryInfo for constant folding.
@@ -128,6 +132,7 @@ namespace {
     int getImplicitInstructionsCount(std::vector<Instruction*> instructions);
     int getUniquePredicatesCount(std::vector<Instruction*> instructions);
     int getTripCount();
+    int getLoopCallCount();
   };
 }  
 
@@ -141,6 +146,7 @@ bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
   LI = &getAnalysis<LoopInfo>();
   AA = &getAnalysis<AliasAnalysis>();
   DT = &getAnalysis<DominatorTree>();
+  PI = &getAnalysis<ProfileInfo>();
 
   TD = getAnalysisIfAvailable<DataLayout>();
   TLI = &getAnalysis<TargetLibraryInfo>();
@@ -184,7 +190,8 @@ bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
   f6 = getOperandsCount(instructions);
   f7 = getImplicitInstructionsCount(instructions);
   f8 = getUniquePredicatesCount(instructions);
-  f19 = getTripCount();
+  f9 = getTripCount();
+  f10 = getLoopCallCount();
 
   // Clear out loops state information for the next iteration
   CurLoop = 0;
@@ -198,6 +205,7 @@ bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
   return Changed;
 }
 
+//return the nesting level of the loop
 unsigned int FeatureExtractor::getLoopDepth() {
   return CurLoop->getLoopDepth();
 }
@@ -311,9 +319,19 @@ int FeatureExtractor::getUniquePredicatesCount(std::vector<Instruction*> instruc
   return predicates.size();
 }
 
+// trip count is the minimum no. of times a loop executes
 int FeatureExtractor::getTripCount() {
   if (BasicBlock *ExitingBB = CurLoop->getExitingBlock()) {
     return SE->getSmallConstantTripMultiple(CurLoop, ExitingBB);
   }
   return -1;
+}
+
+// get no. of times the loop is called
+int FeatureExtractor::getLoopCallCount() {
+  BasicBlock *Preheader = CurLoop->getLoopPreheader();
+  if (!Preheader) {
+    return 1;
+  }
+  return PI->getExecutionCount(Preheader);
 }
