@@ -18,11 +18,10 @@
 * Max height of memory dependencies of computations?
 * Max height of control dependencies of computations?
 * Average dependence height of computations
-* No. of indirect references in loop body
 * Min memory-to-memory loop-carried dependence?
 * No. of memory-to-memory dependencies
 * Live range size **
 * Critical path length **
 Number of times the body of the loop is executed.Given that for most of the loops this feature is unknown at compilation time, it has to be determined during the execution of the programs.
-* No. of uses in the loop
-* No. of defs in the loop
+* No. of uses in the loop (done)
+* No. of defs in the loop (done)

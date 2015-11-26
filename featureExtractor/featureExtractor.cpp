@@ -74,8 +74,6 @@ STATISTIC(f22, "No. of indirect references in loop body");
 STATISTIC(f23, "Min memory-to-memory loop-carried dependence");
 STATISTIC(f24, "No. of memory-to-memory dependencies");
 
-
-
 namespace {
   struct FeatureExtractor: public LoopPass {
     static char ID;
@@ -133,6 +131,9 @@ namespace {
     int getUniquePredicatesCount(std::vector<Instruction*> instructions);
     int getTripCount();
     int getLoopCallCount();
+    int getDefCount(std::vector<Instruction*> instructions);
+    int getUseCount(std::vector<Instruction*> instructions);
+    void getDependenceMap(std::vector<Instruction*> instructions);
   };
 }  
 
@@ -192,6 +193,8 @@ bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
   f8 = getUniquePredicatesCount(instructions);
   f9 = getTripCount();
   f10 = getLoopCallCount();
+  f13 = getUseCount(instructions);
+  f14 = getDefCount(instructions);
 
   // Clear out loops state information for the next iteration
   CurLoop = 0;
@@ -335,3 +338,33 @@ int FeatureExtractor::getLoopCallCount() {
   }
   return PI->getExecutionCount(Preheader);
 }
+
+int FeatureExtractor::getUseCount(std::vector<Instruction*> instructions) {
+  int useCount = 0;
+  for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
+    Instruction *I = *II;
+    for (User::op_iterator OI = I->op_begin(), OE = I->op_end(); OI != OE; ++OI) {
+      if(dyn_cast<Instruction>(*OI)) {
+        useCount++;
+      }
+    }
+  }
+  return useCount;
+}
+
+int FeatureExtractor::getDefCount(std::vector<Instruction*> instructions) {
+  int defCount = 0;
+  for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
+    Instruction *I = *II;
+    if (dyn_cast<AllocaInst>(I)) {
+      defCount++;
+    }
+  }
+  return defCount;
+}
+
+void FeatureExtractor::getDependenceMap(std::vector<Instruction*> instructions) {
+  
+}
+
+
