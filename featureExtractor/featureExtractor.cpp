@@ -409,7 +409,7 @@ int FeatureExtractor::getArrayReuses(std::vector<Instruction*> instructions) {
 					// Check destination, if GEP inst, means is an array el
 					if (dyn_cast<GetElementPtrInst>(opI)) {
 						// Back track the source to see if it reuses an array el
-						arrayReuses = traceArrayReuses(source);
+						arrayReuses += traceArrayReuses(source);
 					}
 				}
 			}
