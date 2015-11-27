@@ -375,8 +375,7 @@ int traceArrayReuses(Value* operand) {
 		if (GetElementPtrInst *gep = dyn_cast<GetElementPtrInst>(I)) {
 			Value* gepFirstOperand = gep->getOperand(0);
 			Type* type = gepFirstOperand->getType();
-			// Figure out whether the first operand
-			// points to an array
+			// Figure out whether the first operand points to an array
 			if (PointerType *pointerType = dyn_cast<PointerType>(type)) {
 				Type* elementType = pointerType->getElementType();
 				if (elementType->isArrayTy()) {
@@ -385,8 +384,8 @@ int traceArrayReuses(Value* operand) {
 			}
 		} else {
 			int arrayReuses = 0;
-			for (User::op_iterator i = I->op_begin(), e = I->op_end(); i != e; ++i) {
-				arrayReuses += traceArrayReuses(*i);
+			for (User::op_iterator OI = I->op_begin(), e = I->op_end(); OI != e; ++OI) {
+				arrayReuses += traceArrayReuses(*OI);
 			}
 			return arrayReuses;
 		}
@@ -407,17 +406,16 @@ int FeatureExtractor::getArrayReuses(std::vector<Instruction*> instructions) {
 			Value* source = storeInst->getValueOperand();
 			if(isa<Instruction>(target)) {
 				if(Instruction *opI = dyn_cast<Instruction>(target)) {
-					if (GetElementPtrInst *gep = dyn_cast<GetElementPtrInst>(opI)) {
-						// If target is a GEP instruction
-						// Back track the source to see if reuses an array el
-						int arrayReuses = traceArrayReuses(source);
-						errs() << "Array reuses: " << arrayReuses << "\n" ;
+					// Check destination, if GEP inst, means is an array el
+					if (dyn_cast<GetElementPtrInst>(opI)) {
+						// Back track the source to see if it reuses an array el
+						arrayReuses = traceArrayReuses(source);
 					}
 				}
 			}
 		}
 	}
-	return 0;
+	return arrayReuses;
 }
 
 
