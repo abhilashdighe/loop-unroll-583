@@ -35,12 +35,12 @@
 #include <algorithm>
 
 
-// feature extractor includes
+// Feature extractor includes
 #include "llvm/Transforms/Utils/BasicBlockUtils.h"
 #include "LAMP/LAMPLoadProfile.h"
 #include "llvm/Analysis/ProfileInfo.h"
 
-// other includes 
+// Other includes 
 #include <set>
 #include <map>
 #include <stdio.h>
@@ -75,296 +75,349 @@ STATISTIC(f23, "Min memory-to-memory loop-carried dependence");
 STATISTIC(f24, "No. of memory-to-memory dependencies");
 
 namespace {
-  struct FeatureExtractor: public LoopPass {
-    static char ID;
-    FeatureExtractor() : LoopPass(ID) {}
+	struct FeatureExtractor: public LoopPass {
+		static char ID;
+		FeatureExtractor() : LoopPass(ID) {}
 
-    virtual bool runOnLoop(Loop *L, LPPassManager &LPM);
+		virtual bool runOnLoop(Loop *L, LPPassManager &LPM);
 
-    /// This transformation requires natural loop information & requires that
-    /// loop preheaders be inserted into the CFG...
-    ///
-    virtual void getAnalysisUsage(AnalysisUsage &AU) const {
-      AU.addRequired<DominatorTree>();
-      AU.addRequired<LoopInfo>();
-      AU.addRequired<AliasAnalysis>();
-      AU.addRequired<TargetLibraryInfo>();
-      AU.addRequired<ProfileInfo>();
-      AU.addRequired<LAMPLoadProfile>();
-      AU.addRequired<ScalarEvolution>();
-    }
+		/// This transformation requires natural loop information & requires that
+		/// loop preheaders be inserted into the CFG...
+		///
+		virtual void getAnalysisUsage(AnalysisUsage &AU) const {
+			AU.addRequired<DominatorTree>();
+			AU.addRequired<LoopInfo>();
+			AU.addRequired<AliasAnalysis>();
+			AU.addRequired<TargetLibraryInfo>();
+			AU.addRequired<ProfileInfo>();
+			AU.addRequired<LAMPLoadProfile>();
+			AU.addRequired<ScalarEvolution>();
+		}
 
-  private:
-    AliasAnalysis *AA;       // Current AliasAnalysis information
-    LoopInfo      *LI;       // Current LoopInfo
-    DominatorTree *DT;       // Dominator Tree for the current Loop.
-    ProfileInfo* PI;
+	private:
+		AliasAnalysis *AA;       // Current AliasAnalysis information
+		LoopInfo      *LI;       // Current LoopInfo
+		DominatorTree *DT;       // Dominator Tree for the current Loop.
+		ProfileInfo* PI;
 
-    DataLayout *TD;          // DataLayout for constant folding.
-    TargetLibraryInfo *TLI;  // TargetLibraryInfo for constant folding.
-    ScalarEvolution *SE;
+		DataLayout *TD;          // DataLayout for constant folding.
+		TargetLibraryInfo *TLI;  // TargetLibraryInfo for constant folding.
+		ScalarEvolution *SE;
 
 
-    // State that is updated as we process loops.
-    bool Changed;            // Set to true when we change anything.
-    Loop *CurLoop;           // The current loop we are working on...
-    AliasSetTracker *CurAST; // AliasSet information for the current loop...
-    DenseMap<Loop*, AliasSetTracker*> LoopToAliasSetMap;
+		// State that is updated as we process loops.
+		bool Changed;            // Set to true when we change anything.
+		Loop *CurLoop;           // The current loop we are working on...
+		AliasSetTracker *CurAST; // AliasSet information for the current loop...
+		DenseMap<Loop*, AliasSetTracker*> LoopToAliasSetMap;
 
-    bool inSubLoop(BasicBlock *BB) {
-      assert(CurLoop->contains(BB) && "Only valid if BB is IN the loop");
-      return LI->getLoopFor(BB) != CurLoop;
-    }
+		bool inSubLoop(BasicBlock *BB) {
+			assert(CurLoop->contains(BB) && "Only valid if BB is IN the loop");
+			return LI->getLoopFor(BB) != CurLoop;
+		}
 
-    bool pointerInvalidatedByLoop(Value *V, uint64_t Size, const MDNode *TBAAInfo) {
-      // Check to see if any of the basic blocks in CurLoop invalidate *V.
-      return CurAST->getAliasSetForPointer(V, Size, TBAAInfo).isMod();
-    }
+		bool pointerInvalidatedByLoop(Value *V, uint64_t Size, const MDNode *TBAAInfo) {
+			// Check to see if any of the basic blocks in CurLoop invalidate *V.
+			return CurAST->getAliasSetForPointer(V, Size, TBAAInfo).isMod();
+		}
 
-    unsigned int getLoopDepth();
-    std::vector<Instruction*> getDynOps();
-    int getFloatOpCount(std::vector<Instruction*> instructions);
-    int getBranchOpCount(std::vector<Instruction*> instructions);
-    int getMemOpCount(std::vector<Instruction*> instructions);
-    int getOperandsCount(std::vector<Instruction*> instructions);
-    int getImplicitInstructionsCount(std::vector<Instruction*> instructions);
-    int getUniquePredicatesCount(std::vector<Instruction*> instructions);
-    int getTripCount();
-    int getLoopCallCount();
-    int getDefCount(std::vector<Instruction*> instructions);
-    int getUseCount(std::vector<Instruction*> instructions);
-    void getDependenceMap(std::vector<Instruction*> instructions);
-  };
-}  
+		unsigned int getLoopDepth();
+		std::vector<Instruction*> getDynOps();
+		int getFloatOpCount(std::vector<Instruction*> instructions);
+		int getBranchOpCount(std::vector<Instruction*> instructions);
+		int getMemOpCount(std::vector<Instruction*> instructions);
+		int getOperandsCount(std::vector<Instruction*> instructions);
+		int getImplicitInstructionsCount(std::vector<Instruction*> instructions);
+		int getUniquePredicatesCount(std::vector<Instruction*> instructions);
+		int getTripCount();
+		int getLoopCallCount();
+		int getDefCount(std::vector<Instruction*> instructions);
+		int getUseCount(std::vector<Instruction*> instructions);
+		int getArrayReuses(std::vector<Instruction*> instructions);
+		void getDependenceMap(std::vector<Instruction*> instructions);
+	};
+}
 
 char FeatureExtractor::ID = 0;
 static RegisterPass<FeatureExtractor> X("featsExtractor", "Feature Extractor", false, false);
 
 bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
-  Changed = false;
+	Changed = false;
 
-  // Get our Loop and Alias Analysis information...
-  LI = &getAnalysis<LoopInfo>();
-  AA = &getAnalysis<AliasAnalysis>();
-  DT = &getAnalysis<DominatorTree>();
-  PI = &getAnalysis<ProfileInfo>();
+	// Get our Loop and Alias Analysis information
+	LI = &getAnalysis<LoopInfo>();
+	AA = &getAnalysis<AliasAnalysis>();
+	DT = &getAnalysis<DominatorTree>();
+	PI = &getAnalysis<ProfileInfo>();
 
-  TD = getAnalysisIfAvailable<DataLayout>();
-  TLI = &getAnalysis<TargetLibraryInfo>();
-  SE = &getAnalysis<ScalarEvolution>();
+	TD = getAnalysisIfAvailable<DataLayout>();
+	TLI = &getAnalysis<TargetLibraryInfo>();
+	SE = &getAnalysis<ScalarEvolution>();
 
-  CurAST = new AliasSetTracker(*AA);
-  // Collect Alias info from subloops.
-  for (Loop::iterator LoopItr = L->begin(), LoopItrE = L->end();
-       LoopItr != LoopItrE; ++LoopItr) {
-    Loop *InnerL = *LoopItr;
-    AliasSetTracker *InnerAST = LoopToAliasSetMap[InnerL];
-    assert(InnerAST && "Where is my AST?");
-    // What if InnerLoop was modified by other passes ?
-    CurAST->add(*InnerAST);
+	CurAST = new AliasSetTracker(*AA);
+	// Collect Alias info from subloops.
+	for (Loop::iterator LoopItr = L->begin(), LoopItrE = L->end();
+		 LoopItr != LoopItrE; ++LoopItr) {
+		Loop *InnerL = *LoopItr;
+		AliasSetTracker *InnerAST = LoopToAliasSetMap[InnerL];
+		assert(InnerAST && "Where is my AST?");
+		// What if InnerLoop was modified by other passes ?
+		CurAST->add(*InnerAST);
 
-    // Once we've incorporated the inner loop's AST into ours, we don't need the
-    // subloop's anymore.
-    delete InnerAST;
-    LoopToAliasSetMap.erase(InnerL);
-  }
+		// Once we've incorporated the inner loop's AST into ours, we don't need the
+		// subloop's anymore.
+		delete InnerAST;
+		LoopToAliasSetMap.erase(InnerL);
+	}
 
-  CurLoop = L;
-  // Loop over the body of this loop, looking for calls, invokes, and stores.
-  // Because subloops have already been incorporated into AST, we skip blocks in
-  // subloops.
-  //
-  for (Loop::block_iterator I = L->block_begin(), E = L->block_end();
-       I != E; ++I) {
-    BasicBlock *BB = *I;
-    if (LI->getLoopFor(BB) == L) {        // Ignore blocks in subloops.
-      CurAST->add(*BB);                 // Incorporate the specified basic block
-    }
-  }
+	CurLoop = L;
+	// Loop over the body of this loop, looking for calls, invokes, and stores.
+	// Because subloops have already been incorporated into AST, we skip blocks in
+	// subloops.
+	//
+	for (Loop::block_iterator I = L->block_begin(), E = L->block_end();
+		 I != E; ++I) {
+		BasicBlock *BB = *I;
+		if (LI->getLoopFor(BB) == L) {        // Ignore blocks in subloops.
+			CurAST->add(*BB);                 // Incorporate the specified basic block
+		}
+	}
 
-  std::vector<Instruction*> instructions = getDynOps();
-  f1 = getLoopDepth();
-  f2 = instructions.size();
-  f3 = getFloatOpCount(instructions);
-  f4 = getBranchOpCount(instructions);
-  f5 = getMemOpCount(instructions);
-  f6 = getOperandsCount(instructions);
-  f7 = getImplicitInstructionsCount(instructions);
-  f8 = getUniquePredicatesCount(instructions);
-  f9 = getTripCount();
-  f10 = getLoopCallCount();
-  f13 = getUseCount(instructions);
-  f14 = getDefCount(instructions);
+	std::vector<Instruction*> instructions = getDynOps();
+	f1 = getLoopDepth();
+	f2 = instructions.size();
+	f3 = getFloatOpCount(instructions);
+	f4 = getBranchOpCount(instructions);
+	f5 = getMemOpCount(instructions);
+	f6 = getOperandsCount(instructions);
+	f7 = getImplicitInstructionsCount(instructions);
+	f8 = getUniquePredicatesCount(instructions);
+	f9 = getTripCount();
+	f10 = getLoopCallCount();
+	f11 = getArrayReuses(instructions);
+	f13 = getUseCount(instructions);
+	f14 = getDefCount(instructions);
+	// Clear out loops state information for the next iteration
+	CurLoop = 0;
 
-  // Clear out loops state information for the next iteration
-  CurLoop = 0;
-
-  // If this loop is nested inside of another one, save the alias information
-  // for when we process the outer loop.
-  if (L->getParentLoop())
-    LoopToAliasSetMap[L] = CurAST;
-  else
-    delete CurAST;
-  return Changed;
+	// If this loop is nested inside of another one, save the alias information
+	// for when we process the outer loop.
+	if (L->getParentLoop())
+		LoopToAliasSetMap[L] = CurAST;
+	else
+		delete CurAST;
+	return Changed;
 }
 
 //return the nesting level of the loop
 unsigned int FeatureExtractor::getLoopDepth() {
-  return CurLoop->getLoopDepth();
+	return CurLoop->getLoopDepth();
 }
 
 std::vector<Instruction*> FeatureExtractor::getDynOps() {
-  std::vector<Instruction*> instructions;
-  for (Loop::block_iterator I = CurLoop->block_begin(), E = CurLoop->block_end(); I != E; ++I) {
-    BasicBlock *BB = *I;
-    if (BB == CurLoop->getHeader()) {
-      continue;
-    }
-    if (BB == CurLoop->getLoopLatch()) {
-      continue;
-    }
-    if (LI->getLoopFor(BB) == CurLoop) {        // Ignore blocks in subloops.
-      for (BasicBlock::iterator II = BB->begin(), IE = BB->end(); II != IE; ++II) {
-        instructions.push_back(II);
-      }
-    }
-  }
-  return instructions;
+	std::vector<Instruction*> instructions;
+	for (Loop::block_iterator I = CurLoop->block_begin(), E = CurLoop->block_end(); I != E; ++I) {
+		BasicBlock *BB = *I;
+		if (BB == CurLoop->getHeader()) {
+			continue;
+		}
+		if (BB == CurLoop->getLoopLatch()) {
+			continue;
+		}
+		if (LI->getLoopFor(BB) == CurLoop) {        // Ignore blocks in subloops.
+			for (BasicBlock::iterator II = BB->begin(), IE = BB->end(); II != IE; ++II) {
+				instructions.push_back(II);
+			}
+		}
+	}
+	return instructions;
 }
 
 int FeatureExtractor::getFloatOpCount(std::vector<Instruction*> instructions) {
-  int floatOpCount = 0;
-  for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
-    Instruction *I = *II;
-    switch (I->getOpcode()) {
-      case Instruction::FAdd:
-      case Instruction::FSub:
-      case Instruction::FMul:
-      case Instruction::FDiv:
-      case Instruction::FRem:
-      case Instruction::FCmp:
-        floatOpCount += 1;
-        break;
-      default:
-        break;        
-    }
-  }
-  return floatOpCount;
+	int floatOpCount = 0;
+	for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
+		Instruction *I = *II;
+		switch (I->getOpcode()) {
+		case Instruction::FAdd:
+		case Instruction::FSub:
+		case Instruction::FMul:
+		case Instruction::FDiv:
+		case Instruction::FRem:
+		case Instruction::FCmp:
+			floatOpCount += 1;
+			break;
+		default:
+			break;
+		}
+	}
+	return floatOpCount;
 }
 
 int FeatureExtractor::getBranchOpCount(std::vector<Instruction*> instructions) {
-  int branchOpCount = 0;
-  for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
-    Instruction *I = *II;
-    switch (I->getOpcode()) {
-      case Instruction::Br:
-      case Instruction::Switch:
-      case Instruction::IndirectBr:
-        branchOpCount += 1;
-        break;
-      default:
-        break;        
-    }
-  }
-  return branchOpCount;
+	int branchOpCount = 0;
+	for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
+		Instruction *I = *II;
+		switch (I->getOpcode()) {
+		case Instruction::Br:
+		case Instruction::Switch:
+		case Instruction::IndirectBr:
+			branchOpCount += 1;
+			break;
+		default:
+			break;
+		}
+	}
+	return branchOpCount;
 }
 
 int FeatureExtractor::getMemOpCount(std::vector<Instruction*> instructions) {
-  int memOpCount = 0;
-  for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
-    Instruction *I = *II;
-    switch (I->getOpcode()) {
-      case Instruction::Alloca:
-      case Instruction::Load:
-      case Instruction::Store:
-      case Instruction::GetElementPtr:
-      case Instruction::Fence:
-      case Instruction::AtomicCmpXchg:
-      case Instruction::AtomicRMW:
-        memOpCount += 1;
-        break;
-      default:
-        break;        
-    }
-  }
-  return memOpCount;
+	int memOpCount = 0;
+	for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
+		Instruction *I = *II;
+		switch (I->getOpcode()) {
+		case Instruction::Alloca:
+		case Instruction::Load:
+		case Instruction::Store:
+		case Instruction::GetElementPtr:
+		case Instruction::Fence:
+		case Instruction::AtomicCmpXchg:
+		case Instruction::AtomicRMW:
+			memOpCount += 1;
+			break;
+		default:
+			break;
+		}
+	}
+	return memOpCount;
 }
 
 int FeatureExtractor::getOperandsCount(std::vector<Instruction*> instructions) {
-  int operandsCount = 0;
-  for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
-    Instruction *I = *II;
-    operandsCount += I->getNumOperands();
-  }
-  return operandsCount;
+	int operandsCount = 0;
+	for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
+		Instruction *I = *II;
+		operandsCount += I->getNumOperands();
+	}
+	return operandsCount;
 }
 
 //instructions that are either shift or cast. Should binary op be included?
 int FeatureExtractor::getImplicitInstructionsCount(std::vector<Instruction*> instructions) {
-  int implictInstrCount = 0;
-  for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
-    Instruction *I = *II;
-    if (Instruction::isShift(I->getOpcode()) || Instruction::isCast(I->getOpcode())) {
-      implictInstrCount++;
-    }
-  }
-  return implictInstrCount;
+	int implictInstrCount = 0;
+	for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
+		Instruction *I = *II;
+		if (Instruction::isShift(I->getOpcode()) || Instruction::isCast(I->getOpcode())) {
+			implictInstrCount++;
+		}
+	}
+	return implictInstrCount;
 }
 
 int FeatureExtractor::getUniquePredicatesCount(std::vector<Instruction*> instructions) {
-  std::set<CmpInst::Predicate> predicates;
-  for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
-    Instruction *I = *II;
-    if (CmpInst *compInst = dyn_cast<CmpInst>(I)) {
-      predicates.insert(compInst->getPredicate());
-    }
-  }
-  return predicates.size();
+	std::set<CmpInst::Predicate> predicates;
+	for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
+		Instruction *I = *II;
+		if (CmpInst *compInst = dyn_cast<CmpInst>(I)) {
+			predicates.insert(compInst->getPredicate());
+		}
+	}
+	return predicates.size();
 }
 
 // trip count is the minimum no. of times a loop executes
 int FeatureExtractor::getTripCount() {
-  if (BasicBlock *ExitingBB = CurLoop->getExitingBlock()) {
-    return SE->getSmallConstantTripMultiple(CurLoop, ExitingBB);
-  }
-  return -1;
+	if (BasicBlock *ExitingBB = CurLoop->getExitingBlock()) {
+		return SE->getSmallConstantTripMultiple(CurLoop, ExitingBB);
+	}
+	return -1;
 }
 
 // get no. of times the loop is called
 int FeatureExtractor::getLoopCallCount() {
-  BasicBlock *Preheader = CurLoop->getLoopPreheader();
-  if (!Preheader) {
-    return 1;
-  }
-  return PI->getExecutionCount(Preheader);
+	BasicBlock *Preheader = CurLoop->getLoopPreheader();
+	if (!Preheader) {
+		return 1;
+	}
+	return PI->getExecutionCount(Preheader);
 }
 
 int FeatureExtractor::getUseCount(std::vector<Instruction*> instructions) {
-  int useCount = 0;
-  for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
-    Instruction *I = *II;
-    for (User::op_iterator OI = I->op_begin(), OE = I->op_end(); OI != OE; ++OI) {
-      if(dyn_cast<Instruction>(*OI)) {
-        useCount++;
-      }
-    }
-  }
-  return useCount;
+	int useCount = 0;
+	for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
+		Instruction *I = *II;
+		for (User::op_iterator OI = I->op_begin(), OE = I->op_end(); OI != OE; ++OI) {
+			if(dyn_cast<Instruction>(*OI)) {
+				useCount++;
+			}
+		}
+	}
+	return useCount;
 }
 
 int FeatureExtractor::getDefCount(std::vector<Instruction*> instructions) {
-  int defCount = 0;
-  for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
-    Instruction *I = *II;
-    if (dyn_cast<AllocaInst>(I)) {
-      defCount++;
-    }
-  }
-  return defCount;
+	int defCount = 0;
+	for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
+		Instruction *I = *II;
+		if (dyn_cast<AllocaInst>(I)) {
+			defCount++;
+		}
+	}
+	return defCount;
 }
 
 void FeatureExtractor::getDependenceMap(std::vector<Instruction*> instructions) {
-  
+
+}
+
+// Pal TODO: Utility function, where to move?
+int traceArrayReuses(Value* operand) {
+	if(isa<Instruction>(operand)) {
+		Instruction *I = dyn_cast<Instruction>(operand);
+		if (GetElementPtrInst *gep = dyn_cast<GetElementPtrInst>(I)) {
+			Value* gepFirstOperand = gep->getOperand(0);
+			Type* type = gepFirstOperand->getType();
+			// Figure out whether the first operand
+			// points to an array
+			if (PointerType *pointerType = dyn_cast<PointerType>(type)) {
+				Type* elementType = pointerType->getElementType();
+				if (elementType->isArrayTy()) {
+					return 1;
+				}
+			}
+		} else {
+			int arrayReuses = 0;
+			for (User::op_iterator i = I->op_begin(), e = I->op_end(); i != e; ++i) {
+				arrayReuses += traceArrayReuses(*i);
+			}
+			return arrayReuses;
+		}
+	}
+	return 0;
+}
+
+// Pal TODO: Explore if we can make it work for a case like:
+// x = a[i + 1]
+// a[i] = x;
+int FeatureExtractor::getArrayReuses(std::vector<Instruction*> instructions) {
+	int arrayReuses = 0;
+	for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
+		Instruction *I = *II;
+		if (I->getOpcode() == Instruction::Store) {
+			StoreInst *storeInst = dyn_cast<StoreInst>(I);
+			Value* target = storeInst->getPointerOperand();
+			Value* source = storeInst->getValueOperand();
+			if(isa<Instruction>(target)) {
+				if(Instruction *opI = dyn_cast<Instruction>(target)) {
+					if (GetElementPtrInst *gep = dyn_cast<GetElementPtrInst>(opI)) {
+						// If target is a GEP instruction
+						// Back track the source to see if reuses an array el
+						int arrayReuses = traceArrayReuses(source);
+						errs() << "Array reuses: " << arrayReuses << "\n" ;
+					}
+				}
+			}
+		}
+	}
+	return 0;
 }
 
 
