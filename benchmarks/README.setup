@@ -1,0 +1,36 @@
+A) Download and setup testsuite for LLVM:
+http://llvm.org/docs/TestSuiteMakefileGuide.html
+
+B) Download SPEC2006 benchmark and change perlbench files as below:
+Before running the suite you need to fix 400.perlbench test case configuration. Open CPU2006/400.perlbench/src/spec_config.h file, define HASATTRIBUTE macro and remove all #undef HASATTRIBUTE pragmas. 
+Reference - https://dmz-portal.mips.com/wiki/LLVM_SPEC_2006
+
+C) cd ~/llvm-3.3.src/projects/test-suite
+
+D) Configure llvm testsuite - link to the llvm source and build, download spec benchmark, extract and link the path to llvm as below:
+./configure --with-llvmsrc=/home/vgogte/llvm-3.3.src --with-llvmobj=/home/vgogte/build --with-externels=/home/vgogte/SPEC_CPU2006v1.1/benchspec
+
+
+E) Change in Makefile.config
+SPEC2006_ROOT :=  /home/vgogte/SPEC_CPU2006v1.1/benchspec
+
+
+F) Test that implments the pass: TEST.unroll.Makefile in test-suite folder that runs the unroll pass
+cp <loop-unroll-583 path>/benchmarks/TEST.unroll.Makefile ~/llvm-3.3.src/projects/test-suite/.
+Change path to loop_unroll.so to your local compile (make in loop unroll pass directory to generate this)
+
+
+G) Run benchmarks
+
+  a) to run SPEC CINT benchmakrs:
+  cd ~/llvm-3.3.src/projects/test-suite/External/SPEC/CINT2006
+  make TEST=unroll
+  
+  b) to run SPEC CFP benchmakrs:
+  cd ~/llvm-3.3.src/projects/test-suite/External/SPEC/CFP2006
+  make TEST=unroll
+  
+  c) to run MiBench
+  cd ~/llvm-3.3.src/projects/test-suite/MultiSource/Benchmarks/MiBench
+  make TEST=unroll
+
