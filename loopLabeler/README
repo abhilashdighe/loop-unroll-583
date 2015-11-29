@@ -7,3 +7,5 @@ opt -load project_dir/Release+Asserts/lib/libfeatureExtractor.so -loop-label < t
 
 This pass cannot be chained like default llvm passes. To access the maps from the pass, use test.label.bc as input to future passes in the pipeline. 
 To check out usage, see featureExtractor.cpp
+
+Put the loopLabeler.cpp in project_dir/lib/project_name/ and include LoopLabeler.h in project_dir/include
