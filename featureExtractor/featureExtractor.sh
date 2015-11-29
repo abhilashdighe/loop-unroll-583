@@ -21,4 +21,5 @@ g++ -o $fname.lamp.exe $fname.lamp.s /home/funke/Documents/eecs583/workspace/pro
 echo "executing lamp exe"
 ./$fname.lamp.exe $input> /dev/null
 echo "loading pass"
-opt -analyze -mem2reg -indvars -scalar-evolution -stats -load /home/funke/Documents/eecs583/workspace/project/featureExtractor/Release+Asserts/lib/libfeatureExtractor.so -lamp-inst-cnt -lamp-map-loop -lamp-load-profile -profile-loader -profile-info-file=llvmprof.out -featsExtractor < $fname.ls.bc > $fname.ls.feats.bc || { echo "Failed to get feature stats"; exit 1; }
+opt -load /home/funke/Documents/eecs583/workspace/project/featureExtractor/Release+Asserts/lib/libfeatureExtractor.so -loop-label < $fname.ls.bc > $fname.ls.label.bc || { echo "Failed to get id for loop"; exit 1; }
+opt -analyze -mem2reg -indvars -scalar-evolution -stats -load /home/funke/Documents/eecs583/workspace/project/featureExtractor/Release+Asserts/lib/libfeatureExtractor.so -lamp-inst-cnt -lamp-map-loop -lamp-load-profile -profile-loader -profile-info-file=llvmprof.out -featsExtractor < $fname.ls.label.bc > $fname.ls.feats.bc || { echo "Failed to get feature stats"; exit 1; }
