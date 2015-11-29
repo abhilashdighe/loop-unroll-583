@@ -12,5 +12,3 @@ opt -loop-simplify < $fname.bc > $fname.ls.bc || { echo "Failed to opt loop simp
 
 #label loops
 opt -load $project_dir/Release+Asserts/lib/libfeatureExtractor.so -loop-label < $fname.ls.bc > $fname.ls.label.bc || { echo "Failed to get ids for loops"; exit 1; }
-
-# Use $fname.ls.label.bc as input to future passes in the chain. Also, -loop-label cannot be chained like default llvm passes. The only way to be able to access the maps in the pass is by using the output of this pass, $fname.ls.label.bc 
