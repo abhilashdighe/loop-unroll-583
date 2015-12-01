@@ -3,7 +3,7 @@ Pass that assigns unique labels to each loop in the program.
 Run this pass before the feature extractor and loop unroll passes so that both the passes use same loop ids.
 
 Run this pass using:
-opt -load project_dir/Release+Asserts/lib/libfeatureExtractor.so -loop-label < test.bc > test.label.bc
+opt -load project_dir/Release+Asserts/lib/libfeatureExtractor.so -loop-label -benchmark test < test.bc > test.label.bc
 
 To check out usage, see featureExtractor.cpp
 
