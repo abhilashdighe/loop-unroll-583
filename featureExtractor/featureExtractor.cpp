@@ -75,6 +75,8 @@ STATISTIC(f22, "No. of indirect references in loop body");
 STATISTIC(f23, "Min memory-to-memory loop-carried dependence");
 STATISTIC(f24, "No. of memory-to-memory dependencies");
 
+static cl::opt<std::string> output_filename("output-filename", cl::desc("Specify output-filename to write features to"), cl::value_desc("filename"));
+
 namespace {
   struct FeatureExtractor: public LoopPass {
     static char ID;
@@ -200,22 +202,24 @@ bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
   //f11 = getArrayReuses(instructions);
   f13 = getUseCount(instructions);
   f14 = getDefCount(instructions);
-  errs() << LL->LoopToIdMap[CurLoop->getHeader()] << ","
-        << f1 << ","
-        << f2 << ","
-        << f3 << ","
-        << f4 << ","
-        << f5 << ","
-        << f6 << ","
-        << f7 << ","
-        << f8 << ","
-        << f9 << ","
-        << f10 << ","
-        << f11 << ","
-        << f12 << ","
-        << f13 << ","
-        << f14 << "\n";
-
+  std::ofstream outputFile(output_filename.c_str(), std::fstream::app);
+  std::string unique_loop_id = LL->LoopToIdMap[CurLoop->getHeader()];
+  outputFile << LL->benchmark << ","
+                << unique_loop_id << ","
+                << f1 << ","
+                << f2 << ","
+                << f3 << ","
+                << f4 << ","
+                << f5 << ","
+                << f6 << ","
+                << f7 << ","
+                << f8 << ","
+                << f9 << ","
+                << f10 << ","
+                << f11 << ","
+                << f13 << ","
+                << f14 << "\n";
+  outputFile.close();
   // Clear out loops state information for the next iteration
   CurLoop = 0;
 

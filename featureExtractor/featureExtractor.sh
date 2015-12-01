@@ -5,6 +5,7 @@ input=$2
 make clean -C /home/funke/Documents/eecs583/workspace/project/featureExtractor
 make -C /home/funke/Documents/eecs583/workspace/project/featureExtractor
 
+rm train_x.csv
 rm llvmprof.out # Otherwise your profile runs are added together
 clang -emit-llvm -o $fname.bc -c $fname.c || { echo "Failed to emit llvm bc"; exit 1; }
 opt -loop-simplify < $fname.bc > $fname.ls.bc || { echo "Failed to opt loop simplify"; exit 1; }
@@ -21,4 +22,4 @@ g++ -o $fname.lamp.exe $fname.lamp.s /home/funke/Documents/eecs583/workspace/pro
 echo "executing lamp exe"
 ./$fname.lamp.exe $input> /dev/null
 echo "loading pass"
-opt -analyze -mem2reg -indvars -scalar-evolution -stats -load /home/funke/Documents/eecs583/workspace/project/featureExtractor/Release+Asserts/lib/libfeatureExtractor.so -lamp-inst-cnt -lamp-map-loop -lamp-load-profile -profile-loader -profile-info-file=llvmprof.out -featsExtractor < $fname.ls.bc > $fname.ls.feats.bc || { echo "Failed to get feature stats"; exit 1; }
+opt -analyze -mem2reg -indvars -scalar-evolution -stats -load /home/funke/Documents/eecs583/workspace/project/featureExtractor/Release+Asserts/lib/libfeatureExtractor.so -lamp-inst-cnt -lamp-map-loop -lamp-load-profile -profile-loader -profile-info-file=llvmprof.out -featsExtractor -benchmark $fname -output-filename train_x.csv < $fname.ls.bc > $fname.ls.feats.bc || { echo "Failed to get feature stats"; exit 1; }

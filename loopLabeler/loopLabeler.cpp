@@ -38,6 +38,7 @@ bool LoopLabelMap::runOnLoop(Loop* L, LPPassManager &LPM)
   // build the <IDs, Loop> map
 	BasicBlock* BB = L->getHeader();
 	loop_id ++;
+	benchmark = benchmark_name;
 
 	std::ostringstream oss;
 	oss << benchmark_name << "_" << loop_id;
@@ -49,7 +50,3 @@ bool LoopLabelMap::runOnLoop(Loop* L, LPPassManager &LPM)
 	llvm::errs() << unique_loop_id << " " << L << " " << BB << " " <<  "\n";
 	return true;
 }
-
-
-
-
