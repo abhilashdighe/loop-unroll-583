@@ -11,4 +11,4 @@ clang -emit-llvm -o $fname.bc -c $fname.c || { echo "Failed to emit llvm bc"; ex
 opt -loop-simplify < $fname.bc > $fname.ls.bc || { echo "Failed to opt loop simplify"; exit 1; }
 
 #label loops
-opt -load $project_dir/Release+Asserts/lib/libfeatureExtractor.so -loop-label < $fname.ls.bc > $fname.ls.label.bc || { echo "Failed to get ids for loops"; exit 1; }
+opt -load $project_dir/Release+Asserts/lib/libfeatureExtractor.so -loop-label -benchmark $fname < $fname.ls.bc > $fname.ls.label.bc || { echo "Failed to get ids for loops"; exit 1; }

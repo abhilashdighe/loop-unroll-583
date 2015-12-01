@@ -14,12 +14,14 @@
 ##### Loop labeler pass
 Assigns unique loop_id to each loop in a benchmark. To uniquely identify loops across benchmarks, this pass should accept an option 'benchmark_name' and name the loops like 'benchmark_name_#'. 
 
-TODO: add option for benchmark_name
+TODO: add option for benchmark_name.
+STATUS: complete
 
 ##### Feature extractor pass
 Extracts features for train/test benchmarks. Should have a dependency on loop labeler pass. Uses loop id defined by the loop labeler and extract features for a loop. Should write its output to 'train_x.csv' / 'test_x.csv'
 
 TODO: 1) fix the bug with feature that computes array element reuses. 2) add option for file to append features to (other option could be to hard code/redirect output of the pass, but that will require script to merge the outputs)
+STATUS: completed 2; added option to write to train_x.csv or test_x.csv; updated the script to run this pass
 
 ##### Loop Unroll pass
 Should have a dependency on loop labeler pass.

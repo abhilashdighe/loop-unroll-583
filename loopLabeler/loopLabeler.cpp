@@ -11,6 +11,7 @@
 #include "llvm/Support/Debug.h"
 #include "llvm/IR/DataLayout.h" //#include "llvm/Target/TargetData.h"
 #include "llvm/ADT/IndexedMap.h"
+#include "llvm/Support/CommandLine.h"
 
 #include <map>
 #include <sstream>
@@ -20,6 +21,8 @@
 #include "LoopLabeler.h"
 
 using namespace llvm;
+
+static cl::opt<std::string> benchmark_name("benchmark", cl::desc("Specify benchmark name filename for loop labeler"), cl::value_desc("filename"));
 
 void LoopLabelMap::getAnalysisUsage(AnalysisUsage &AU) const {
     AU.setPreservesAll();
@@ -35,14 +38,15 @@ bool LoopLabelMap::runOnLoop(Loop* L, LPPassManager &LPM)
   // build the <IDs, Loop> map
 	BasicBlock* BB = L->getHeader();
 	loop_id ++;
-	
-	IdToLoopMap[loop_id] = BB;
-	LoopToIdMap[BB] = loop_id;
+	benchmark = benchmark_name;
 
-	llvm::errs() << loop_id << " " << L << " " << BB << " " <<  "\n";
+	std::ostringstream oss;
+	oss << benchmark_name << "_" << loop_id;
+	std::string unique_loop_id = oss.str();
+
+	IdToLoopMap[unique_loop_id] = BB;
+	LoopToIdMap[BB] = unique_loop_id;
+	
+	llvm::errs() << unique_loop_id << " " << L << " " << BB << " " <<  "\n";
 	return true;
 }
-
-
-
-

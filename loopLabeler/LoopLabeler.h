@@ -19,8 +19,9 @@ namespace llvm {
     static bool IdInitFlag;
     
   public:
-    std::map<unsigned int, BasicBlock*> IdToLoopMap;    // LoopID -> headerBB*
-    std::map<BasicBlock*, unsigned int> LoopToIdMap;    // headerBB* -> LoopID
+    std::string benchmark;
+    std::map<std::string, BasicBlock*> IdToLoopMap;    // LoopID -> headerBB*
+    std::map<BasicBlock*, std::string> LoopToIdMap;    // headerBB* -> LoopID
     static char ID;
     LoopLabelMap() : LoopPass(ID) {}
 
