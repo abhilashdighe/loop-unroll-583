@@ -47,6 +47,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fstream>
+#include <iostream>
+#include <sstream>
+
 
 using namespace llvm;
 
@@ -61,9 +64,9 @@ STATISTIC(f8, "No. of unique predicates in loop body");
 STATISTIC(f9, "Tripcount of the loop");
 STATISTIC(f10, "No. of times the loop is called");
 STATISTIC(f11, "No. of array element reuses");
-STATISTIC(f12, "No. of indirect array element accesses");
-STATISTIC(f13, "No. of uses in the loop");
-STATISTIC(f14, "No. of defs in the loop");
+STATISTIC(f12, "No. of uses in the loop");
+STATISTIC(f13, "No. of defs in the loop");
+STATISTIC(f14, "No. of indirect array element accesses");
 STATISTIC(f15, "Estimated latency of the critical path of loop");
 STATISTIC(f16, "Estimated cycle length of loop body");
 STATISTIC(f17, "No. of parallel computations in loop");
@@ -76,6 +79,7 @@ STATISTIC(f23, "Min memory-to-memory loop-carried dependence");
 STATISTIC(f24, "No. of memory-to-memory dependencies");
 
 static cl::opt<std::string> output_filename("output-filename", cl::desc("Specify output-filename to write features to"), cl::value_desc("filename"));
+static cl::opt<std::string> array_reuses_profile("array-reuses-profile", cl::desc("Specify reuses-filename to read feature from"), cl::value_desc("filename"));
 
 namespace {
   struct FeatureExtractor: public LoopPass {
@@ -116,6 +120,7 @@ namespace {
     AliasSetTracker *CurAST; // AliasSet information for the current loop...
     DenseMap<Loop*, AliasSetTracker*> LoopToAliasSetMap;
 
+
     bool inSubLoop(BasicBlock *BB) {
       assert(CurLoop->contains(BB) && "Only valid if BB is IN the loop");
       return LI->getLoopFor(BB) != CurLoop;
@@ -138,7 +143,7 @@ namespace {
     int getLoopCallCount();
     int getDefCount(std::vector<Instruction*> instructions);
     int getUseCount(std::vector<Instruction*> instructions);
-    int getArrayReuses(std::vector<Instruction*> instructions);
+    std::map<std::string, int> getReusesMap();     
   };
 }
 
@@ -188,37 +193,39 @@ bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
     }
   }
 
-  std::vector<Instruction*> instructions = getDynOps();
-  f1 = getLoopDepth();
-  f2 = instructions.size();
-  f3 = getFloatOpCount(instructions);
-  f4 = getBranchOpCount(instructions);
-  f5 = getMemOpCount(instructions);
-  f6 = getOperandsCount(instructions);
-  f7 = getImplicitInstructionsCount(instructions);
-  f8 = getUniquePredicatesCount(instructions);
-  f9 = getTripCount();
-  f10 = getLoopCallCount();
-  //f11 = getArrayReuses(instructions);
-  f13 = getUseCount(instructions);
-  f14 = getDefCount(instructions);
-  std::ofstream outputFile(output_filename.c_str(), std::fstream::app);
+  std::map<std::string, int> reusesMap = getReusesMap();
   std::string unique_loop_id = LL->LoopToIdMap[CurLoop->getHeader()];
+  std::vector<Instruction*> instructions = getDynOps();
+  int loop_nest_level = getLoopDepth();
+  int dynOp_count = instructions.size();
+  int floatOp_count = getFloatOpCount(instructions);
+  int branchOp_count = getBranchOpCount(instructions);
+  int memOp_count = getMemOpCount(instructions);
+  int operands_count = getOperandsCount(instructions);
+  int implicit_instr_count = getImplicitInstructionsCount(instructions);
+  int unique_pred_count = getUniquePredicatesCount(instructions);
+  int trip_count = getTripCount();
+  int loop_calls = getLoopCallCount();
+  int reuse_count = reusesMap[unique_loop_id];
+  int use_count = getUseCount(instructions);
+  int def_count = getDefCount(instructions);
+  std::ofstream outputFile(output_filename.c_str(), std::fstream::app);
+  
   outputFile << LL->benchmark << ","
                 << unique_loop_id << ","
-                << f1 << ","
-                << f2 << ","
-                << f3 << ","
-                << f4 << ","
-                << f5 << ","
-                << f6 << ","
-                << f7 << ","
-                << f8 << ","
-                << f9 << ","
-                << f10 << ","
-                << f11 << ","
-                << f13 << ","
-                << f14 << "\n";
+                << loop_nest_level << ","
+                << dynOp_count << ","
+                << floatOp_count << ","
+                << branchOp_count << ","
+                << memOp_count<< ","
+                << operands_count << ","
+                << implicit_instr_count << ","
+                << unique_pred_count << ","
+                << trip_count << ","
+                << loop_calls << ","
+                << reuse_count << ","
+                << use_count << ","
+                << def_count << "\n";
   outputFile.close();
   // Clear out loops state information for the next iteration
   CurLoop = 0;
@@ -230,6 +237,30 @@ bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
   else
     delete CurAST;
   return Changed;
+}
+
+std::map<std::string, int> FeatureExtractor::getReusesMap() {
+  std::map<std::string, int> reusesMap;
+  std::string line;
+  std::ifstream infile(array_reuses_profile.c_str());
+  while (getline(infile,line))
+    {
+      std::string token;
+      std::istringstream ss(line);
+      std::vector<std::string> v;
+      while(std::getline(ss, token, ',')) {
+        v.push_back(token);
+      }
+      if (v.size() == 2) {
+        std::istringstream buffer(v[1]);
+        int reuses;
+        buffer >> reuses;
+        reusesMap[v[0]] = reuses;
+      }
+    }
+    infile.close();
+  errs() << reusesMap.size() << "\n";
+  return reusesMap;
 }
 
 //return the nesting level of the loop
@@ -385,54 +416,4 @@ int FeatureExtractor::getDefCount(std::vector<Instruction*> instructions) {
     }
   }
   return defCount;
-}
-
-// Pal TODO: Utility function, where to move?
-int traceArrayReuses(Value* operand) {
-  if(isa<Instruction>(operand)) {
-    Instruction *I = dyn_cast<Instruction>(operand);
-    if (GetElementPtrInst *gep = dyn_cast<GetElementPtrInst>(I)) {
-      Value* gepFirstOperand = gep->getOperand(0);
-      Type* type = gepFirstOperand->getType();
-      // Figure out whether the first operand points to an array
-      if (PointerType *pointerType = dyn_cast<PointerType>(type)) {
-        Type* elementType = pointerType->getElementType();
-        if (elementType->isArrayTy()) {
-          return 1;
-        }
-      }
-    } else {
-      int arrayReuses = 0;
-      for (User::op_iterator OI = I->op_begin(), e = I->op_end(); OI != e; ++OI) {
-        arrayReuses += traceArrayReuses(*OI);
-      }
-      return arrayReuses;
-    }
-  }
-  return 0;
-}
-
-// Pal TODO: Explore if we can make it work for a case like:
-// x = a[i + 1]
-// a[i] = x;
-int FeatureExtractor::getArrayReuses(std::vector<Instruction*> instructions) {
-  int arrayReuses = 0;
-  for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
-    Instruction *I = *II;
-    if (I->getOpcode() == Instruction::Store) {
-      StoreInst *storeInst = dyn_cast<StoreInst>(I);
-      Value* target = storeInst->getPointerOperand();
-      Value* source = storeInst->getValueOperand();
-      if(isa<Instruction>(target)) {
-        if(Instruction *opI = dyn_cast<Instruction>(target)) {
-          // Check destination, if GEP inst, means is an array el
-          if (dyn_cast<GetElementPtrInst>(opI)) {
-            // Back track the source to see if it reuses an array el
-            arrayReuses += traceArrayReuses(source);
-          }
-        }
-      }
-    }
-  }
-  return arrayReuses;
 }
