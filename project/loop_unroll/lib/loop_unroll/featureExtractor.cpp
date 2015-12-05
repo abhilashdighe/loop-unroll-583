@@ -39,7 +39,7 @@
 #include "llvm/Transforms/Utils/BasicBlockUtils.h"
 #include "LAMP/LAMPLoadProfile.h"
 #include "llvm/Analysis/ProfileInfo.h"
-#include "LoopLabeler.h" 
+#include "loopLabeler.h" 
 
 // Other includes 
 #include <set>
