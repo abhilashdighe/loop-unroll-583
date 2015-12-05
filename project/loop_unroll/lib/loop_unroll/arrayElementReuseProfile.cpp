@@ -37,7 +37,7 @@
 
 // Feature extractor includes
 #include "llvm/Transforms/Utils/BasicBlockUtils.h"
-#include "LoopLabeler.h" 
+#include "loopLabeler.h" 
 
 // Other includes 
 #include <set>
