@@ -12,7 +12,7 @@ nn:
 
 rf:
 	python random_forests/classifyRF.py data.train data.test
-
+	
 
 lr:
 	python logistic_regression/classifyLR.py data.train data.test
