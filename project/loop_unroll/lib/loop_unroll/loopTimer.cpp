@@ -77,7 +77,8 @@ namespace {
 			loopCounterInit->insertAfter(loopCounterVar);
 
 			BasicBlock *header = L->getHeader();
-			LoadInst *loopCounterVal = new LoadInst(loopCounterVar, loopCounterID + "_val" , header->getTerminator());
+			BasicBlock *loopLatch = L->getLoopLatch();
+			LoadInst *loopCounterVal = new LoadInst(loopCounterVar, loopCounterID + "_val" , loopLatch->getTerminator());
 
 			Value *one =  ConstantInt::get(Type::getInt32Ty(header->getContext()),1);
 			BinaryOperator *newInst = BinaryOperator::Create(Instruction::Add, loopCounterVal, one ,loopCounterID + "_new");

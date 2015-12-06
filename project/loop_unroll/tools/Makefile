@@ -8,6 +8,6 @@ LEVEL=..
 #
 # List all of the subdirectories that we will compile.
 #
-DIRS=lamp-profiler utils loop_unroll
+DIRS=utils loop_unroll
 
 include $(LEVEL)/Makefile.common
