@@ -25,5 +25,3 @@ void endTimer(char *loopID, int tripCount) {
 	outfile << string(loopID) <<  ", " << tripCount << ", " << duration << "\n";
 	outfile.close();
 }
-
-

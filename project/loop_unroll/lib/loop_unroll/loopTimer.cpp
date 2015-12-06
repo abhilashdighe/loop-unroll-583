@@ -116,7 +116,6 @@ namespace {
 
 			Instruction *endTimerInst = CallInst::Create(endTimerHook, ArrayRef<Value*>(args), "");
 			endTimerInst->insertAfter(loopCounterExitVal);
-
 			return false;
 		}
 

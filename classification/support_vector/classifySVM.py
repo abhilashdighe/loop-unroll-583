@@ -23,7 +23,6 @@ with open('data.test') as test_file:
         test_x.append(sample[:-1])
         test_y.append(sample[-1])
 
-print train_x , train_y
 clf = SVC()
 clf.fit(train_x , train_y)
 preds = clf.predict(test_x)
