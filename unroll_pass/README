@@ -1,9 +1,0 @@
-How to run the pass?
-
-cd <code directory>
-clang -emit-llvm -o simple.bc -c src/simple.c
-opt  -mem2reg -loop-rotate < simple.bc > simple.simplify.bc
-opt -load ../loop_unroll/Release+Asserts/lib/loop_unroll.so -debug -custom-unroll -custom-count 8 < simple.simplify.bc > simple.unroll.bc
-llc simple.unroll.bc -o simple.unroll.s
-g++ -o simple.unroll simple.unroll.s
-./simple.unroll
