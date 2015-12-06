@@ -21,10 +21,8 @@ mv cfg.main.dot pre.li.main.dot
 
 clang -std=c++11 -emit-llvm -o timer.bc -c $PASS_HOME/lib/$project_name/timerFuncs.cpp || { echo "Failed to emit llvm bc for timers"; exit 1; }
 
-llvm-link timer.bc $fname.bc -S -o=$fname.link.bc
-
 echo "simplifying loop"
-opt -loop-simplify < $fname.link.bc > $fname.ls.link.bc || { echo "Failed to opt loop simplify"; exit 1; }
+opt -loop-simplify < $fname.bc > $fname.ls.link.bc || { echo "Failed to opt loop simplify"; exit 1; }
 
 echo "rotating loop"
 opt  -mem2reg -loop-rotate < $fname.ls.link.bc > $fname.rotate.ls.link.bc  || { echo "Failed to opt loop rotate and mem2reg"; exit 1; }
@@ -36,7 +34,9 @@ echo "instrumenting loop"
 opt -load $PASS_HOME/Release+Asserts/lib/$project_name.so -benchmark $fname -module-inst -loop-inst < $fname.ls.link.bc > $fname.li.unroll.rotate.ls.link.bc || { echo "Failed to instrument loops"; exit 1; }
 
 echo "Executing unrolled and instrumented benchmark"
-lli $fname.li.unroll.rotate.ls.link.bc
+
+llvm-link timer.bc $fname.li.unroll.rotate.ls.link.bc -S -o=$fname.op
+lli $fname.op
 
 echo "creating cfg of instrumented test"
 opt -dot-cfg $fname.li.unroll.rotate.ls.link.bc >& /dev/null

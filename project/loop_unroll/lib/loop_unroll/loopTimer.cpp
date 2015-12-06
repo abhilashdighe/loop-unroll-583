@@ -27,8 +27,10 @@ namespace {
 		virtual  bool runOnModule(Module &M) {
 			Constant *hookFunc;
 			// Start timer hook
-            hookFunc = M.getOrInsertFunction("_Z10startTimerv", \
-											 Type::getVoidTy(M.getContext()), (Type*)0);
+            hookFunc = M.getOrInsertFunction("_Z10startTimerPc", \
+											 Type::getVoidTy(M.getContext()),
+                                             PointerType::get(Type::getInt8Ty(M.getContext()), 0),
+											 (Type*)0);
             startTimerHook = cast<Function>(hookFunc);
 			// End timer hook
 			hookFunc = M.getOrInsertFunction("_Z8endTimerPc", \
@@ -36,6 +38,7 @@ namespace {
 											 PointerType::get(Type::getInt8Ty(M.getContext()), 0),
 											 (Type*)0);
             endTimerHook = cast<Function>(hookFunc);
+
 			return false;
 		}
 	};
@@ -60,24 +63,23 @@ namespace {
 			ModuleInstrumentation *MI = &getAnalysis<ModuleInstrumentation>();
 			Function *startTimerHook = MI->startTimerHook;
 			Function *endTimerHook = MI->endTimerHook;
+			BasicBlock *Preheader = L->getLoopPreheader();
 
-			Instruction *startTimerInst = CallInst::Create(startTimerHook, "");
+			// Build argument LoopID
+			IRBuilder<> builder(Preheader);
+			const char *loopIDVal = loopID.c_str();
+			Value *loopIDGS = builder.CreateGlobalString(loopIDVal, loopID);
+			Value* argLoopID = builder.CreateConstGEP2_32(loopIDGS, 0, 0, "cast");
 
 			// Insert call to startTimer in loop preheader
-			BasicBlock *Preheader = L->getLoopPreheader();
+			Instruction *startTimerInst = CallInst::Create(startTimerHook, argLoopID, "");
 			startTimerInst->insertBefore(Preheader->getTerminator());
 
             // Insert call to endTimer in loop exit block
 			BasicBlock *Exit = L->getUniqueExitBlock();
-			vector<Value*> endTimerArgs;
-			IRBuilder<> builder(Preheader);
-
-			const char *s = loopID.c_str();
-			Value *GS = builder.CreateGlobalString(s, loopID);
-			Value* arg = builder.CreateConstGEP2_32(GS, 0, 0, "cast");
-			endTimerArgs.push_back(GS);
-			Instruction *endTimerInst = CallInst::Create(endTimerHook, arg, "");
+			Instruction *endTimerInst = CallInst::Create(endTimerHook, argLoopID, "");
 			endTimerInst->insertBefore(&(Exit->front()));
+
 			return false;
 		}
 	};
