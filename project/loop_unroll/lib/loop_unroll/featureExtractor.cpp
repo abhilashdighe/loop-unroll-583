@@ -37,7 +37,6 @@
 
 // Feature extractor includes
 #include "llvm/Transforms/Utils/BasicBlockUtils.h"
-#include "LAMP/LAMPLoadProfile.h"
 #include "llvm/Analysis/ProfileInfo.h"
 #include "loopLabeler.h" 
 
@@ -97,7 +96,6 @@ namespace {
       AU.addRequired<AliasAnalysis>();
       AU.addRequired<TargetLibraryInfo>();
       AU.addRequired<ProfileInfo>();
-      AU.addRequired<LAMPLoadProfile>();
       AU.addRequired<ScalarEvolution>();
       AU.addRequired<LoopLabelMap>();
     }

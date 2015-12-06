@@ -77,7 +77,8 @@ namespace {
 			loopCounterInit->insertAfter(loopCounterVar);
 
 			BasicBlock *header = L->getHeader();
-			LoadInst *loopCounterVal = new LoadInst(loopCounterVar, loopCounterID + "_val" , header->getTerminator());
+			BasicBlock *loopLatch = L->getLoopLatch();
+			LoadInst *loopCounterVal = new LoadInst(loopCounterVar, loopCounterID + "_val" , loopLatch->getTerminator());
 
 			Value *one =  ConstantInt::get(Type::getInt32Ty(header->getContext()),1);
 			BinaryOperator *newInst = BinaryOperator::Create(Instruction::Add, loopCounterVal, one ,loopCounterID + "_new");
@@ -86,7 +87,6 @@ namespace {
 			loopCounterUpdate->insertAfter(newInst);
 
 			// Build argument LoopID
-			
 			const char *loopIDVal = loopID.c_str();
 			Value *loopIDGS = builder.CreateGlobalString(loopIDVal, loopID);
 			Value* argLoopID = builder.CreateConstGEP2_32(loopIDGS, 0, 0, "cast");
@@ -100,7 +100,7 @@ namespace {
 
 			LoadInst *loopCounterExitVal = new LoadInst(loopCounterVar, loopCounterID + "_exit_val", &(Exit->front()));
 
-			std::vector<Value*> args;
+			vector<Value*> args;
 			args.push_back(argLoopID);
 			args.push_back(loopCounterExitVal);
 
