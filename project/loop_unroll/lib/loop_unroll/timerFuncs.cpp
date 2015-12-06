@@ -9,10 +9,10 @@ using namespace std;
 clock_t start;
 ofstream outfile;
 map<string, clock_t> loopStartTimes;
-const string OUTFILE = "loopTimings.csv";
+char *OUTFILE = "loopTimings.csv";
 
-inline bool exists(const string& name) {
-    ifstream f(name.c_str());
+inline bool exists(const char* name) {
+    ifstream f(name);
     if (f.good()) {
         f.close();
         return true;
