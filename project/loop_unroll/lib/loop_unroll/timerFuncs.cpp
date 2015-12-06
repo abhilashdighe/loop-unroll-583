@@ -16,13 +16,13 @@ void startTimer(char *loopID) {
 	loopStartTimes[string(loopID)] = start;
 }
 
-void endTimer(char *loopID) {
+void endTimer(char *loopID, int tripCount) {
 	double duration;
 	clock_t end = clock();
 	duration = (end - loopStartTimes[string(loopID)]) / (double) CLOCKS_PER_SEC;
 	loopStartTimes.erase(string(loopID));
 	outfile.open("loopTimings.csv", ios_base::app);
-	outfile << string(loopID) <<  ", " << duration << "\n";
+	outfile << string(loopID) <<  ", " << tripCount << ", " << duration << "\n";
 	outfile.close();
 }
 

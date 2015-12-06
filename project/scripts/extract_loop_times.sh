@@ -13,6 +13,8 @@ unroll_factor=1
 project_name="loop_unroll"
 PASS_HOME="../$project_name"
 
+rm .*dot
+rm loopTimings.csv
 clang -emit-llvm -o $fname.bc -c $fname.c || { echo "Failed to emit llvm bc"; exit 1; }
 
 echo "creating cfg of test"
@@ -21,11 +23,8 @@ mv cfg.main.dot pre.li.main.dot
 
 clang -std=c++11 -emit-llvm -o timer.bc -c $PASS_HOME/lib/$project_name/timerFuncs.cpp || { echo "Failed to emit llvm bc for timers"; exit 1; }
 
-echo "simplifying loop"
-opt -loop-simplify < $fname.bc > $fname.ls.link.bc || { echo "Failed to opt loop simplify"; exit 1; }
-
-echo "rotating loop"
-opt  -mem2reg -loop-rotate < $fname.ls.link.bc > $fname.rotate.ls.link.bc  || { echo "Failed to opt loop rotate and mem2reg"; exit 1; }
+echo "simplifying and rotating loop"
+opt  -loop-simplify -mem2reg -loop-rotate < $fname.bc > $fname.rotate.ls.link.bc  || { echo "Failed to opt loop-simplify loop rotate and mem2reg"; exit 1; }
 
 #echo "unrolling loop"
 #opt -load $PASS_HOME/Release+Asserts/lib/$project_name.so -benchmark $fname -debug -custom-unroll -custom-count $unroll_factor < $fname.rotate.ls.link.bc > $fname.unroll.rotate.ls.link.bc || { echo "Failed to unroll loop"; exit 1; }

@@ -33,9 +33,10 @@ namespace {
 											 (Type*)0);
             startTimerHook = cast<Function>(hookFunc);
 			// End timer hook
-			hookFunc = M.getOrInsertFunction("_Z8endTimerPc", \
+			hookFunc = M.getOrInsertFunction("_Z8endTimerPci", \
 											 Type::getVoidTy(M.getContext()),
 											 PointerType::get(Type::getInt8Ty(M.getContext()), 0),
+											 Type::getInt32Ty(M.getContext()),
 											 (Type*)0);
             endTimerHook = cast<Function>(hookFunc);
 
@@ -49,6 +50,7 @@ namespace {
 	struct LoopInstrumentation : public LoopPass {
 		static char ID;
 		LoopLabelMap* LL;
+		std::map<Loop*, AllocaInst*> countersMap;
 
 		LoopInstrumentation() : LoopPass(ID) {}
 		virtual void getAnalysisUsage(AnalysisUsage &AU) const {
@@ -57,6 +59,7 @@ namespace {
 		}
 
 		virtual  bool runOnLoop(Loop *L, LPPassManager &LPM) {
+
 			LL = &getAnalysis<LoopLabelMap>();
 			string loopID = LL->LoopToIdMap[L->getHeader()];
 
@@ -65,8 +68,25 @@ namespace {
 			Function *endTimerHook = MI->endTimerHook;
 			BasicBlock *Preheader = L->getLoopPreheader();
 
-			// Build argument LoopID
 			IRBuilder<> builder(Preheader);
+
+			string loopCounterID = loopID + "_counter";
+			AllocaInst *loopCounterVar = new AllocaInst(Type::getInt32Ty(Preheader->getContext()), loopCounterID, Preheader->getTerminator());
+			countersMap[L] = loopCounterVar;
+			StoreInst *loopCounterInit = new StoreInst(builder.getInt32(0), loopCounterVar);
+			loopCounterInit->insertAfter(loopCounterVar);
+
+			BasicBlock *header = L->getHeader();
+			LoadInst *loopCounterVal = new LoadInst(loopCounterVar, loopCounterID + "_val" , header->getTerminator());
+
+			Value *one =  ConstantInt::get(Type::getInt32Ty(header->getContext()),1);
+			BinaryOperator *newInst = BinaryOperator::Create(Instruction::Add, loopCounterVal, one ,loopCounterID + "_new");
+			newInst->insertAfter(loopCounterVal);
+			StoreInst *loopCounterUpdate = new StoreInst(newInst, loopCounterVar);
+			loopCounterUpdate->insertAfter(newInst);
+
+			// Build argument LoopID
+			
 			const char *loopIDVal = loopID.c_str();
 			Value *loopIDGS = builder.CreateGlobalString(loopIDVal, loopID);
 			Value* argLoopID = builder.CreateConstGEP2_32(loopIDGS, 0, 0, "cast");
@@ -77,11 +97,30 @@ namespace {
 
             // Insert call to endTimer in loop exit block
 			BasicBlock *Exit = L->getUniqueExitBlock();
-			Instruction *endTimerInst = CallInst::Create(endTimerHook, argLoopID, "");
-			endTimerInst->insertBefore(&(Exit->front()));
+
+			LoadInst *loopCounterExitVal = new LoadInst(loopCounterVar, loopCounterID + "_exit_val", &(Exit->front()));
+
+			std::vector<Value*> args;
+			args.push_back(argLoopID);
+			args.push_back(loopCounterExitVal);
+
+			/*errs() << "\nloopid type\n";
+			argLoopID->dump();
+
+			errs() << "\nload type\n";
+			loopCounterExitVal->getType()->dump();
+
+			errs() << "\nfunction type\n";
+			endTimerHook->dump();
+			errs() << "\n";*/
+
+			Instruction *endTimerInst = CallInst::Create(endTimerHook, ArrayRef<Value*>(args), "");
+			endTimerInst->insertAfter(loopCounterExitVal);
 
 			return false;
 		}
+
+
 	};
 }
 
