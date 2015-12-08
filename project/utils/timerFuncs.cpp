@@ -32,7 +32,6 @@ public:
 		outfile.open(outFileName, ios_base::app);
 		for (auto& x : *loopExecTimes) {
 			outfile << string(x.first) <<  ", " << x.second << "\n";
-			cout << x.second << endl;
 		}
 		outfile.close();
 		delete loopExecTimes;
@@ -44,7 +43,6 @@ public:
 				(*loopExecTimes)[strLoopID] = 0;
 		}
 		loopExecTimes->at(strLoopID) += duration;
-		cout << loopExecTimes->at(strLoopID) << endl;
 	}
 
 };
