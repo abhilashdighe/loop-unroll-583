@@ -1,4 +1,5 @@
 #include "llvm/Analysis/LoopInfo.h"
+#include "llvm/ADT/SmallVector.h"
 #include "llvm/IR/Module.h"
 #include "llvm/Pass.h"
 #include "llvm/Analysis/LoopPass.h"
@@ -96,26 +97,22 @@ namespace {
 			startTimerInst->insertBefore(Preheader->getTerminator());
 
             // Insert call to endTimer in loop exit block
-			BasicBlock *Exit = L->getUniqueExitBlock();
 
-			LoadInst *loopCounterExitVal = new LoadInst(loopCounterVar, loopCounterID + "_exit_val", &(Exit->front()));
+            SmallVector<BasicBlock *, 8> UniqueExitBlocks;
+            L->getUniqueExitBlocks(UniqueExitBlocks);
+            for (unsigned int i = 0; i < UniqueExitBlocks.size(); i++) {
+            	BasicBlock *Exit = UniqueExitBlocks[i];
+            	LoadInst *loopCounterExitVal = new LoadInst(loopCounterVar, loopCounterID + "_exit_val", &(Exit->front()));
 
-			vector<Value*> args;
-			args.push_back(argLoopID);
-			args.push_back(loopCounterExitVal);
+            	vector<Value*> args;
+				args.push_back(argLoopID);
+				args.push_back(loopCounterExitVal);
 
-			/*errs() << "\nloopid type\n";
-			argLoopID->dump();
+				Instruction *endTimerInst = CallInst::Create(endTimerHook, ArrayRef<Value*>(args), "");
+				endTimerInst->insertAfter(loopCounterExitVal);
+            }
 
-			errs() << "\nload type\n";
-			loopCounterExitVal->getType()->dump();
-
-			errs() << "\nfunction type\n";
-			endTimerHook->dump();
-			errs() << "\n";*/
-
-			Instruction *endTimerInst = CallInst::Create(endTimerHook, ArrayRef<Value*>(args), "");
-			endTimerInst->insertAfter(loopCounterExitVal);
+			//BasicBlock *Exit = L->getUniqueExitBlock();
 			return false;
 		}
 
