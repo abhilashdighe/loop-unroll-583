@@ -21,7 +21,7 @@ echo "creating cfg of test"
 opt -dot-cfg $fname.bc >& /dev/null
 mv cfg.main.dot pre.li.main.dot
 
-clang -std=c++11 -emit-llvm -o timer.bc -c $PASS_HOME/lib/$project_name/timerFuncs.cpp || { echo "Failed to emit llvm bc for timers"; exit 1; }
+clang -std=c++11 -emit-llvm -o timer.bc -c ../utils/timerFuncs.cpp || { echo "Failed to emit llvm bc for timers"; exit 1; }
 
 echo "simplifying and rotating loop"
 opt  -loop-simplify -mem2reg -loop-rotate < $fname.bc > $fname.rotate.ls.link.bc  || { echo "Failed to opt loop-simplify loop rotate and mem2reg"; exit 1; }
