@@ -35,6 +35,11 @@ void startTimer(char *loopID) {
 
 void endTimer(char *loopID, int tripCount) {
 
+	if(loopStartTimes.find(loopID) == loopStartTimes.end()){
+		cout << "Timer reset called without start" << endl;
+		return;
+	}
+
 	double duration;
 	clock_t end = clock();
 	duration = (end - loopStartTimes[string(loopID)]) / (double) CLOCKS_PER_SEC;
