@@ -35,7 +35,7 @@ void startTimer(char *loopID) {
 
 void endTimer(char *loopID, int tripCount) {
 
-	if(loopStartTimes.find(loopID) == loopStartTimes.end()){
+	if(loopStartTimes.find(string(loopID)) == loopStartTimes.end()){
 		cout << "Timer reset called without start" << endl;
 		return;
 	}
