@@ -7,7 +7,6 @@
 //===----------------------------------------------------------------------===//
 #ifndef LOOPLABELER_H
 #define LOOPLABELER_H
-
 namespace llvm {
 
   class LoopPass;
@@ -30,4 +29,3 @@ namespace llvm {
   };  
 }
 #endif
- 

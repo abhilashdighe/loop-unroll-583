@@ -48,7 +48,8 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
-
+#include <algorithm>
+#include <climits> 
 
 using namespace llvm;
 
@@ -141,6 +142,7 @@ namespace {
     int getLoopCallCount();
     int getDefCount(std::vector<Instruction*> instructions);
     int getUseCount(std::vector<Instruction*> instructions);
+    int getStepSize();
     std::map<std::string, int> getReusesMap();     
   };
 }
@@ -194,6 +196,7 @@ bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
   std::map<std::string, int> reusesMap = getReusesMap();
   std::string unique_loop_id = LL->LoopToIdMap[CurLoop->getHeader()];
   std::vector<Instruction*> instructions = getDynOps();
+
   int loop_nest_level = getLoopDepth();
   int dynOp_count = instructions.size();
   int floatOp_count = getFloatOpCount(instructions);
@@ -207,6 +210,7 @@ bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
   int reuse_count = reusesMap[unique_loop_id];
   int use_count = getUseCount(instructions);
   int def_count = getDefCount(instructions);
+  int step_size = getStepSize();
   std::ofstream outputFile(output_filename.c_str(), std::fstream::app);
   
   outputFile << LL->benchmark << ","
@@ -223,7 +227,8 @@ bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
                 << loop_calls << ","
                 << reuse_count << ","
                 << use_count << ","
-                << def_count << "\n";
+                << def_count << ", " 
+                << step_size << "\n";
   outputFile.close();
   // Clear out loops state information for the next iteration
   CurLoop = 0;
@@ -380,7 +385,23 @@ int FeatureExtractor::getTripCount() {
   if (BasicBlock *ExitingBB = CurLoop->getExitingBlock()) {
     return SE->getSmallConstantTripMultiple(CurLoop, ExitingBB);
   }
-  return -1;
+  int min = INT_MAX;
+  SmallVector<BasicBlock *, 8> UniqueExitBlocks;
+  CurLoop->getUniqueExitBlocks(UniqueExitBlocks);
+  for (unsigned int i = 0; i < UniqueExitBlocks.size(); i++) {
+    BasicBlock *Exit = UniqueExitBlocks[i];
+    int exitTripCount = SE->getSmallConstantTripMultiple(CurLoop, Exit);
+    min = std::min(exitTripCount, min);
+  }
+  return min;
+}
+
+int FeatureExtractor::getStepSize() {
+  BasicBlock *LatchBlock = CurLoop->getLoopLatch();
+  if (LatchBlock) {
+    return SE->getSmallConstantTripMultiple(CurLoop, LatchBlock);
+  }
+  return 1;
 }
 
 // get no. of times the loop is called
