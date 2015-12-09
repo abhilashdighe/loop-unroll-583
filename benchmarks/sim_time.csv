@@ -1,0 +1,18 @@
+Benchmark,Simulation Time,Type
+429.mcf,0.0991,train
+470.lbm,0.1011,train
+473.astar,0.3523,train
+462.libquantum,0.4274,train
+458.sjeng,1.2289,train
+401.bzip2,1.3142,train
+433.milc,1.4562,train
+456.hmmer,3.0822,train
+444.namd,3.3191,train
+450.soplex,3.4495,test
+464.h264ref,5.7079,test
+471.omnetpp,7.3670,test
+445.gobmk,7.4288,test
+400.perlbench,11.7137,test
+447.dealII,35.1103,test
+483.xalancbmk,38.8014,test
+403.gcc,49.1281,test
