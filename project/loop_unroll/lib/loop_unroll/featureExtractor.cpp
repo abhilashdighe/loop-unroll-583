@@ -119,18 +119,18 @@ namespace {
 
     unsigned int getLoopDepth();
     std::vector<Instruction*> getDynOps();
-    int getFloatOpCount(std::vector<Instruction*> instructions);
-    int getBranchOpCount(std::vector<Instruction*> instructions);
-    int getMemOpCount(std::vector<Instruction*> instructions);
-    int getOperandsCount(std::vector<Instruction*> instructions);
-    int getImplicitInstructionsCount(std::vector<Instruction*> instructions);
-    int getUniquePredicatesCount(std::vector<Instruction*> instructions);
+    double getFloatOpCount(std::vector<Instruction*> instructions);
+    double getBranchOpCount(std::vector<Instruction*> instructions);
+    double getMemOpCount(std::vector<Instruction*> instructions);
+    double getOperandsCount(std::vector<Instruction*> instructions);
+    double getImplicitInstructionsCount(std::vector<Instruction*> instructions);
+    double getUniquePredicatesCount(std::vector<Instruction*> instructions);
     int getLoopCallCount();
     int getArrayReuses(std::vector<Instruction*> instructions);
-    int getDefCount(std::vector<Instruction*> instructions);
-    int getUseCount(std::vector<Instruction*> instructions);
-    int getStoreCount(std::vector<Instruction*> instructions);
-    int getLoadCount(std::vector<Instruction*> instructions);
+    double getDefCount(std::vector<Instruction*> instructions);
+    double getUseCount(std::vector<Instruction*> instructions);
+    double getStoreCount(std::vector<Instruction*> instructions);
+    double getLoadCount(std::vector<Instruction*> instructions);
     std::map<std::string, int>* getTripCountMap();     
   };
 }
@@ -186,19 +186,19 @@ bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
 
   int loop_nest_level = getLoopDepth();
   int dynOp_count = instructions.size();
-  int floatOp_count = getFloatOpCount(instructions);
-  int branchOp_count = getBranchOpCount(instructions);
-  int memOp_count = getMemOpCount(instructions);
-  int operands_count = getOperandsCount(instructions);
-  int implicit_instr_count = getImplicitInstructionsCount(instructions);
-  int unique_pred_count = getUniquePredicatesCount(instructions);
+  double floatOp_count = getFloatOpCount(instructions);
+  double branchOp_count = getBranchOpCount(instructions);
+  double memOp_count = getMemOpCount(instructions);
+  double operands_count = getOperandsCount(instructions);
+  double implicit_instr_count = getImplicitInstructionsCount(instructions);
+  double unique_pred_count = getUniquePredicatesCount(instructions);
   int trip_count = (*tripCountMap)[unique_loop_id];
   int loop_calls = getLoopCallCount();
   int reuse_count = getArrayReuses(instructions);
-  int use_count = getUseCount(instructions);
-  int def_count = getDefCount(instructions);
-  int store_count = getStoreCount(instructions);
-  int load_count = getLoadCount(instructions);
+  double use_count = getUseCount(instructions);
+  double def_count = getDefCount(instructions);
+  double store_count = getStoreCount(instructions);
+  double load_count = getLoadCount(instructions);
   std::ofstream outputFile(output_filename.c_str(), std::fstream::app);
   outputFile << LL->benchmark << ","
                 << unique_loop_id << ","
@@ -276,8 +276,8 @@ std::vector<Instruction*> FeatureExtractor::getDynOps() {
   return instructions;
 }
 
-int FeatureExtractor::getFloatOpCount(std::vector<Instruction*> instructions) {
-  int floatOpCount = 0;
+double FeatureExtractor::getFloatOpCount(std::vector<Instruction*> instructions) {
+  double floatOpCount = 0.0;
   for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
     Instruction *I = *II;
     switch (I->getOpcode()) {
@@ -293,11 +293,14 @@ int FeatureExtractor::getFloatOpCount(std::vector<Instruction*> instructions) {
       break;
     }
   }
-  return floatOpCount;
+  if (instructions.size() > 0) {
+    return floatOpCount / instructions.size();
+  }
+  return 0.0;
 }
 
-int FeatureExtractor::getBranchOpCount(std::vector<Instruction*> instructions) {
-  int branchOpCount = 0;
+double FeatureExtractor::getBranchOpCount(std::vector<Instruction*> instructions) {
+  double branchOpCount = 0;
   for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
     Instruction *I = *II;
     switch (I->getOpcode()) {
@@ -310,11 +313,14 @@ int FeatureExtractor::getBranchOpCount(std::vector<Instruction*> instructions) {
       break;
     }
   }
-  return branchOpCount;
+  if (instructions.size() > 0) {
+    return branchOpCount / instructions.size();
+  }
+  return 0.0;
 }
 
-int FeatureExtractor::getMemOpCount(std::vector<Instruction*> instructions) {
-  int memOpCount = 0;
+double FeatureExtractor::getMemOpCount(std::vector<Instruction*> instructions) {
+  double memOpCount = 0;
   for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
     Instruction *I = *II;
     switch (I->getOpcode()) {
@@ -331,31 +337,40 @@ int FeatureExtractor::getMemOpCount(std::vector<Instruction*> instructions) {
       break;
     }
   }
-  return memOpCount;
+  if (instructions.size() > 0) {
+    return memOpCount / instructions.size();
+  }
+  return 0.0;
 }
 
-int FeatureExtractor::getOperandsCount(std::vector<Instruction*> instructions) {
-  int operandsCount = 0;
+double FeatureExtractor::getOperandsCount(std::vector<Instruction*> instructions) {
+  double operandsCount = 0;
   for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
     Instruction *I = *II;
     operandsCount += I->getNumOperands();
   }
-  return operandsCount;
+  if (instructions.size() > 0) {
+    return operandsCount / instructions.size();
+  }
+  return 0.0;
 }
 
 //instructions that are either shift or cast. Should binary op be included?
-int FeatureExtractor::getImplicitInstructionsCount(std::vector<Instruction*> instructions) {
-  int implictInstrCount = 0;
+double FeatureExtractor::getImplicitInstructionsCount(std::vector<Instruction*> instructions) {
+  double implictInstrCount = 0.0;
   for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
     Instruction *I = *II;
     if (Instruction::isShift(I->getOpcode()) || Instruction::isCast(I->getOpcode())) {
       implictInstrCount++;
     }
   }
-  return implictInstrCount;
+  if (instructions.size() > 0) {
+    return implictInstrCount / instructions.size();
+  }
+  return 0.0;
 }
 
-int FeatureExtractor::getUniquePredicatesCount(std::vector<Instruction*> instructions) {
+double FeatureExtractor::getUniquePredicatesCount(std::vector<Instruction*> instructions) {
   std::set<CmpInst::Predicate> predicates;
   for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
     Instruction *I = *II;
@@ -363,7 +378,10 @@ int FeatureExtractor::getUniquePredicatesCount(std::vector<Instruction*> instruc
       predicates.insert(compInst->getPredicate());
     }
   }
-  return predicates.size();
+  if (instructions.size() > 0) {
+    return predicates.size() * 1.0 / instructions.size();
+  }
+  return 0.0;
 }
 
 int traceArrayReuses(Value* operand) {
@@ -425,8 +443,8 @@ int FeatureExtractor::getLoopCallCount() {
 }
 
 //how many instructions are being used by the instructions in the loop.
-int FeatureExtractor::getUseCount(std::vector<Instruction*> instructions) {
-  int useCount = 0;
+double FeatureExtractor::getUseCount(std::vector<Instruction*> instructions) {
+  double useCount = 0.0;
   for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
     Instruction *I = *II;
     for (User::op_iterator OI = I->op_begin(), OE = I->op_end(); OI != OE; ++OI) {
@@ -435,22 +453,28 @@ int FeatureExtractor::getUseCount(std::vector<Instruction*> instructions) {
       }
     }
   }
-  return useCount;
+  if (instructions.size() > 0) {
+    return useCount / instructions.size();
+  }
+  return 0.0;
 }
 
-int FeatureExtractor::getDefCount(std::vector<Instruction*> instructions) {
-  int defCount = 0;
+double FeatureExtractor::getDefCount(std::vector<Instruction*> instructions) {
+  double defCount = 0.0;
   for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
     Instruction *I = *II;
     if (dyn_cast<AllocaInst>(I)) {
       defCount++;
     }
   }
-  return defCount;
+  if (instructions.size() > 0) {
+    return defCount / instructions.size();
+  }
+  return 0.0;
 }
 
-int FeatureExtractor::getStoreCount(std::vector<Instruction*> instructions) {
-  int storeCount = 0;
+double FeatureExtractor::getStoreCount(std::vector<Instruction*> instructions) {
+  double storeCount = 0.0;
   for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
     Instruction *I = *II;
     switch (I->getOpcode()) {
@@ -461,11 +485,14 @@ int FeatureExtractor::getStoreCount(std::vector<Instruction*> instructions) {
       break;
     }
   }
-  return storeCount;
+  if (instructions.size() > 0) {
+    return storeCount / instructions.size();
+  }
+  return 0.0;
 }
 
-int FeatureExtractor::getLoadCount(std::vector<Instruction*> instructions) {
-  int loadCount = 0;
+double FeatureExtractor::getLoadCount(std::vector<Instruction*> instructions) {
+  double loadCount = 0.0;
   for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
     Instruction *I = *II;
     switch (I->getOpcode()) {
@@ -476,5 +503,8 @@ int FeatureExtractor::getLoadCount(std::vector<Instruction*> instructions) {
       break;
     }
   }
-  return loadCount;
+  if (instructions.size() > 0) {
+    return loadCount / instructions.size();
+  }
+  return 0.0;
 }
