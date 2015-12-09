@@ -107,6 +107,7 @@ namespace {
     DominatorTree *DT;       // Dominator Tree for the current Loop.
     ProfileInfo* PI;
     LoopLabelMap* LL;
+    std::map<std::string, int> *reusesMap;
 
     DataLayout *TD;          // DataLayout for constant folding.
     TargetLibraryInfo *TLI;  // TargetLibraryInfo for constant folding.
@@ -143,7 +144,7 @@ namespace {
     int getDefCount(std::vector<Instruction*> instructions);
     int getUseCount(std::vector<Instruction*> instructions);
     int getStepSize();
-    std::map<std::string, int> getReusesMap();     
+    std::map<std::string, int>* getReusesMap();     
   };
 }
 
@@ -193,7 +194,11 @@ bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
     }
   }
 
-  std::map<std::string, int> reusesMap = getReusesMap();
+  if (!reusesMap) {
+    reusesMap = getReusesMap();
+  }
+
+  //std::map<std::string, int> reusesMap = getReusesMap();
   std::string unique_loop_id = LL->LoopToIdMap[CurLoop->getHeader()];
   std::vector<Instruction*> instructions = getDynOps();
 
@@ -207,12 +212,11 @@ bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
   int unique_pred_count = getUniquePredicatesCount(instructions);
   int trip_count = getTripCount();
   int loop_calls = getLoopCallCount();
-  int reuse_count = reusesMap[unique_loop_id];
+  int reuse_count = (*reusesMap)[unique_loop_id];
   int use_count = getUseCount(instructions);
   int def_count = getDefCount(instructions);
   int step_size = getStepSize();
   std::ofstream outputFile(output_filename.c_str(), std::fstream::app);
-  
   outputFile << LL->benchmark << ","
                 << unique_loop_id << ","
                 << loop_nest_level << ","
@@ -242,8 +246,8 @@ bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
   return Changed;
 }
 
-std::map<std::string, int> FeatureExtractor::getReusesMap() {
-  std::map<std::string, int> reusesMap;
+std::map<std::string, int>* FeatureExtractor::getReusesMap() {
+  std::map<std::string, int> *reusesMap = new std::map<std::string, int>;
   std::string line;
   std::ifstream infile(array_reuses_profile.c_str());
   while (getline(infile,line))
@@ -258,11 +262,10 @@ std::map<std::string, int> FeatureExtractor::getReusesMap() {
         std::istringstream buffer(v[1]);
         int reuses;
         buffer >> reuses;
-        reusesMap[v[0]] = reuses;
+        (*reusesMap)[v[0]] = reuses;
       }
     }
     infile.close();
-  errs() << reusesMap.size() << "\n";
   return reusesMap;
 }
 
