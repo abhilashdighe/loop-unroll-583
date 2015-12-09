@@ -25,9 +25,11 @@ llc $fname.profile.ls.bc -o $fname.profile.ls.s
 g++ -o $fname.profile $fname.profile.ls.s $LLVM_HOME/Release+Asserts/lib/libprofile_rt.so
 ./$fname.profile $input> /dev/null
 
-echo "profiling array element reuses"
-rm temp_array_reuse.csv
-opt -load $PASS_HOME/Release+Asserts/lib/$project_name.so -arrayElemReuseProfile -benchmark $fname -reuse-filename temp_array_reuse.csv < $fname.ls.bc || { echo "Failed to get array feature stats"; exit 1; }
+echo "profiling trip count"
+rm temp_trip_count.csv
+opt -analyze -mem2reg -indvars -scalar-evolution -load $PASS_HOME/Release+Asserts/lib/$project_name.so -tripCountExtractor -benchmark $fname -reuse-filename temp_trip_count.csv < $fname.ls.bc > $fname.mem2reg.ls.bc || { echo "Failed to get array feature stats"; exit 1; }
 
+rm -r $1
 echo "extracting features"
-opt -analyze -mem2reg -indvars -scalar-evolution -stats -load $PASS_HOME/Release+Asserts/lib/$project_name.so -profile-loader -profile-info-file=llvmprof.out -featsExtractor -benchmark $fname -output-filename $train_file < $fname.ls.bc > $fname.ls.feats.bc || { echo "Failed to get feature stats"; exit 1; }
+echo "benchmark, unique_loop_id, loop_nest_level, dynOp_count, floatOp_count, branchOp_count, memOp_count, operands_count, implicit_instr_count, unique_pred_count, trip_count, loop_calls, reuse_count, use_count, def_count, store_count, load_count" >> $1
+opt -load $PASS_HOME/Release+Asserts/lib/$project_name.so -profile-loader -profile-info-file=llvmprof.out -featsExtractor -benchmark $fname -trip-count-filename temp_trip_count.csv -output-filename $train_file < $fname.ls.bc > $fname.ls.feats.bc || { echo "Failed to get feature stats"; exit 1; }

@@ -1,12 +1,12 @@
 /*
- * File: arrayElementReuseProfile.cpp
+ * File: tripCountExtractor.cpp
  *
  * Description:
- *  This is a array element reuse profile source file for a library. It should be run as a pass with name "arrayElemReuseProfile". It helps to extract
+ *  This is a trip count extractor source file for a library. It should be run as a pass with name "TripCountExtractor". It helps to extract
  *  reuses for arrray elements in a loop.
  */
 
-#define DEBUG_TYPE "arrayElementReuseProfile"
+#define DEBUG_TYPE "tripCountExtractor"
 #include "llvm/Transforms/Scalar.h"
 #include "llvm/ADT/Statistic.h"
 #include "llvm/Analysis/AliasAnalysis.h"
@@ -18,7 +18,6 @@
 #include "llvm/Analysis/LoopPass.h"
 #include "llvm/Analysis/ValueTracking.h"
 #include "llvm/IR/Constants.h"
-#include "llvm/IR/DataLayout.h"
 #include "llvm/IR/DerivedTypes.h"
 #include "llvm/IR/Instructions.h"
 #include "llvm/IR/IntrinsicInst.h"
@@ -28,7 +27,6 @@
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/raw_ostream.h"
-#include "llvm/Target/TargetLibraryInfo.h"
 #include "llvm/Transforms/Utils/Local.h"
 #include "llvm/Transforms/Utils/SSAUpdater.h"
 
@@ -45,15 +43,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fstream>
+#include <algorithm>
+#include <climits> 
 
 using namespace llvm;
-
 static cl::opt<std::string> reuse_filename("reuse-filename", cl::desc("Specify output-filename to write features to"), cl::value_desc("filename"));
 
 namespace {
-  struct ArrayElementReuseProfile: public LoopPass {
+  struct TripCountExtractor: public LoopPass {
     static char ID;
-    ArrayElementReuseProfile() : LoopPass(ID) {}
+    TripCountExtractor() : LoopPass(ID) {}
 
     virtual bool runOnLoop(Loop *L, LPPassManager &LPM);
 
@@ -61,29 +60,22 @@ namespace {
     /// loop preheaders be inserted into the CFG...
     ///
     virtual void getAnalysisUsage(AnalysisUsage &AU) const {
-      AU.addRequired<DominatorTree>();
       AU.addRequired<LoopInfo>();
       AU.addRequired<AliasAnalysis>();
-      AU.addRequired<TargetLibraryInfo>();
       AU.addRequired<LoopLabelMap>();
+      AU.addRequired<ScalarEvolution>();
     }
-
-  public: 
-    std::map<std::string, int> reusesMap;
 
   private:
     AliasAnalysis *AA;       // Current AliasAnalysis information
     LoopInfo      *LI;       // Current LoopInfo
-    DominatorTree *DT;       // Dominator Tree for the current Loop.
     LoopLabelMap* LL;
-
-    DataLayout *TD;          // DataLayout for constant folding.
-    TargetLibraryInfo *TLI;  // TargetLibraryInfo for constant folding.
 
     // State that is updated as we process loops.
     bool Changed;            // Set to true when we change anything.
     Loop *CurLoop;           // The current loop we are working on...
     AliasSetTracker *CurAST; // AliasSet information for the current loop...
+    ScalarEvolution *SE;
     DenseMap<Loop*, AliasSetTracker*> LoopToAliasSetMap;
 
     bool inSubLoop(BasicBlock *BB) {
@@ -96,26 +88,21 @@ namespace {
       return CurAST->getAliasSetForPointer(V, Size, TBAAInfo).isMod();
     }
 
-    std::vector<Instruction*> getDynOps();
-    int getArrayReuses(std::vector<Instruction*> instructions);
-
+    int getTripCount();
   };
 }
 
-char ArrayElementReuseProfile::ID = 0;
-static RegisterPass<ArrayElementReuseProfile> X("arrayElemReuseProfile", "Array Element Reuse", false, false);
+char TripCountExtractor::ID = 0;
+static RegisterPass<TripCountExtractor> X("tripCountExtractor", "Trip Count Extractor", false, false);
 
-bool ArrayElementReuseProfile::runOnLoop(Loop *L, LPPassManager &LPM) {
+bool TripCountExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
   Changed = false;
 
   // Get our Loop and Alias Analysis information
   LI = &getAnalysis<LoopInfo>();
   AA = &getAnalysis<AliasAnalysis>();
-  DT = &getAnalysis<DominatorTree>();
   LL = &getAnalysis<LoopLabelMap>();
-
-  TD = getAnalysisIfAvailable<DataLayout>();
-  TLI = &getAnalysis<TargetLibraryInfo>();
+  SE = &getAnalysis<ScalarEvolution>();
 
   CurAST = new AliasSetTracker(*AA);
   // Collect Alias info from subloops.
@@ -146,10 +133,8 @@ bool ArrayElementReuseProfile::runOnLoop(Loop *L, LPPassManager &LPM) {
     }
   }
 
-  std::vector<Instruction*> instructions = getDynOps();
-  int reuses = getArrayReuses(instructions);
   std::string unique_loop_id = LL->LoopToIdMap[CurLoop->getHeader()];
-  reusesMap[unique_loop_id] = reuses;
+  int reuses = getTripCount();
   std::ofstream outputFile(reuse_filename.c_str(), std::fstream::app);
   outputFile << unique_loop_id << "," << reuses << "\n";
   outputFile.close();
@@ -166,71 +151,19 @@ bool ArrayElementReuseProfile::runOnLoop(Loop *L, LPPassManager &LPM) {
   return Changed;
 }
 
-std::vector<Instruction*> ArrayElementReuseProfile::getDynOps() {
-  std::vector<Instruction*> instructions;
-  for (Loop::block_iterator I = CurLoop->block_begin(), E = CurLoop->block_end(); I != E; ++I) {
-    BasicBlock *BB = *I;
-    if (BB == CurLoop->getHeader()) {
-      continue;
-    }
-    if (BB == CurLoop->getLoopLatch()) {
-      continue;
-    }
-    if (LI->getLoopFor(BB) == CurLoop) {        // Ignore blocks in subloops.
-      for (BasicBlock::iterator II = BB->begin(), IE = BB->end(); II != IE; ++II) {
-        instructions.push_back(II);
-      }
-    }
-  }
-  return instructions;
-}
-
 // Pal TODO: Utility function, where to move?
-int traceArrayReuses(Value* operand) {
-  if(isa<Instruction>(operand)) {
-    Instruction *I = dyn_cast<Instruction>(operand);
-    if (GetElementPtrInst *gep = dyn_cast<GetElementPtrInst>(I)) {
-      Value* gepFirstOperand = gep->getOperand(0);
-      Type* type = gepFirstOperand->getType();
-      // Figure out whether the first operand points to an array
-      if (PointerType *pointerType = dyn_cast<PointerType>(type)) {
-        Type* elementType = pointerType->getElementType();
-        if (elementType->isArrayTy()) {
-          return 1;
-        }
-      }
-    } else {
-      int arrayReuses = 0;
-      for (User::op_iterator OI = I->op_begin(), e = I->op_end(); OI != e; ++OI) {
-        arrayReuses += traceArrayReuses(*OI);
-      }
-      return arrayReuses;
-    }
+// trip count is the minimum no. of times a loop executes
+int TripCountExtractor::getTripCount() {
+  if (BasicBlock *ExitingBB = CurLoop->getExitingBlock()) {
+    return SE->getSmallConstantTripMultiple(CurLoop, ExitingBB);
   }
-  return 0;
-}
-
-// Pal TODO: Explore if we can make it work for a case like:
-// x = a[i + 1]
-// a[i] = x;
-int ArrayElementReuseProfile::getArrayReuses(std::vector<Instruction*> instructions) {
-  int arrayReuses = 0;
-  for (std::vector<Instruction*>::iterator II = instructions.begin(), IE = instructions.end(); II != IE;  ++II) {
-    Instruction *I = *II;
-    if (I->getOpcode() == Instruction::Store) {
-      StoreInst *storeInst = dyn_cast<StoreInst>(I);
-      Value* target = storeInst->getPointerOperand();
-      Value* source = storeInst->getValueOperand();
-      if(isa<Instruction>(target)) {
-        if(Instruction *opI = dyn_cast<Instruction>(target)) {
-          // Check destination, if GEP inst, means is an array el
-          if (dyn_cast<GetElementPtrInst>(opI)) {
-            // Back track the source to see if it reuses an array el
-            arrayReuses += traceArrayReuses(source);
-          }
-        }
-      }
-    }
+  int min = INT_MAX;
+  SmallVector<BasicBlock *, 8> UniqueExitBlocks;
+  CurLoop->getUniqueExitBlocks(UniqueExitBlocks);
+  for (unsigned int i = 0; i < UniqueExitBlocks.size(); i++) {
+    BasicBlock *Exit = UniqueExitBlocks[i];
+    int exitTripCount = SE->getSmallConstantTripMultiple(CurLoop, Exit);
+    min = std::min(exitTripCount, min);
   }
-  return arrayReuses;
+  return min;
 }
