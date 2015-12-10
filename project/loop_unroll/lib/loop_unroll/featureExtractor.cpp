@@ -29,6 +29,10 @@
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/Transforms/Utils/Local.h"
 #include "llvm/Transforms/Utils/SSAUpdater.h"
+#include "llvm/Analysis/CodeMetrics.h"
+#include "llvm/Analysis/TargetTransformInfo.h"
+
+
 
 #include <algorithm>
 
@@ -92,6 +96,7 @@ namespace {
       AU.addRequired<AliasAnalysis>();
       AU.addRequired<ProfileInfo>();
       AU.addRequired<LoopLabelMap>();
+      AU.addRequired<TargetTransformInfo>();
     }
 
   private:
@@ -131,12 +136,33 @@ namespace {
     double getUseCount(std::vector<Instruction*> instructions);
     double getStoreCount(std::vector<Instruction*> instructions);
     double getLoadCount(std::vector<Instruction*> instructions);
+    int notDuplicatable(const TargetTransformInfo &TTI);
     std::map<std::string, int>* getTripCountMap();     
   };
 }
 
 char FeatureExtractor::ID = 0;
 static RegisterPass<FeatureExtractor> X("featsExtractor", "Feature Extractor", false, false);
+
+static unsigned ApproximateLoopSize(const Loop *L, unsigned &NumCalls,
+                                    bool &NotDuplicatable,
+                                    const TargetTransformInfo &TTI) {
+  CodeMetrics Metrics;
+  for (Loop::block_iterator I = L->block_begin(), E = L->block_end();
+       I != E; ++I)
+    Metrics.analyzeBasicBlock(*I, TTI);
+  NumCalls = Metrics.NumInlineCandidates;
+  NotDuplicatable = Metrics.notDuplicatable;
+
+  unsigned LoopSize = Metrics.NumInsts;
+
+  // Don't allow an estimate of size zero.  This would allows unrolling of loops
+  // with huge iteration counts, which is a compile time problem even if it's
+  // not a problem for code quality.
+  if (LoopSize == 0) LoopSize = 1;
+
+  return LoopSize;
+}
 
 bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
   Changed = false;
@@ -146,6 +172,7 @@ bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
   AA = &getAnalysis<AliasAnalysis>();
   PI = &getAnalysis<ProfileInfo>();
   LL = &getAnalysis<LoopLabelMap>();
+  const TargetTransformInfo &TTI = getAnalysis<TargetTransformInfo>();
 
   CurAST = new AliasSetTracker(*AA);
   // Collect Alias info from subloops.
@@ -199,6 +226,7 @@ bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
   double def_count = getDefCount(instructions);
   double store_count = getStoreCount(instructions);
   double load_count = getLoadCount(instructions);
+  int isNotDuplicatable = notDuplicatable(TTI);
   std::ofstream outputFile(output_filename.c_str(), std::fstream::app);
   outputFile << LL->benchmark << ","
                 << unique_loop_id << ","
@@ -216,7 +244,8 @@ bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
                 << use_count << ","
                 << def_count << ", "
                 << store_count << ", "
-                << load_count << "\n";
+                << load_count << ", "
+                << isNotDuplicatable << "\n";
   outputFile.close();
   // Clear out loops state information for the next iteration
   CurLoop = 0;
@@ -228,6 +257,13 @@ bool FeatureExtractor::runOnLoop(Loop *L, LPPassManager &LPM) {
   else
     delete CurAST;
   return Changed;
+}
+
+int FeatureExtractor::notDuplicatable(const TargetTransformInfo &TTI) {
+  unsigned NumInlineCandidates;
+  bool notDuplicatable;
+  ApproximateLoopSize(CurLoop, NumInlineCandidates, notDuplicatable, TTI);
+  return notDuplicatable;
 }
 
 std::map<std::string, int>* FeatureExtractor::getTripCountMap() {
