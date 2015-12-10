@@ -31,5 +31,5 @@ opt -analyze -mem2reg -indvars -scalar-evolution -load $PASS_HOME/Release+Assert
 
 rm -r $1
 echo "extracting features"
-echo "benchmark, unique_loop_id, loop_nest_level, dynOp_count, floatOp_count, branchOp_count, memOp_count, operands_count, implicit_instr_count, unique_pred_count, trip_count, loop_calls, reuse_count, use_count, def_count, store_count, load_count" >> $1
+echo "benchmark, unique_loop_id, loop_nest_level, dynOp_count, floatOp_count, branchOp_count, memOp_count, operands_count, implicit_instr_count, unique_pred_count, trip_count, loop_calls, reuse_count, use_count, def_count, store_count, load_count, not_duplicatable" >> $1
 opt -load $PASS_HOME/Release+Asserts/lib/$project_name.so -profile-loader -profile-info-file=llvmprof.out -featsExtractor -benchmark $fname -trip-count-filename temp_trip_count.csv -output-filename $train_file < $fname.ls.bc > $fname.ls.feats.bc || { echo "Failed to get feature stats"; exit 1; }
