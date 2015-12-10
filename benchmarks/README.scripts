@@ -1,0 +1,36 @@
+#This readme is to setup the benchmark scripts
+
+Run following scripts in the benchmark directory to copy files in benchmark directories, change path to the local directory
+
+cd CINT2006
+for files run_feature.sh and run_unroll.sh, change /home/vgogte/... paths to your local paths. Mainly you would have to change paths to the llvm test-suite installation directory and SPEC benchmark installation directory
+Additionally, in unroll.sh, change /home/vgogte/timerFuncs.so to <your local directory>/timerFuncs.so, set 
+PATH=$PATH: <your local directory> and run 
+g++ -fPIC -std=c++11 -shared timerFuncs.cpp -o <your local directory>/timerFuncs.so
+
+cd ..
+
+cd CFP2006
+for files run_feature.sh and run_unroll.sh, change /home/vgogte/... paths to your local paths. Mainly you would have to change paths to the llvm test-suite installation directory and SPEC benchmark installation directory
+
+cd ..
+
+LLVM_PATH="<your local llvm SOURCE path>"
+
+
+cd CINT2006
+for i in 4*; do cp -r $i/run_feature.sh  $LLVM_PATH/projects/test-suite/External/SPEC/CINT2006/$i/. ; done
+cd ..
+
+cd CFP2006
+for i in 4*; do cp -r $i/run_feature.sh  $LLVM_PATH/projects/test-suite/External/SPEC/CFP2006/$i/. ; done
+cd ..
+
+cp TEST.simplify.Makefile ~/llvm-3.3.src/projects/test-suite/.
+cp cpu*.sh ~/llvm-3.3.src/projects/test-suite/External/SPEC/CINT2006/.
+
+Run sample file to check if files are correctly copied:
+cd $LLVM_PATH/projects/test-suite/External/SPEC/CINT2006/400.perlbench/
+./run_feature.sh
+./run_unroll.sh 2
+
