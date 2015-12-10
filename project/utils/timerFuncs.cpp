@@ -4,30 +4,29 @@
 #include <fstream>
 #include <string>
 #include <map>
+#include <cstdlib>
 
 using namespace std;
 clock_t start;
 map<string, clock_t> loopStartTimes;
+map<string, double> *loopExecTimes;
+ofstream outfile;
+char *outFileName;
 
 class TimerUtils{
-
-	ofstream outfile;
-	char *outFileName;
-    // Loopid vs execution time
-	map<string, double> *loopExecTimes;
-
 public:
 
-	TimerUtils(char* outFileName) {
+	TimerUtils(char* fileName) {
 		loopExecTimes = new map<string, double>;
 		// Add header to timer output file
-		this -> outFileName = outFileName;
+		outFileName = fileName;
 		outfile.open(outFileName, ios_base::app);
-		outfile << "LoopID" <<  ", " << "Trip Count" << ", " << "Duration" << "\n";
+		outfile << "LoopID" <<  ", " << ", " << "Duration" << "\n";
 		outfile.close();
+		atexit(write);
 	}
 
-	~TimerUtils() {
+	static void write(void) {
 		// Write contents of loopTimes map to file
 		outfile.open(outFileName, ios_base::app);
 		for (auto& x : *loopExecTimes) {
