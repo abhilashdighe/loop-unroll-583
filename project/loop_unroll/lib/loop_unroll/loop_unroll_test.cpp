@@ -32,46 +32,47 @@
 #include "llvm/Analysis/Interval.h"
 #include "llvm/Support/CFG.h"
 #include "llvm/IR/Instructions.h"
-#include "loopLabeler.h" 
+#include "loopLabeler.h"
 
 
 #include <climits>
+#include <map>
+#include <fstream>
+#include <sstream>
 //#include "LAMP/LAMPLoadProfile.h"
 //#include "LAMP/LAMPProfiling.h"
 //#include "LAMP/label_loop.h"
 
 using namespace llvm;
+using namespace std;
 
-static cl::opt<unsigned>
-UnrollThreshold("custom-threshold", cl::init(150), cl::Hidden,
-  cl::desc("The cut-off point for automatic loop unrolling"));
 
-static cl::opt<unsigned>
-UnrollCount("custom-count", cl::init(0), cl::Hidden,
+static cl::opt<unsigned>UnrollCount("custom-count", cl::init(0), cl::Hidden,
   cl::desc("Use this unroll count for all loops, for testing purposes"));
 
-static cl::opt<bool>
-UnrollAllowPartial("custom-allow-partial", cl::init(false), cl::Hidden,
-  cl::desc("Allows loops to be partially unrolled until "
+static cl::opt<bool>UnrollAllowPartial("custom-allow-partial", cl::init(false), cl::Hidden,
+  cl::desc("Allows loops to be partially unrolled until "\
            "-custom-threshold loop size is reached."));
 
-static cl::opt<bool>
-UnrollRuntime("custom-runtime", cl::ZeroOrMore, cl::init(false), cl::Hidden,
+static cl::opt<bool>UnrollRuntime("custom-runtime", cl::ZeroOrMore, cl::init(false), cl::Hidden,
   cl::desc("Unroll loops with run-time trip counts"));
 
+static cl::opt<std::string> unrollFacFilename("unroll-file",
+											  cl::desc("Specify output-filename to read best unroll factors from"), cl::value_desc("filename"));
+
+static cl::opt<unsigned>UnrollThreshold("custom-threshold", cl::init(150), cl::Hidden,
+  cl::desc("The cut-off point for automatic loop unrolling"));
+
 namespace {
-  class CustomUnroll : public LoopPass {
+  class BestUnroll : public LoopPass {
   public:
     static char ID; // Pass ID, replacement for typeid
-//    LAMPLoadProfile* LP;
-//    label_loop* LL;
-    CustomUnroll(int T = -1, int C = -1,  int P = -1) : LoopPass(ID) {
-      CurrentThreshold = (T == -1) ? UnrollThreshold : unsigned(T);
-      CurrentCount = (C == -1) ? UnrollCount : unsigned(C);
+	  map<string, int>* loopIDUnrollFacMap = 0;
+	  BestUnroll(int T = -1, int C = -1,  int P = -1) : LoopPass(ID) {
+	  CurrentThreshold = (T == -1) ? UnrollThreshold : unsigned(T);
+	  CurrentCount = (C == -1) ? UnrollCount : unsigned(C);
       CurrentAllowPartial = (P == -1) ? UnrollAllowPartial : (bool)P;
-
       UserThreshold = (T != -1) || (UnrollThreshold.getNumOccurrences() > 0);
-
       initializeLoopUnrollPass(*PassRegistry::getPassRegistry());
     }
 
@@ -119,11 +120,38 @@ namespace {
       AU.addRequired<LoopLabelMap>();
 //      AU.addRequired<LAMPLoadProfile>();
     }
+
+  private:
+
+	  std::map<std::string, int>* getBestUnrollFactorsMap();
+
   };
 }
 
-char CustomUnroll::ID = 0;
-static RegisterPass<CustomUnroll> M("custom-unroll", "Unroll loops");
+map<string, int>* BestUnroll :: getBestUnrollFactorsMap() {
+	map<string, int> *loopIDUnrollFacMap = new map<string, int>;
+	string line;
+	ifstream infile(unrollFacFilename.c_str());
+	while (getline(infile,line)) {
+		string token;
+		istringstream ss(line);
+		vector<string> v;
+		while(getline(ss, token, ',')) {
+			v.push_back(token);
+		}
+		if (v.size() == 2) {
+			istringstream buffer(v[1]);
+			int unrollFac;
+			buffer >> unrollFac;
+			(*loopIDUnrollFacMap)[v[0]] = unrollFac;
+		}
+	}
+	infile.close();
+	return loopIDUnrollFacMap;
+}
+
+char BestUnroll::ID = 0;
+static RegisterPass<BestUnroll> M("custom-unroll", "Unroll loops");
 //INITIALIZE_PASS_BEGIN(CustomUnroll, "custom-unroll", "Unroll loops", false, false)
 //INITIALIZE_AG_DEPENDENCY(TargetTransformInfo)
 //INITIALIZE_PASS_DEPENDENCY(LoopInfo)
@@ -132,8 +160,8 @@ static RegisterPass<CustomUnroll> M("custom-unroll", "Unroll loops");
 //INITIALIZE_PASS_DEPENDENCY(ScalarEvolution)
 //INITIALIZE_PASS_END(CustomUnroll, "custom-unroll", "Unroll loops", false, false)
 
-Pass *llvm::createLoopUnrollPass(int Threshold, int Count, int AllowPartial) {
-  return new CustomUnroll(Threshold, Count, AllowPartial);
+Pass* llvm::createLoopUnrollPass(int Threshold, int Count, int AllowPartial) {
+  return new BestUnroll(Threshold, Count, AllowPartial);
 }
 
 /// ApproximateLoopSize - Approximate the size of the loop.
@@ -157,13 +185,17 @@ static unsigned ApproximateLoopSize(const Loop *L, unsigned &NumCalls,
   return LoopSize;
 }
 
-bool CustomUnroll::runOnLoop(Loop *L, LPPassManager &LPM) {
+bool BestUnroll::runOnLoop(Loop *L, LPPassManager &LPM) {
+
   errs() << "Entering loop unroll\n";
   LoopInfo *LI = &getAnalysis<LoopInfo>();
-//  LP = &getAnalysis<LAMPLoadProfile>();
-//  LL = &getAnalysis<label_loop>();
+  LoopLabelMap *LLMAP = &getAnalysis<LoopLabelMap>();
   ScalarEvolution *SE = &getAnalysis<ScalarEvolution>();
   const TargetTransformInfo &TTI = getAnalysis<TargetTransformInfo>();
+
+  if(!loopIDUnrollFacMap) {
+	  loopIDUnrollFacMap = getBestUnrollFactorsMap();
+  }
 
   BasicBlock *Header = L->getHeader();
   DEBUG(dbgs() << "Loop Unroll: F[" << Header->getParent()->getName()
@@ -172,7 +204,7 @@ bool CustomUnroll::runOnLoop(Loop *L, LPPassManager &LPM) {
 
 //  errs() << "ID of this loop is " << LP->LoopToIdMap[Header] << "\n";
 //  errs() << "ID of this loop is " << LL->LoopToIdMap[Header] << "\n";
- 
+
   // Determine the current unrolling threshold.  While this is normally set
   // from UnrollThreshold, it is overridden to a smaller value if the current
   // function is marked as optimize-for-size, and the unroll threshold was
@@ -265,9 +297,20 @@ bool CustomUnroll::runOnLoop(Loop *L, LPPassManager &LPM) {
   errs() << "Unrolling the loop\n";
   errs()<< "Count is " << Count << ", tripcount is " << TripCount << ", allow runtime is " << UnrollRuntime << ", trip multiple is " << TripMultiple << "\n";
   // Unroll the loop.
-  if (!UnrollLoop(L, Count, TripCount, UnrollRuntime, TripMultiple, LI, &LPM)) {
+  string loopID = LLMAP->LoopToIdMap[L->getHeader()];
+
+  // If loopID is not found in map, the loop does not have
+  // duplicatable instructions.
+  int BestUnrollFactor = 1;
+  if(loopIDUnrollFacMap->find(string(loopID)) != loopIDUnrollFacMap->end()){
+	  BestUnrollFactor = (*loopIDUnrollFacMap)[loopID];
+  }
+
+  if (!UnrollLoop(L, BestUnrollFactor, TripCount, UnrollRuntime, TripMultiple, LI, &LPM)) {
     errs() << "Unrolling the loop failed\n";
     return false;
+  } else {
+	  errs() << "Unrolling loop: " << string(loopID) << " by unroll factor: " << BestUnrollFactor << "\n";
   }
 
   return true;
