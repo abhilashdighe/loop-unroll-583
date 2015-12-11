@@ -1,0 +1,97 @@
+\documentclass[]{sig-alternate}
+%\usepackage{latex8}
+%\usepackage{times}
+\usepackage{alltt}
+\renewcommand{\ttdefault}{txtt}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{blindtext}
+\usepackage{graphicx}
+\usepackage[font=small]{caption,subfig}
+\usepackage{placeins}
+\usepackage{listings}
+\graphicspath{{./fig/}}
+
+\usepackage[usenames]{color}
+\usepackage{lipsum}% http://ctan.org/pkg/lipsum
+\usepackage{multicol}% http://ctan.org/pkg/multicols
+%\pagestyle{empty}
+\usepackage{textgreek}
+
+%%to fix indentation of enumerated lists
+\let\labelindent\relax
+\usepackage{enumitem} 
+\usepackage{algorithm} 
+\usepackage{algpseudocode}
+\usepackage[noadjust]{cite}
+
+\usepackage{multirow}
+%%% Spacing Stuff
+%\newcommand{\figVspaceBefore}{\vspace{0mm}}
+%\newcommand{\figVspaceBetween}{\vspace{0mm}}
+%\newcommand{\figVspaceAfter}{\vspace{0mm}}
+%\topsep 0in \itemsep 0in        % No extra space in itemized lists
+
+%%% misc commands
+\newcommand{\eg}{{\it e.g.}\thinspace}
+%\newcommand{\ie}{{\it i.e.}\thinspace}
+\newcommand{\ie}{{\it i.e.}\thinspace}
+\newcommand{\etc}{{\it etc.}\thinspace}
+\newcommand{\etal}{{\it et al.}\thinspace}
+
+\newcommand{\note}[1]{\textcolor{red}{\it NOTE: #1}}
+\newcommand{\hilite}[1]{\textcolor{blue}{#1}}
+\newcommand{\change}[1]{\textcolor{red}{\textbf{\textit{#1}} }}
+%\newcommand{\change}[1]{\hl{#1}}
+\newcommand{\squeezelist}{
+  \setlength{\topsep}{0pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\partopsep}{0pt}
+  \setlength{\parsep}{0pt}
+  \setlength{\itemsep}{0pt}
+}
+ 
+%% Spacing Stuff
+\newcommand{\figVspaceStart}{\vspace{-2mm}}
+\newcommand{\figVspaceBefore}{\vspace{-3mm}}
+\newcommand{\figVspaceAfter}{\vspace{-3mm}}
+\topsep 0in \itemsep 0in         % No extra space in itemized lists
+\setlength{\tabcolsep}{1.5mm}      % squeeze table columns
+
+\hyphenation{micro-arch-itecture}
+\hyphenation{micro-arch-itectur-al}
+%\renewcommand{\baselinestretch}{0.9}
+\lstset{language=Python,captionpos=b,caption={ConfigParser format snippet},label=DescriptiveLabel}
+
+\begin{document}
+
+\title{HOLA: Heuristics for Optimizing Loop Unroll Factors using Machine Learning Algorithm\\\vspace{-4mm}}
+\makeatletter
+\def\@copyrightspace{\relax}
+\makeatother
+
+%\vspace{4mm}
+\maketitle
+
+\begin{abstract}
+\vspace{6mm}
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+
+\section{Background}\label{sec:background}
+
+
+\section{Related Work}\label{sec:related}
+
+\section{Conclusion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\bibliographystyle{IEEEtran}
+\bibliographystyle{IEEEtranS}
+\begin{scriptsize}
+  \bibliography{references}
+\end{scriptsize}
+\end{document}

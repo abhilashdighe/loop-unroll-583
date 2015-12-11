@@ -1,0 +1,2709 @@
+%!PS-Adobe-2.0 EPSF-2.0
+%%BoundingBox: 66 512 476 687
+%%HiResBoundingBox: 66.500000 512.500000 476.000000 687.000000
+%%XRXbegin
+%%XRXend
+%!PS-Adobe-3.0
+%%Title: Visio-figures.vsdx.vsdm
+%%Creator: PScript5.dll Version 5.2.2
+%%CreationDate: 3/2/2015 14:26:30
+%%For: BirukW
+%%PageOrder: Special
+%%DocumentData: Clean7Bit
+%%TargetDevice: (Xerox Global Print Driver) 
+%%LanguageLevel: 3
+%%DriverName: Xerox Global Print Driver PS
+%%DriverLanguage: English
+%%DCPVer: UNIV 5.404.8.1
+%%DriverBuildVer: 5.404.8.0N 2014.11.26
+%%Copyright © 2000-2014 Xerox Corporation. All Rights Reserved.
+%%XEROX is a registered trademark of Xerox Corporation.
+%%RenOSVer: Windows 6.3, build 9600 (64 bit)
+%%DataType: EMF
+%%EndComments
+% EPSF created by ps2eps 1.68
+%%BeginProlog
+save
+countdictstack
+mark
+newpath
+/showpage {} def
+/setpagedevice {pop} def
+%%EndProlog
+%%Page 1 1
+%%BeginDefaults
+%%PageBoundingBox: 15 15 580 827
+%%ViewingOrientation: 1 0 0 1
+%%EndDefaults
+%%BeginProlog
+%%BeginResource: file Pscript_WinNT_ErrorHandler 5.0 0
+/currentpacking where{pop/oldpack currentpacking def/setpacking where{pop false
+setpacking}if}if/$brkpage 64 dict def $brkpage begin/prnt{dup type/stringtype
+ne{=string cvs}if dup length 6 mul/tx exch def/ty 10 def currentpoint/toy exch
+def/tox exch def 1 setgray newpath tox toy 2 sub moveto 0 ty rlineto tx 0
+rlineto 0 ty neg rlineto closepath fill tox toy moveto 0 setgray show}bind def
+/nl{currentpoint exch pop lmargin exch moveto 0 -10 rmoveto}def/=={/cp 0 def
+typeprint nl}def/typeprint{dup type exec}readonly def/lmargin 72 def/rmargin 72
+def/tprint{dup length cp add rmargin gt{nl/cp 0 def}if dup length cp add/cp
+exch def prnt}readonly def/cvsprint{=string cvs tprint( )tprint}readonly def
+/integertype{cvsprint}readonly def/realtype{cvsprint}readonly def/booleantype
+{cvsprint}readonly def/operatortype{(--)tprint =string cvs tprint(-- )tprint}
+readonly def/marktype{pop(-mark- )tprint}readonly def/dicttype{pop
+(-dictionary- )tprint}readonly def/nulltype{pop(-null- )tprint}readonly def
+/filetype{pop(-filestream- )tprint}readonly def/savetype{pop(-savelevel- )
+tprint}readonly def/fonttype{pop(-fontid- )tprint}readonly def/nametype{dup
+xcheck not{(/)tprint}if cvsprint}readonly def/stringtype{dup rcheck{(\()tprint
+tprint(\))tprint}{pop(-string- )tprint}ifelse}readonly def/arraytype{dup rcheck
+{dup xcheck{({)tprint{typeprint}forall(})tprint}{([)tprint{typeprint}forall(])
+tprint}ifelse}{pop(-array- )tprint}ifelse}readonly def/packedarraytype{dup
+rcheck{dup xcheck{({)tprint{typeprint}forall(})tprint}{([)tprint{typeprint}
+forall(])tprint}ifelse}{pop(-packedarray- )tprint}ifelse}readonly def/courier
+/Courier findfont 10 scalefont def end errordict/handleerror{systemdict begin
+$error begin $brkpage begin newerror{/newerror false store vmstatus pop pop 0
+ne{grestoreall}if errorname(VMerror)ne{showpage}if courier setfont
+lmargin 720 moveto errorname(VMerror)eq{userdict/ehsave known{clear userdict
+/ehsave get restore 2 vmreclaim}if vmstatus exch pop exch pop PrtVMMsg}{
+(ERROR: )prnt errorname prnt nl(OFFENDING COMMAND: )prnt/command load prnt
+$error/ostack known{nl nl(STACK:)prnt nl nl $error/ostack get aload length{==}
+repeat}if}ifelse systemdict/showpage get exec(%%[ Error: )print errorname
+=print(; OffendingCommand: )print/command load =print( ]%%)= flush}if end end
+end}dup 0 systemdict put dup 4 $brkpage put bind readonly put/currentpacking
+where{pop/setpacking where{pop oldpack setpacking}if}if
+%%EndResource
+userdict /Pscript_WinNT_Incr 230 dict dup begin put
+%%BeginResource: file Pscript_FatalError 5.0 0
+userdict begin/FatalErrorIf{{initgraphics findfont 1 index 0 eq{exch pop}{dup
+length dict begin{1 index/FID ne{def}{pop pop}ifelse}forall/Encoding
+{ISOLatin1Encoding}stopped{StandardEncoding}if def currentdict end
+/ErrFont-Latin1 exch definefont}ifelse exch scalefont setfont counttomark 3 div
+cvi{moveto show}repeat showpage quit}{cleartomark}ifelse}bind def end
+%%EndResource
+userdict begin/PrtVMMsg{vmstatus exch sub exch pop gt{[
+(This job requires more memory than is available in this printer.)100 500
+(Try one or more of the following, and then print again:)100 485
+(For the output format, choose Optimize For Portability.)115 470
+(In the Device Settings page, make sure the Available PostScript Memory is accurate.)
+115 455(Reduce the number of fonts in the document.)115 440
+(Print the document in parts.)115 425 12/Times-Roman showpage
+(%%[ PrinterError: Low Printer VM ]%%)= true FatalErrorIf}if}bind def end
+version cvi 2016 ge{/VM?{pop}bind def}{/VM? userdict/PrtVMMsg get def}ifelse
+105000 VM?
+%%BeginResource: file Pscript_Win_Basic 5.0 0
+/d/def load def/,/load load d/~/exch , d/?/ifelse , d/!/pop , d/`/begin , d/^
+/index , d/@/dup , d/+/translate , d/$/roll , d/U/userdict , d/M/moveto , d/-
+/rlineto , d/&/currentdict , d/:/gsave , d/;/grestore , d/F/false , d/T/true ,
+d/N/newpath , d/E/end , d/Ac/arc , d/An/arcn , d/A/ashow , d/D/awidthshow , d/C
+/closepath , d/V/div , d/O/eofill , d/L/fill , d/I/lineto , d/-c/curveto , d/-M
+/rmoveto , d/+S/scale , d/Ji/setfont , d/Lc/setlinecap , d/Lj/setlinejoin , d
+/Lw/setlinewidth , d/Lm/setmiterlimit , d/sd/setdash , d/S/show , d/LH/showpage
+, d/K/stroke , d/W/widthshow , d/R/rotate , d/L2? false/languagelevel where{pop
+languagelevel 2 ge{pop true}if}if d L2?{/xS/xshow , d/yS/yshow , d/zS/xyshow ,
+d}if/b{bind d}bind d/bd{bind d}bind d/xd{~ d}bd/ld{, d}bd/bn/bind ld/lw/Lw ld
+/lc/Lc ld/lj/Lj ld/sg/setgray ld/ADO_mxRot null d/self & d/OrgMx matrix
+currentmatrix d/reinitialize{: OrgMx setmatrix[/TextInit/GraphInit/UtilsInit
+counttomark{@ where{self eq}{F}?{cvx exec}{!}?}repeat cleartomark ;}b
+/initialize{`{/Pscript_Win_Data where{!}{U/Pscript_Win_Data & put}?/ADO_mxRot ~
+d/TextInitialised? F d reinitialize E}{U/Pscript_Win_Data 230 dict @ ` put
+/ADO_mxRot ~ d/TextInitialised? F d reinitialize}?}b/terminate{!{& self eq
+{exit}{E}?}loop E}b/suspend/terminate , d/resume{` Pscript_Win_Data `}b U `
+/lucas 21690 d/featurebegin{countdictstack lucas[}b/featurecleanup{stopped
+{cleartomark @ lucas eq{! exit}if}loop countdictstack ~ sub @ 0 gt{{E}repeat}
+{!}?}b E/snap{transform 0.25 sub round 0.25 add ~ 0.25 sub round 0.25 add ~
+itransform}b/dsnap{dtransform round ~ round ~ idtransform}b/nonzero_round{@ 0.5
+ge{round}{@ -0.5 lt{round}{0 ge{1}{-1}?}?}?}b/nonzero_dsnap{dtransform
+nonzero_round ~ nonzero_round ~ idtransform}b U<04>cvn{}put/rr{1 ^ 0 - 0 ~ -
+neg 0 - C}b/irp{4 -2 $ + +S fx 4 2 $ M 1 ^ 0 - 0 ~ - neg 0 -}b/rp{4 2 $ M 1 ^ 0
+- 0 ~ - neg 0 -}b/solid{[]0 sd}b/g{@ not{U/DefIf_save save put}if U/DefIf_bool
+2 ^ put}b/DefIf_El{if U/DefIf_bool get not @{U/DefIf_save get restore}if}b/e
+{DefIf_El !}b/UDF{L2?{undefinefont}{!}?}b/UDR{L2?{undefineresource}{! !}?}b
+/freeVM{/Courier findfont[40 0 0 -40 0 0]makefont Ji 2 vmreclaim}b/hfRedefFont
+{findfont @ length dict `{1 ^/FID ne{d}{! !}?}forall & E @ ` ~{/CharStrings 1
+dict `/.notdef 0 d & E d}if/Encoding 256 array 0 1 255{1 ^ ~/.notdef put}for d
+E definefont !}bind d/hfMkCIDFont{/CIDFont findresource @ length 2 add dict `{1
+^ @/FID eq ~ @/XUID eq ~/UIDBase eq or or{! !}{d}?}forall/CDevProc ~ d/Metrics2
+16 dict d/CIDFontName 1 ^ d & E 1 ^ ~/CIDFont defineresource ![~]composefont !}
+bind d
+%%EndResource
+%%BeginResource: file Pscript_Win_Utils_L2 5.0 0
+/rf/rectfill , d/fx{1 1 dtransform @ 0 ge{1 sub 0.5}{1 add -0.5}? 3 -1 $ @ 0 ge
+{1 sub 0.5}{1 add -0.5}? 3 1 $ 4 1 $ idtransform 4 -2 $ idtransform}b/BZ{4 -2 $
+snap + +S fx rf}b/rs/rectstroke , d/rc/rectclip , d/UtilsInit{currentglobal{F
+setglobal}if}b/scol{! setcolor}b/colspA/DeviceGray d/colspABC/DeviceRGB d
+/colspRefresh{colspABC setcolorspace}b/SetColSpace{colspABC setcolorspace}b
+/resourcestatus where{!/ColorRendering/ProcSet resourcestatus{! ! T}{F}?}{F}?
+not{/ColorRendering<</GetHalftoneName{currenthalftone @/HalftoneName known{
+/HalftoneName get}{!/none}?}bn/GetPageDeviceName{currentpagedevice @
+/PageDeviceName known{/PageDeviceName get @ null eq{!/none}if}{!/none}?}bn
+/GetSubstituteCRD{!/DefaultColorRendering/ColorRendering resourcestatus{! !
+/DefaultColorRendering}{(DefaultColorRendering*){cvn exit}127 string
+/ColorRendering resourceforall}?}bn>>/defineresource where{!/ProcSet
+defineresource !}{! !}?}if/buildcrdname{/ColorRendering/ProcSet findresource `
+mark GetHalftoneName @ type @/nametype ne ~/stringtype ne and{!/none}if(.)
+GetPageDeviceName @ type @/nametype ne ~/stringtype ne and{!/none}if(.)5 ^ 0 5
+-1 1{^ length add}for string 6 1 $ 5 ^ 5{~ 1 ^ cvs length 1 ^ length 1 ^ sub
+getinterval}repeat ! cvn 3 1 $ ! ! E}b/definecolorrendering{~ buildcrdname ~
+/ColorRendering defineresource !}b/findcolorrendering where{!}{
+/findcolorrendering{buildcrdname @/ColorRendering resourcestatus{! ! T}{
+/ColorRendering/ProcSet findresource ` GetSubstituteCRD E F}?}b}?
+/selectcolorrendering{findcolorrendering !/ColorRendering findresource
+setcolorrendering}b/G2UBegin{findresource/FontInfo get/GlyphNames2Unicode get
+`}bind d/G2CCBegin{findresource/FontInfo get/GlyphNames2HostCode get `}bind d
+/G2UEnd{E}bind d/AddFontInfoBegin{/FontInfo 8 dict @ `}bind d/AddFontInfo{
+/GlyphNames2Unicode 16 dict d/GlyphNames2HostCode 16 dict d}bind d
+/AddFontInfoEnd{E d}bind d/T0AddCFFMtx2{/CIDFont findresource/Metrics2 get ` d
+E}bind d
+%%EndResource
+end
+%%EndProlog
+%%BeginSetup
+				  
+				  % *Basic PostScript Commands
+				  
+	featurebegin{<< /Collate true >> setpagedevice}featurecleanup
+	featurebegin{<< /PageSize [595 842] >> setpagedevice}featurecleanup
+	featurebegin{<< /MediaClass null >> setpagedevice}featurecleanup
+	featurebegin{<< /MediaPosition null /TraySwitch true >> setpagedevice}featurecleanup
+	featurebegin{<< /Duplex false /Tumble false >> setpagedevice}featurecleanup
+	featurebegin{<< /ProcessColorModel /DeviceCMYK>> setpagedevice}featurecleanup
+[ 1 0 0 1 0 0 ] false Pscript_WinNT_Incr dup /initialize get exec
+%%BeginNonPPDFeature: JobTimeout 0
+0 /languagelevel where{pop languagelevel}{1}ifelse 2 ge{1 dict dup/JobTimeout  4 -1 roll put setuserparams}{statusdict/setjobtimeout get exec}ifelse
+%%EndNonPPDFeature
+%%BeginNonPPDFeature: WaitTimeout 120
+120 /languagelevel where{pop languagelevel}{1}ifelse 2 ge{1 dict dup/WaitTimeout 4 -1 roll put setuserparams}{statusdict/waittimeout 3 -1 roll put}ifelse
+%%EndNonPPDFeature
+1 setlinecap 1 setlinejoin
+/mysetup [ 72 600 V 0 0 -72 600 V 15.00094 826.99938 ] def 
+%%EndSetup
+userdict begin /ehsave save def end
+%%Page: 1 1
+%%PageBoundingBox: 15 15 580 827
+%%EndPageComments
+%%BeginPageSetup
+%Xrx ICMM=4, ICMI=2
+/DeviceRGB dup setcolorspace /colspABC exch def
+mysetup concat colspRefresh
+%%EndPageSetup
+30000 VM?
+Pscript_WinNT_Incr begin
+%%BeginResource: file Pscript_WinNT_Compat 5.0 0
+userdict/Pscript_WinNT_Compat 19 dict dup begin/bd{bind def}bind def/ld{load
+def}bd/$x matrix def/ANSIVec[16#0/grave 16#1/acute 16#2/circumflex 16#3/tilde
+16#4/macron 16#5/breve 16#6/dotaccent 16#7/dieresis 16#8/ring 16#9/cedilla 16#A
+/hungarumlaut 16#B/ogonek 16#C/caron 16#D/dotlessi 16#27/quotesingle 16#60
+/grave 16#7C/bar 16#82/quotesinglbase 16#83/florin 16#84/quotedblbase 16#85
+/ellipsis 16#86/dagger 16#87/daggerdbl 16#88/circumflex 16#89/perthousand 16#8A
+/Scaron 16#8B/guilsinglleft 16#8C/OE 16#91/quoteleft 16#92/quoteright 16#93
+/quotedblleft 16#94/quotedblright 16#95/bullet 16#96/endash 16#97/emdash 16#98
+/tilde 16#99/trademark 16#9A/scaron 16#9B/guilsinglright 16#9C/oe 16#9F
+/Ydieresis 16#A0/space 16#A1/exclamdown 16#A4/currency 16#A5/yen 16#A6
+/brokenbar 16#A7/section 16#A8/dieresis 16#A9/copyright 16#AA/ordfeminine 16#AB
+/guillemotleft 16#AC/logicalnot 16#AD/hyphen 16#AE/registered 16#AF/macron
+16#B0/degree 16#B1/plusminus 16#B2/twosuperior 16#B3/threesuperior 16#B4/acute
+16#B5/mu 16#B6/paragraph 16#B7/periodcentered 16#B8/cedilla 16#B9/onesuperior
+16#BA/ordmasculine 16#BB/guillemotright 16#BC/onequarter 16#BD/onehalf 16#BE
+/threequarters 16#BF/questiondown 16#C0/Agrave 16#C1/Aacute 16#C2/Acircumflex
+16#C3/Atilde 16#C4/Adieresis 16#C5/Aring 16#C6/AE 16#C7/Ccedilla 16#C8/Egrave
+16#C9/Eacute 16#CA/Ecircumflex 16#CB/Edieresis 16#CC/Igrave 16#CD/Iacute 16#CE
+/Icircumflex 16#CF/Idieresis 16#D0/Eth 16#D1/Ntilde 16#D2/Ograve 16#D3/Oacute
+16#D4/Ocircumflex 16#D5/Otilde 16#D6/Odieresis 16#D7/multiply 16#D8/Oslash
+16#D9/Ugrave 16#DA/Uacute 16#DB/Ucircumflex 16#DC/Udieresis 16#DD/Yacute 16#DE
+/Thorn 16#DF/germandbls 16#E0/agrave 16#E1/aacute 16#E2/acircumflex 16#E3
+/atilde 16#E4/adieresis 16#E5/aring 16#E6/ae 16#E7/ccedilla 16#E8/egrave 16#E9
+/eacute 16#EA/ecircumflex 16#EB/edieresis 16#EC/igrave 16#ED/iacute 16#EE
+/icircumflex 16#EF/idieresis 16#F0/eth 16#F1/ntilde 16#F2/ograve 16#F3/oacute
+16#F4/ocircumflex 16#F5/otilde 16#F6/odieresis 16#F7/divide 16#F8/oslash 16#F9
+/ugrave 16#FA/uacute 16#FB/ucircumflex 16#FC/udieresis 16#FD/yacute 16#FE/thorn
+16#FF/ydieresis]def currentdict{dup type/operatortype eq{[exch]cvx def}{pop
+pop}ifelse}forall/initialize{currentdict exch begin begin}bind def/terminate{
+/@FL where not{pop end end}{pop}ifelse}bind def/suspend/terminate load def
+/resume/initialize load def/RS{/pagesave where{pop pagesave restore}{$x matrix
+invertmatrix concat}ifelse}def/SS{/pagesave save def}def/CB{pop pop pop pop}def
+/B{pop pop pop pop}def/:/gsave load def/;/grestore load def/N/newpath load def
+end put
+%%EndResource
+end reinitialize
+Pscript_WinNT_Compat begin /$x mysetup def end
+Pscript_WinNT_Incr dup /suspend get exec
+Pscript_WinNT_Compat dup /initialize get exec
+%%BeginDocument: Pscript_Win_PassThrough
+/languagelevel where {pop languagelevel} {1} ifelse
+2 ge dup {currentglobal exch true setglobal globaldict} {userdict} ifelse
+/GpPBeg1 {
+    gsave 
+    16 dict begin
+    /c {curveto} def /l {lineto} def /m {moveto} def
+    /rc {rcurveto} def /rl {rlineto} def
+    /NP {newpath} def /CP {closepath} def /SC {setrgbcolor} def
+    /GSE {end grestore} def
+} put
+{setglobal} if
+GpPBeg1
+0.9607 0.9529 0.9725 SC
+NP 430 2248 m 564 2248 l 1285 1527 l 1151 1527 l 430 2248 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 430 2248 m 564 2248 l 1285 1527 l 1151 1527 l 430 2248 l CP 
+stroke
+GSE
+GpPBeg1
+0.8274 0.7882 0.8705 SC
+NP 564 2370 m 1285 1649 l 1285 1527 l 564 2248 l 564 2370 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 564 2370 m 1285 1649 l 1285 1527 l 564 2248 l 564 2370 l CP 
+stroke
+GSE
+GpPBeg1
+0.9333 0.9176 0.9490 SC
+NP 430 2248 m 564 2248 l 564 2370 l 430 2370 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 430 2370 m 564 2370 l 564 2248 l 430 2248 l 430 2370 l CP 
+stroke
+GSE
+GpPBeg1
+0.9607 0.9529 0.9725 SC
+NP 565 2248 m 699 2248 l 1420 1527 l 1286 1527 l 565 2248 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 565 2248 m 699 2248 l 1420 1527 l 1286 1527 l 565 2248 l CP 
+stroke
+GSE
+GpPBeg1
+0.8274 0.7882 0.8705 SC
+NP 699 2370 m 1420 1649 l 1420 1527 l 699 2248 l 699 2370 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 699 2370 m 1420 1649 l 1420 1527 l 699 2248 l 699 2370 l CP 
+stroke
+GSE
+GpPBeg1
+0.9333 0.9176 0.9490 SC
+NP 565 2248 m 699 2248 l 699 2370 l 565 2370 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 565 2370 m 699 2370 l 699 2248 l 565 2248 l 565 2370 l CP 
+stroke
+GSE
+GpPBeg1
+0 0 0 SC
+NP 607 2171 m 607 2176 606 2179 604 2182 c 603 2185 601 2188 599 2190 c 595 2194 591 2196 587 2197 c 582 2197 579 2195 576 2192 c 574 2191 573 2189 572 2186 c 571 2184 571 2182 572 2179 c 572 2177 573 2175 574 2173 c 575 2171 577 2169 579 2166 c 583 2161 586 2156 588 2153 c 587 2152 586 2152 586 2152 c 584 2149 581 2148 579 2148 c 576 2148 573 2150 570 2153 c 567 2156 565 2159 565 2161 c 564 2163 565 2166 567 2170 c 560 2175 l 558 2172 557 2169 557 2166 c 556 2163 557 2160 558 2157 c 560 2153 562 2150 566 2147 c 569 2144 572 2142 574 2140 c 577 2139 579 2139 581 2139 c 583 2139 585 2140 588 2141 c 589 2142 591 2144 594 2147 c 602 2155 l 608 2161 611 2164 613 2165 c 615 2167 617 2168 619 2168 c 613 2175 l 611 2174 609 2173 607 2171 c CP 
+593 2158 m 591 2161 589 2165 585 2171 c 583 2174 581 2176 581 2177 c 580 2179 580 2180 580 2182 c 580 2183 581 2185 582 2186 c 584 2187 586 2188 588 2188 c 591 2188 593 2186 595 2184 c 598 2182 599 2179 600 2176 c 601 2173 601 2170 600 2168 c 599 2166 598 2163 595 2160 c CP 
+641 2174 m 590 2124 l 596 2118 l 601 2123 l 600 2120 600 2117 601 2114 c 602 2111 604 2109 606 2107 c 609 2103 613 2101 617 2101 c 621 2100 625 2100 629 2102 c 633 2104 637 2106 640 2110 c 644 2114 647 2118 648 2122 c 650 2126 650 2131 649 2135 c 649 2139 647 2142 644 2145 c 642 2147 639 2149 637 2150 c 634 2150 632 2151 630 2150 c 647 2168 l CP 
+615 2137 m 619 2141 624 2144 628 2144 c 632 2145 636 2143 638 2141 c 641 2138 642 2134 642 2130 c 641 2126 639 2121 634 2116 c 629 2112 625 2109 621 2109 c 616 2108 613 2109 610 2112 c 608 2115 606 2118 607 2123 c 607 2127 610 2132 615 2137 c CP 
+680 2136 m 629 2085 l 635 2079 l 640 2084 l 639 2081 639 2078 640 2075 c 641 2073 642 2070 645 2068 c 648 2065 651 2063 655 2062 c 659 2061 664 2061 668 2063 c 672 2065 676 2068 679 2071 c 683 2075 686 2079 687 2083 c 689 2088 689 2092 688 2096 c 687 2100 685 2104 683 2106 c 681 2109 678 2110 676 2111 c 673 2111 671 2112 668 2111 c 686 2129 l CP 
+653 2098 m 658 2102 663 2105 667 2105 c 671 2106 674 2104 677 2102 c 680 2099 681 2095 681 2091 c 680 2087 678 2082 673 2077 c 668 2073 664 2070 659 2070 c 655 2069 652 2070 649 2073 c 646 2076 645 2079 646 2084 c 646 2088 649 2093 653 2098 c CP 
+705 2082 m 655 2031 l 661 2025 l 712 2076 l CP 
+678 2023 m 671 2016 l 677 2009 l 684 2017 l CP 
+721 2066 m 685 2030 l 691 2023 l 727 2060 l CP 
+747 2013 m 754 2008 l 758 2013 759 2018 759 2023 c 758 2028 756 2033 752 2037 c 747 2042 742 2044 735 2044 c 729 2044 723 2041 717 2034 c 713 2030 710 2026 708 2022 c 707 2018 706 2014 707 2009 c 709 2005 711 2002 714 1998 c 718 1994 722 1992 727 1992 c 731 1991 736 1992 740 1995 c 735 2002 l 732 2000 729 2000 727 2000 c 724 2000 721 2001 719 2003 c 716 2006 715 2010 715 2014 c 715 2019 718 2023 723 2028 c 728 2033 732 2035 736 2036 c 741 2036 744 2035 747 2032 c 750 2029 751 2027 751 2023 c 751 2020 750 2017 747 2013 c CP 
+791 1987 m 791 1991 790 1995 789 1998 c 788 2001 786 2003 783 2006 c 779 2010 775 2012 771 2012 c 767 2012 763 2011 760 2008 c 758 2006 757 2004 757 2002 c 756 1999 756 1997 756 1995 c 757 1993 757 1991 759 1988 c 760 1987 761 1985 763 1982 c 768 1976 771 1972 772 1969 c 771 1968 771 1967 771 1967 c 768 1965 766 1963 763 1963 c 761 1964 757 1965 754 1968 c 751 1971 750 1974 749 1976 c 749 1979 750 1982 752 1985 c 745 1990 l 743 1987 742 1984 741 1981 c 741 1978 742 1975 743 1972 c 745 1969 747 1966 750 1962 c 753 1959 756 1957 759 1956 c 761 1955 764 1954 766 1954 c 768 1955 770 1955 772 1957 c 773 1957 775 1959 778 1962 c 786 1970 l 792 1976 796 1980 798 1981 c 800 1982 802 1983 804 1984 c 797 1990 l 795 1990 793 1988 791 1987 c CP 
+777 1974 m 776 1977 773 1981 769 1986 c 767 1989 766 1991 765 1993 c 764 1994 764 1996 765 1997 c 765 1999 766 2000 767 2001 c 768 2003 770 2003 773 2003 c 775 2003 778 2002 780 1999 c 782 1997 784 1994 785 1991 c 786 1989 785 1986 785 1983 c 784 1981 782 1979 779 1976 c CP 
+820 1957 m 826 1961 l 825 1963 823 1965 822 1967 c 820 1969 818 1970 816 1971 c 814 1971 812 1971 810 1970 c 808 1970 806 1968 802 1964 c 781 1943 l 776 1947 l 772 1943 l 776 1938 l 767 1929 l 770 1919 l 782 1932 l 789 1926 l 793 1930 l 787 1937 l 809 1958 l 810 1960 812 1961 812 1961 c 813 1961 814 1962 815 1961 c 815 1961 816 1961 817 1960 c 818 1959 819 1958 820 1957 c CP 
+788 1912 m 781 1905 l 787 1899 l 794 1906 l CP 
+831 1956 m 795 1919 l 801 1913 l 838 1950 l CP 
+826 1924 m 820 1918 816 1911 817 1904 c 817 1898 820 1893 824 1888 c 829 1883 835 1881 842 1881 c 848 1881 854 1884 860 1890 c 865 1894 868 1899 869 1903 c 870 1907 871 1911 869 1915 c 868 1919 866 1923 863 1926 c 858 1932 852 1934 845 1934 c 839 1934 833 1931 826 1924 c CP 
+833 1918 m 837 1923 842 1925 846 1926 c 851 1926 854 1924 858 1921 c 861 1918 862 1914 862 1910 c 861 1906 859 1901 854 1896 c 850 1892 845 1889 841 1889 c 836 1889 833 1890 830 1893 c 826 1896 825 1900 825 1904 c 826 1909 828 1913 833 1918 c CP 
+886 1902 m 849 1865 l 855 1859 l 860 1864 l 859 1858 861 1852 866 1847 c 868 1845 870 1843 873 1842 c 876 1841 878 1840 880 1841 c 882 1841 885 1842 887 1844 c 888 1844 890 1846 893 1849 c 916 1872 l 909 1878 l 887 1856 l 885 1853 883 1851 881 1851 c 879 1850 877 1850 875 1850 c 873 1851 871 1852 870 1853 c 867 1856 866 1859 865 1863 c 865 1866 867 1871 872 1875 c 892 1895 l CP 
+965 1814 m 964 1818 964 1822 962 1824 c 961 1827 959 1830 957 1833 c 953 1837 948 1839 944 1839 c 940 1839 937 1838 934 1835 c 932 1833 930 1831 930 1828 c 929 1826 929 1824 929 1822 c 930 1819 931 1817 932 1815 c 933 1814 934 1811 936 1809 c 941 1803 944 1799 945 1795 c 945 1795 944 1794 944 1794 c 941 1791 939 1790 937 1790 c 934 1790 931 1792 928 1795 c 925 1798 923 1801 923 1803 c 922 1806 923 1808 925 1812 c 918 1817 l 916 1814 915 1811 914 1808 c 914 1805 915 1802 916 1799 c 918 1796 920 1792 923 1789 c 926 1786 929 1784 932 1783 c 935 1781 937 1781 939 1781 c 941 1781 943 1782 945 1783 c 947 1784 949 1786 951 1789 c 960 1797 l 965 1803 969 1806 971 1808 c 973 1809 975 1810 977 1810 c 970 1817 l 969 1816 967 1815 965 1814 c CP 
+950 1800 m 949 1804 946 1808 942 1813 c 940 1816 939 1818 938 1819 c 938 1821 938 1823 938 1824 c 938 1825 939 1827 940 1828 c 942 1829 944 1830 946 1830 c 948 1830 951 1829 953 1826 c 956 1824 957 1821 958 1818 c 959 1815 959 1813 958 1810 c 957 1808 955 1805 953 1803 c CP 
+1008 1779 m 1003 1775 l 1005 1781 1003 1786 999 1791 c 996 1793 992 1795 988 1796 c 984 1797 980 1797 976 1795 c 971 1794 967 1791 964 1787 c 960 1784 957 1780 956 1775 c 954 1771 953 1767 954 1763 c 955 1759 957 1756 960 1753 c 962 1750 965 1749 967 1748 c 970 1747 973 1747 975 1747 c 957 1729 l 963 1723 l 1014 1774 l CP 
+970 1781 m 975 1786 979 1788 984 1788 c 988 1789 991 1788 994 1785 c 997 1782 998 1779 998 1775 c 997 1770 995 1766 990 1762 c 985 1757 981 1754 976 1753 c 972 1753 969 1754 966 1757 c 963 1760 962 1763 962 1767 c 963 1771 965 1776 970 1781 c CP 
+1043 1735 m 1043 1739 1042 1743 1041 1746 c 1039 1749 1037 1752 1035 1754 c 1031 1758 1027 1760 1023 1760 c 1019 1761 1015 1759 1012 1756 c 1010 1754 1009 1752 1008 1750 c 1008 1748 1008 1745 1008 1743 c 1008 1741 1009 1739 1010 1737 c 1011 1735 1013 1733 1015 1730 c 1019 1725 1022 1720 1024 1717 c 1023 1716 1023 1716 1022 1715 c 1020 1713 1017 1712 1015 1712 c 1012 1712 1009 1714 1006 1717 c 1003 1720 1001 1722 1001 1725 c 1001 1727 1002 1730 1003 1733 c 997 1738 l 994 1735 993 1732 993 1729 c 993 1727 993 1724 995 1720 c 996 1717 999 1714 1002 1711 c 1005 1708 1008 1705 1011 1704 c 1013 1703 1016 1702 1018 1703 c 1020 1703 1022 1704 1024 1705 c 1025 1706 1027 1708 1030 1710 c 1038 1719 l 1044 1724 1048 1728 1049 1729 c 1051 1730 1053 1731 1055 1732 c 1049 1738 l 1047 1738 1045 1737 1043 1735 c CP 
+1029 1722 m 1027 1725 1025 1729 1021 1734 c 1019 1737 1017 1739 1017 1741 c 1016 1743 1016 1744 1016 1745 c 1017 1747 1017 1748 1018 1749 c 1020 1751 1022 1752 1024 1752 c 1027 1751 1029 1750 1032 1748 c 1034 1745 1036 1743 1036 1740 c 1037 1737 1037 1734 1036 1731 c 1036 1729 1034 1727 1031 1724 c CP 
+1077 1738 m 1027 1687 l 1032 1682 l 1037 1686 l 1037 1683 1037 1680 1037 1678 c 1038 1675 1040 1673 1042 1670 c 1045 1667 1049 1665 1053 1664 c 1057 1664 1061 1664 1065 1666 c 1069 1668 1073 1670 1077 1674 c 1080 1677 1083 1681 1085 1686 c 1086 1690 1087 1694 1086 1699 c 1085 1703 1083 1706 1080 1709 c 1078 1711 1076 1713 1073 1713 c 1071 1714 1068 1714 1066 1714 c 1084 1732 l CP 
+1051 1700 m 1056 1705 1060 1708 1064 1708 c 1068 1708 1072 1707 1075 1704 c 1077 1702 1078 1698 1078 1694 c 1078 1689 1075 1685 1070 1680 c 1066 1675 1061 1673 1057 1672 c 1053 1672 1049 1673 1046 1676 c 1044 1678 1043 1682 1043 1686 c 1044 1691 1046 1696 1051 1700 c CP 
+1110 1666 m 1117 1671 l 1115 1673 1114 1674 1113 1676 c 1110 1678 1108 1680 1106 1680 c 1104 1681 1102 1681 1101 1680 c 1099 1679 1096 1677 1093 1673 c 1072 1652 l 1067 1657 l 1062 1652 l 1067 1647 l 1058 1638 l 1060 1628 l 1073 1641 l 1079 1635 l 1084 1640 l 1078 1646 l 1099 1667 l 1101 1669 1102 1670 1103 1671 c 1104 1671 1104 1671 1105 1671 c 1106 1670 1107 1670 1108 1669 c 1108 1668 1109 1667 1110 1666 c CP 
+1079 1622 m 1071 1615 l 1078 1609 l 1085 1616 l CP 
+1122 1665 m 1085 1629 l 1092 1622 l 1128 1659 l CP 
+1148 1640 m 1097 1617 l 1104 1610 l 1134 1624 l 1137 1626 1140 1628 1143 1629 c 1142 1627 1140 1624 1139 1620 c 1124 1590 l 1131 1583 l 1154 1634 l CP 
+1186 1578 m 1193 1572 l 1196 1577 1197 1581 1197 1586 c 1196 1591 1193 1596 1189 1600 c 1184 1605 1178 1608 1172 1608 c 1165 1608 1159 1604 1153 1598 c 1147 1592 1144 1586 1143 1579 c 1143 1573 1145 1567 1151 1562 c 1155 1557 1161 1555 1168 1555 c 1174 1555 1180 1558 1186 1564 c 1187 1565 1187 1565 1188 1566 c 1161 1593 l 1165 1597 1169 1599 1173 1599 c 1177 1599 1181 1598 1184 1595 c 1186 1592 1188 1590 1188 1587 c 1189 1584 1188 1581 1186 1578 c CP 
+1156 1588 m 1176 1567 l 1173 1565 1170 1563 1167 1563 c 1163 1562 1159 1564 1156 1567 c 1153 1570 1151 1573 1151 1577 c 1151 1581 1153 1584 1156 1588 c CP 
+fill
+GSE
+GpPBeg1
+0 0 0 SC
+NP 786 2121 m 791 2114 l 794 2116 797 2117 800 2116 c 803 2116 806 2114 809 2112 c 811 2109 813 2106 813 2104 c 813 2101 813 2099 811 2097 c 810 2096 808 2096 806 2096 c 805 2096 802 2098 798 2100 c 792 2104 788 2106 785 2107 c 783 2108 780 2108 778 2107 c 775 2107 773 2105 771 2104 c 770 2102 769 2100 768 2098 c 767 2096 767 2094 768 2091 c 768 2090 769 2088 770 2086 c 771 2084 772 2081 774 2080 c 777 2077 780 2075 783 2073 c 786 2072 789 2071 791 2072 c 794 2072 796 2073 799 2075 c 794 2082 l 792 2081 789 2080 787 2080 c 785 2080 782 2082 780 2084 c 777 2087 775 2090 775 2092 c 775 2094 775 2096 777 2097 c 777 2098 778 2098 780 2098 c 781 2098 782 2098 784 2098 c 784 2097 787 2096 791 2094 c 796 2090 800 2088 803 2087 c 805 2086 808 2086 810 2087 c 813 2087 815 2088 817 2090 c 819 2092 820 2095 821 2098 c 822 2101 821 2104 820 2108 c 819 2111 817 2114 814 2117 c 809 2122 804 2124 800 2125 c 795 2125 791 2124 786 2121 c CP 
+846 2056 m 853 2051 l 856 2056 858 2061 857 2066 c 857 2071 855 2076 851 2080 c 846 2085 840 2087 834 2087 c 827 2087 821 2084 815 2077 c 811 2073 808 2069 807 2065 c 805 2061 805 2057 806 2052 c 807 2048 809 2045 812 2041 c 816 2037 821 2035 825 2035 c 830 2034 834 2035 839 2038 c 834 2045 l 831 2043 828 2043 825 2043 c 822 2043 820 2044 818 2046 c 815 2049 813 2053 814 2057 c 814 2062 816 2066 821 2071 c 826 2076 831 2078 835 2079 c 839 2079 842 2078 846 2075 c 848 2072 849 2070 849 2066 c 850 2063 848 2060 846 2056 c CP 
+870 2058 m 820 2008 l 826 2002 l 844 2020 l 844 2013 846 2008 850 2004 c 853 2001 856 1999 859 1998 c 862 1997 865 1997 868 1998 c 870 1999 873 2002 877 2005 c 900 2029 l 894 2035 l 871 2012 l 868 2008 865 2007 862 2007 c 859 2007 857 2008 854 2010 c 852 2012 851 2014 850 2017 c 850 2020 850 2022 851 2024 c 852 2027 854 2029 857 2032 c 877 2052 l CP 
+923 1982 m 931 1976 l 933 1981 934 1986 934 1991 c 933 1995 931 2000 926 2004 c 921 2010 915 2012 909 2012 c 902 2012 896 2009 890 2003 c 884 1997 881 1990 880 1984 c 880 1977 883 1971 888 1966 c 893 1961 898 1959 905 1959 c 911 1959 917 1963 923 1969 c 924 1969 924 1970 925 1970 c 898 1998 l 902 2001 906 2003 910 2004 c 915 2004 918 2002 921 1999 c 923 1997 925 1994 925 1991 c 926 1989 925 1985 923 1982 c CP 
+893 1992 m 913 1972 l 910 1969 907 1967 904 1967 c 900 1967 896 1968 893 1971 c 890 1974 888 1977 888 1981 c 888 1985 890 1989 893 1992 c CP 
+973 1956 m 968 1951 l 969 1957 968 1963 963 1967 c 960 1970 957 1972 953 1973 c 949 1974 945 1973 940 1972 c 936 1970 932 1968 928 1964 c 925 1960 922 1956 920 1952 c 919 1948 918 1944 919 1940 c 920 1936 922 1932 925 1929 c 927 1927 929 1925 932 1925 c 935 1924 937 1924 940 1924 c 922 1906 l 928 1900 l 978 1950 l CP 
+935 1957 m 939 1962 944 1965 948 1965 c 953 1965 956 1964 959 1961 c 962 1959 963 1955 962 1951 c 962 1947 960 1943 955 1938 c 950 1933 945 1930 941 1930 c 937 1930 933 1931 930 1934 c 928 1936 927 1940 927 1944 c 927 1948 930 1953 935 1957 c CP 
+1013 1916 m 1007 1911 l 1008 1918 1007 1924 1002 1929 c 1000 1931 997 1933 994 1934 c 992 1935 989 1935 987 1935 c 985 1934 983 1933 981 1932 c 979 1931 977 1929 974 1926 c 952 1904 l 958 1898 l 978 1918 l 982 1921 984 1923 985 1924 c 987 1925 989 1926 992 1925 c 994 1925 996 1924 998 1922 c 1000 1920 1001 1918 1001 1915 c 1002 1913 1002 1910 1001 1908 c 1000 1906 998 1903 995 1900 c 975 1880 l 981 1874 l 1018 1911 l CP 
+1027 1902 m 977 1851 l 983 1845 l 1034 1895 l CP 
+1057 1848 m 1064 1843 l 1067 1847 1068 1852 1067 1857 c 1067 1862 1064 1866 1060 1871 c 1055 1876 1049 1879 1042 1878 c 1036 1878 1030 1875 1024 1869 c 1017 1863 1014 1857 1014 1850 c 1014 1843 1016 1838 1021 1833 c 1026 1828 1032 1825 1038 1826 c 1045 1826 1051 1829 1057 1835 c 1057 1835 1058 1836 1059 1837 c 1031 1864 l 1036 1868 1040 1870 1044 1870 c 1048 1870 1052 1868 1055 1865 c 1057 1863 1058 1861 1059 1858 c 1059 1855 1059 1852 1057 1848 c CP 
+1027 1859 m 1047 1838 l 1044 1835 1041 1834 1038 1834 c 1033 1833 1030 1834 1026 1838 c 1024 1840 1022 1844 1022 1848 c 1022 1852 1024 1855 1027 1859 c CP 
+1083 1846 m 1046 1810 l 1051 1804 l 1057 1810 l 1056 1806 1055 1803 1056 1801 c 1056 1798 1057 1797 1059 1795 c 1061 1793 1063 1792 1067 1791 c 1071 1799 l 1068 1799 1066 1801 1065 1802 c 1063 1803 1063 1805 1062 1807 c 1062 1809 1062 1811 1063 1813 c 1065 1816 1067 1818 1070 1821 c 1089 1840 l CP 
+1093 1814 m 1098 1807 l 1101 1809 1104 1810 1107 1809 c 1110 1809 1113 1808 1116 1805 c 1118 1802 1120 1799 1120 1797 c 1120 1794 1120 1792 1118 1791 c 1117 1789 1115 1789 1113 1789 c 1112 1789 1109 1791 1104 1793 c 1099 1797 1095 1799 1092 1800 c 1089 1801 1087 1801 1085 1800 c 1082 1800 1080 1799 1078 1797 c 1077 1795 1075 1793 1075 1791 c 1074 1789 1074 1787 1074 1785 c 1075 1783 1075 1781 1077 1779 c 1078 1777 1079 1775 1081 1773 c 1084 1770 1087 1768 1090 1766 c 1093 1765 1096 1765 1098 1765 c 1101 1765 1103 1766 1106 1768 c 1101 1775 l 1099 1774 1096 1773 1094 1773 c 1092 1774 1089 1775 1087 1777 c 1084 1780 1082 1783 1082 1785 c 1082 1787 1082 1789 1084 1790 c 1084 1791 1085 1791 1086 1791 c 1088 1792 1089 1791 1091 1791 c 1091 1790 1094 1789 1098 1787 c 1103 1784 1107 1781 1110 1780 c 1112 1779 1115 1779 1117 1780 c 1119 1780 1122 1781 1124 1783 c 1126 1786 1127 1788 1128 1791 c 1128 1794 1128 1797 1127 1801 c 1126 1804 1124 1807 1121 1810 c 1116 1815 1111 1817 1107 1818 c 1102 1818 1098 1817 1093 1814 c CP 
+fill
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 1366 1636 m 1361 1636 1358 1646 1358 1659 c 1358 1671 1361 1681 1366 1681 c 1497 1681 l 1497 1636 l 1366 1636 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1366 1636 m 1361 1636 1358 1646 1358 1659 c 1358 1671 1361 1681 1366 1681 c 1497 1681 l 1497 1636 l 1366 1636 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 1497 1636 m 1501 1636 1505 1646 1505 1659 c 1505 1671 1501 1681 1497 1681 c 1492 1681 1489 1671 1489 1659 c 1489 1646 1492 1636 1497 1636 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1497 1636 m 1501 1636 1505 1646 1505 1659 c 1505 1671 1501 1681 1497 1681 c 1492 1681 1489 1671 1489 1659 c 1489 1646 1492 1636 1497 1636 c CP 
+stroke
+GSE
+GpPBeg1
+0.6745 0.8627 1 SC
+NP 1481 1629 m 1881 1629 l 1977 1533 l 1576 1533 l 1481 1629 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1481 1629 m 1881 1629 l 1977 1533 l 1576 1533 l 1481 1629 l CP 
+stroke
+GSE
+GpPBeg1
+0.2078 0.6627 1 SC
+NP 1881 1765 m 1977 1669 l 1977 1533 l 1881 1629 l 1881 1765 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1881 1765 m 1977 1669 l 1977 1533 l 1881 1629 l 1881 1765 l CP 
+stroke
+GSE
+GpPBeg1
+0.4156 0.7529 1 SC
+NP 1481 1629 m 1881 1629 l 1881 1765 l 1481 1765 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1481 1765 m 1881 1765 l 1881 1629 l 1481 1629 l 1481 1765 l CP 
+stroke
+GSE
+GpPBeg1
+0.8470 0.5764 0.5529 SC
+NP 1481 1610 m 1688 1610 l 1783 1516 l 1575 1516 l 1481 1610 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1481 1610 m 1688 1610 l 1783 1516 l 1575 1516 l 1481 1610 l CP 
+stroke
+GSE
+GpPBeg1
+0.6078 0.2392 0.2078 SC
+NP 1688 1628 m 1783 1533 l 1783 1516 l 1688 1610 l 1688 1628 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1688 1628 m 1783 1533 l 1783 1516 l 1688 1610 l 1688 1628 l CP 
+stroke
+GSE
+GpPBeg1
+0.7529 0.3137 0.2745 SC
+NP 1481 1610 m 1688 1610 l 1688 1628 l 1481 1628 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1481 1628 m 1688 1628 l 1688 1610 l 1481 1610 l 1481 1628 l CP 
+stroke
+GSE
+GpPBeg1
+0.7803 0.8470 0.6470 SC
+NP 1675 1610 m 1882 1610 l 1977 1516 l 1769 1516 l 1675 1610 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1675 1610 m 1882 1610 l 1977 1516 l 1769 1516 l 1675 1610 l CP 
+stroke
+GSE
+GpPBeg1
+0.5176 0.6392 0.2705 SC
+NP 1882 1628 m 1977 1533 l 1977 1516 l 1882 1610 l 1882 1628 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1882 1628 m 1977 1533 l 1977 1516 l 1882 1610 l 1882 1628 l CP 
+stroke
+GSE
+GpPBeg1
+0.6156 0.7333 0.3803 SC
+NP 1675 1610 m 1882 1610 l 1882 1628 l 1675 1628 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1675 1628 m 1882 1628 l 1882 1610 l 1675 1610 l 1675 1628 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 1927 1636 m 1922 1636 1919 1646 1919 1659 c 1919 1671 1922 1681 1927 1681 c 2058 1681 l 2058 1636 l 1927 1636 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1927 1636 m 1922 1636 1919 1646 1919 1659 c 1919 1671 1922 1681 1927 1681 c 2058 1681 l 2058 1636 l 1927 1636 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2058 1636 m 2062 1636 2066 1646 2066 1659 c 2066 1671 2062 1681 2058 1681 c 2053 1681 2050 1671 2050 1659 c 2050 1646 2053 1636 2058 1636 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2058 1636 m 2062 1636 2066 1646 2066 1659 c 2066 1671 2062 1681 2058 1681 c 2053 1681 2050 1671 2050 1659 c 2050 1646 2053 1636 2058 1636 c CP 
+stroke
+GSE
+GpPBeg1
+0.6745 0.8627 1 SC
+NP 2040 1627 m 2440 1627 l 2536 1531 l 2135 1531 l 2040 1627 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2040 1627 m 2440 1627 l 2536 1531 l 2135 1531 l 2040 1627 l CP 
+stroke
+GSE
+GpPBeg1
+0.2078 0.6627 1 SC
+NP 2440 1764 m 2536 1668 l 2536 1531 l 2440 1627 l 2440 1764 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2440 1764 m 2536 1668 l 2536 1531 l 2440 1627 l 2440 1764 l CP 
+stroke
+GSE
+GpPBeg1
+0.4156 0.7529 1 SC
+NP 2040 1627 m 2440 1627 l 2440 1764 l 2040 1764 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2040 1764 m 2440 1764 l 2440 1627 l 2040 1627 l 2040 1764 l CP 
+stroke
+GSE
+GpPBeg1
+0.8470 0.5764 0.5529 SC
+NP 2040 1609 m 2247 1609 l 2342 1514 l 2134 1514 l 2040 1609 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2040 1609 m 2247 1609 l 2342 1514 l 2134 1514 l 2040 1609 l CP 
+stroke
+GSE
+GpPBeg1
+0.6078 0.2392 0.2078 SC
+NP 2247 1627 m 2342 1532 l 2342 1514 l 2247 1609 l 2247 1627 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2247 1627 m 2342 1532 l 2342 1514 l 2247 1609 l 2247 1627 l CP 
+stroke
+GSE
+GpPBeg1
+0.7529 0.3137 0.2745 SC
+NP 2040 1609 m 2247 1609 l 2247 1627 l 2040 1627 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2040 1627 m 2247 1627 l 2247 1609 l 2040 1609 l 2040 1627 l CP 
+stroke
+GSE
+GpPBeg1
+0.7803 0.8470 0.6470 SC
+NP 2234 1609 m 2441 1609 l 2536 1514 l 2328 1514 l 2234 1609 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2234 1609 m 2441 1609 l 2536 1514 l 2328 1514 l 2234 1609 l CP 
+stroke
+GSE
+GpPBeg1
+0.5176 0.6392 0.2705 SC
+NP 2441 1627 m 2536 1532 l 2536 1514 l 2441 1609 l 2441 1627 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2441 1627 m 2536 1532 l 2536 1514 l 2441 1609 l 2441 1627 l CP 
+stroke
+GSE
+GpPBeg1
+0.6156 0.7333 0.3803 SC
+NP 2234 1609 m 2441 1609 l 2441 1627 l 2234 1627 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2234 1627 m 2441 1627 l 2441 1609 l 2234 1609 l 2234 1627 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2785 1635 m 2779 1635 2774 1645 2774 1658 c 2774 1670 2779 1680 2785 1680 c 2880 1680 l 2880 1635 l 2785 1635 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2785 1635 m 2779 1635 2774 1645 2774 1658 c 2774 1670 2779 1680 2785 1680 c 2880 1680 l 2880 1635 l 2785 1635 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2880 1635 m 2886 1635 2892 1645 2892 1658 c 2892 1670 2886 1680 2880 1680 c 2873 1680 2868 1670 2868 1658 c 2868 1645 2873 1635 2880 1635 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2880 1635 m 2886 1635 2892 1645 2892 1658 c 2892 1670 2886 1680 2880 1680 c 2873 1680 2868 1670 2868 1658 c 2868 1645 2873 1635 2880 1635 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2490 1635 m 2484 1635 2478 1645 2478 1658 c 2478 1670 2484 1680 2490 1680 c 2585 1680 l 2585 1635 l 2490 1635 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2490 1635 m 2484 1635 2478 1645 2478 1658 c 2478 1670 2484 1680 2490 1680 c 2585 1680 l 2585 1635 l 2490 1635 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2585 1635 m 2591 1635 2596 1645 2596 1658 c 2596 1670 2591 1680 2585 1680 c 2578 1680 2573 1670 2573 1658 c 2573 1645 2578 1635 2585 1635 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2585 1635 m 2591 1635 2596 1645 2596 1658 c 2596 1670 2591 1680 2585 1680 c 2578 1680 2573 1670 2573 1658 c 2573 1645 2578 1635 2585 1635 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2620 1658 m 2620 1649 2627 1642 2636 1642 c 2645 1642 2652 1649 2652 1658 c 2652 1666 2645 1674 2636 1674 c 2627 1674 2620 1666 2620 1658 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2620 1658 m 2620 1649 2627 1642 2636 1642 c 2645 1642 2652 1649 2652 1658 c 2652 1666 2645 1674 2636 1674 c 2627 1674 2620 1666 2620 1658 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2675 1658 m 2675 1649 2682 1642 2691 1642 c 2700 1642 2707 1649 2707 1658 c 2707 1666 2700 1674 2691 1674 c 2682 1674 2675 1666 2675 1658 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2675 1658 m 2675 1649 2682 1642 2691 1642 c 2700 1642 2707 1649 2707 1658 c 2707 1666 2700 1674 2691 1674 c 2682 1674 2675 1666 2675 1658 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2722 1658 m 2722 1649 2729 1642 2738 1642 c 2747 1642 2754 1649 2754 1658 c 2754 1666 2747 1674 2738 1674 c 2729 1674 2722 1666 2722 1658 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2722 1658 m 2722 1649 2729 1642 2738 1642 c 2747 1642 2754 1649 2754 1658 c 2754 1666 2747 1674 2738 1674 c 2729 1674 2722 1666 2722 1658 c CP 
+stroke
+GSE
+GpPBeg1
+0.6862 0.6862 0.6862 SC
+NP 2854 1626 m 3255 1626 l 3350 1530 l 2950 1530 l 2854 1626 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2854 1626 m 3255 1626 l 3350 1530 l 2950 1530 l 2854 1626 l CP 
+stroke
+GSE
+GpPBeg1
+0.3960 0.3960 0.3960 SC
+NP 3255 1763 m 3350 1667 l 3350 1530 l 3255 1626 l 3255 1763 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 3255 1763 m 3350 1667 l 3350 1530 l 3255 1626 l 3255 1763 l CP 
+stroke
+GSE
+GpPBeg1
+0.4980 0.4980 0.4980 SC
+NP 2854 1626 m 3255 1626 l 3255 1763 l 2854 1763 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2854 1763 m 3255 1763 l 3255 1626 l 2854 1626 l 2854 1763 l CP 
+stroke
+GSE
+GpPBeg1
+0.6862 0.6862 0.6862 SC
+NP 2854 1608 m 3062 1608 l 3156 1513 l 2949 1513 l 2854 1608 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2854 1608 m 3062 1608 l 3156 1513 l 2949 1513 l 2854 1608 l CP 
+stroke
+GSE
+GpPBeg1
+0.3960 0.3960 0.3960 SC
+NP 3062 1625 m 3156 1531 l 3156 1513 l 3062 1608 l 3062 1625 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 3062 1625 m 3156 1531 l 3156 1513 l 3062 1608 l 3062 1625 l CP 
+stroke
+GSE
+GpPBeg1
+0.4980 0.4980 0.4980 SC
+NP 2854 1608 m 3062 1608 l 3062 1625 l 2854 1625 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2854 1625 m 3062 1625 l 3062 1608 l 2854 1608 l 2854 1625 l CP 
+stroke
+GSE
+GpPBeg1
+0.6862 0.6862 0.6862 SC
+NP 3048 1608 m 3256 1608 l 3350 1513 l 3143 1513 l 3048 1608 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 3048 1608 m 3256 1608 l 3350 1513 l 3143 1513 l 3048 1608 l CP 
+stroke
+GSE
+GpPBeg1
+0.3960 0.3960 0.3960 SC
+NP 3256 1625 m 3350 1531 l 3350 1513 l 3256 1608 l 3256 1625 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 3256 1625 m 3350 1531 l 3350 1513 l 3256 1608 l 3256 1625 l CP 
+stroke
+GSE
+GpPBeg1
+0.4980 0.4980 0.4980 SC
+NP 3048 1608 m 3256 1608 l 3256 1625 l 3048 1625 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 3048 1625 m 3256 1625 l 3256 1608 l 3048 1608 l 3048 1625 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 1598 1772 m 1598 1763 1605 1756 1614 1756 c 1622 1756 1630 1763 1630 1772 c 1630 1781 1622 1788 1614 1788 c 1605 1788 1598 1781 1598 1772 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1598 1772 m 1598 1763 1605 1756 1614 1756 c 1622 1756 1630 1763 1630 1772 c 1630 1781 1622 1788 1614 1788 c 1605 1788 1598 1781 1598 1772 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 1564 1806 m 1564 1797 1572 1790 1580 1790 c 1589 1790 1596 1797 1596 1806 c 1596 1814 1589 1822 1580 1822 c 1572 1822 1564 1814 1564 1806 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1564 1806 m 1564 1797 1572 1790 1580 1790 c 1589 1790 1596 1797 1596 1806 c 1596 1814 1589 1822 1580 1822 c 1572 1822 1564 1814 1564 1806 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 1530 1842 m 1530 1833 1537 1826 1546 1826 c 1554 1826 1562 1833 1562 1842 c 1562 1850 1554 1858 1546 1858 c 1537 1858 1530 1850 1530 1842 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1530 1842 m 1530 1833 1537 1826 1546 1826 c 1554 1826 1562 1833 1562 1842 c 1562 1850 1554 1858 1546 1858 c 1537 1858 1530 1850 1530 1842 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 1647 1718 m 1655 1711 1662 1700 1671 1700 c 1679 1700 1686 1707 1686 1716 c 1686 1724 1678 1730 1671 1738 c 1647 1718 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+2.0830 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1647 1718 m 1655 1711 1662 1700 1671 1700 c 1679 1700 1686 1707 1686 1716 c 1686 1724 1678 1730 1671 1738 c 1647 1718 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 1643 1729 m 1643 1721 1650 1714 1658 1714 c 1666 1714 1673 1721 1673 1729 c 1673 1738 1666 1744 1658 1744 c 1650 1744 1643 1738 1643 1729 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+2.0830 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1643 1729 m 1643 1721 1650 1714 1658 1714 c 1666 1714 1673 1721 1673 1729 c 1673 1738 1666 1744 1658 1744 c 1650 1744 1643 1738 1643 1729 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 1480 1886 m 1487 1879 1494 1869 1503 1869 c 1511 1869 1518 1875 1518 1884 c 1518 1892 1510 1899 1503 1906 c 1480 1886 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+2.0830 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1480 1886 m 1487 1879 1494 1869 1503 1869 c 1511 1869 1518 1875 1518 1884 c 1518 1892 1510 1899 1503 1906 c 1480 1886 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2155 1771 m 2155 1762 2162 1755 2171 1755 c 2179 1755 2187 1762 2187 1771 c 2187 1780 2179 1787 2171 1787 c 2162 1787 2155 1780 2155 1771 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2155 1771 m 2155 1762 2162 1755 2171 1755 c 2179 1755 2187 1762 2187 1771 c 2187 1780 2179 1787 2171 1787 c 2162 1787 2155 1780 2155 1771 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2122 1805 m 2122 1796 2129 1789 2138 1789 c 2146 1789 2154 1796 2154 1805 c 2154 1813 2146 1821 2138 1821 c 2129 1821 2122 1813 2122 1805 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2122 1805 m 2122 1796 2129 1789 2138 1789 c 2146 1789 2154 1796 2154 1805 c 2154 1813 2146 1821 2138 1821 c 2129 1821 2122 1813 2122 1805 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2087 1841 m 2087 1832 2094 1825 2103 1825 c 2112 1825 2119 1832 2119 1841 c 2119 1849 2112 1857 2103 1857 c 2094 1857 2087 1849 2087 1841 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2087 1841 m 2087 1832 2094 1825 2103 1825 c 2112 1825 2119 1832 2119 1841 c 2119 1849 2112 1857 2103 1857 c 2094 1857 2087 1849 2087 1841 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2205 1717 m 2212 1710 2219 1699 2228 1699 c 2236 1699 2243 1706 2243 1715 c 2243 1723 2235 1729 2228 1737 c 2205 1717 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+2.0830 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2205 1717 m 2212 1710 2219 1699 2228 1699 c 2236 1699 2243 1706 2243 1715 c 2243 1723 2235 1729 2228 1737 c 2205 1717 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2200 1728 m 2200 1720 2207 1713 2215 1713 c 2223 1713 2230 1720 2230 1728 c 2230 1737 2223 1743 2215 1743 c 2207 1743 2200 1737 2200 1728 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+2.0830 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2200 1728 m 2200 1720 2207 1713 2215 1713 c 2223 1713 2230 1720 2230 1728 c 2230 1737 2223 1743 2215 1743 c 2207 1743 2200 1737 2200 1728 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2037 1885 m 2044 1878 2051 1868 2060 1868 c 2068 1868 2075 1874 2075 1883 c 2075 1891 2067 1897 2060 1905 c 2037 1885 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+2.0830 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2037 1885 m 2044 1878 2051 1868 2060 1868 c 2068 1868 2075 1874 2075 1883 c 2075 1891 2067 1897 2060 1905 c 2037 1885 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2969 1772 m 2969 1763 2977 1756 2985 1756 c 2994 1756 3001 1763 3001 1772 c 3001 1781 2994 1788 2985 1788 c 2977 1788 2969 1781 2969 1772 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2969 1772 m 2969 1763 2977 1756 2985 1756 c 2994 1756 3001 1763 3001 1772 c 3001 1781 2994 1788 2985 1788 c 2977 1788 2969 1781 2969 1772 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2936 1805 m 2936 1796 2944 1789 2952 1789 c 2961 1789 2968 1796 2968 1805 c 2968 1814 2961 1821 2952 1821 c 2944 1821 2936 1814 2936 1805 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2936 1805 m 2936 1796 2944 1789 2952 1789 c 2961 1789 2968 1796 2968 1805 c 2968 1814 2961 1821 2952 1821 c 2944 1821 2936 1814 2936 1805 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2902 1841 m 2902 1832 2909 1825 2918 1825 c 2926 1825 2934 1832 2934 1841 c 2934 1850 2926 1857 2918 1857 c 2909 1857 2902 1850 2902 1841 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2902 1841 m 2902 1832 2909 1825 2918 1825 c 2926 1825 2934 1832 2934 1841 c 2934 1850 2926 1857 2918 1857 c 2909 1857 2902 1850 2902 1841 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 3019 1717 m 3027 1710 3034 1700 3043 1700 c 3051 1700 3058 1707 3058 1715 c 3058 1723 3050 1730 3043 1737 c 3019 1717 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+2.0830 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 3019 1717 m 3027 1710 3034 1700 3043 1700 c 3051 1700 3058 1707 3058 1715 c 3058 1723 3050 1730 3043 1737 c 3019 1717 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 3015 1729 m 3015 1720 3021 1713 3030 1713 c 3038 1713 3045 1720 3045 1729 c 3045 1737 3038 1744 3030 1744 c 3021 1744 3015 1737 3015 1729 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+2.0830 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 3015 1729 m 3015 1720 3021 1713 3030 1713 c 3038 1713 3045 1720 3045 1729 c 3045 1737 3038 1744 3030 1744 c 3021 1744 3015 1737 3015 1729 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2851 1885 m 2859 1879 2866 1868 2875 1868 c 2883 1868 2890 1875 2890 1883 c 2890 1892 2882 1898 2875 1905 c 2851 1885 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+2.0830 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2851 1885 m 2859 1879 2866 1868 2875 1868 c 2883 1868 2890 1875 2890 1883 c 2890 1892 2882 1898 2875 1905 c 2851 1885 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 1024 1977 m 1020 1977 1016 1987 1016 1999 c 1016 2012 1020 2022 1024 2022 c 1155 2022 l 1155 1977 l 1024 1977 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1024 1977 m 1020 1977 1016 1987 1016 1999 c 1016 2012 1020 2022 1024 2022 c 1155 2022 l 1155 1977 l 1024 1977 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 1155 1977 m 1160 1977 1163 1987 1163 1999 c 1163 2012 1160 2022 1155 2022 c 1151 2022 1147 2012 1147 1999 c 1147 1987 1151 1977 1155 1977 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1155 1977 m 1160 1977 1163 1987 1163 1999 c 1163 2012 1160 2022 1155 2022 c 1151 2022 1147 2012 1147 1999 c 1147 1987 1151 1977 1155 1977 c CP 
+stroke
+GSE
+GpPBeg1
+0.6745 0.8627 1 SC
+NP 1137 1969 m 1537 1969 l 1633 1873 l 1233 1873 l 1137 1969 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1137 1969 m 1537 1969 l 1633 1873 l 1233 1873 l 1137 1969 l CP 
+stroke
+GSE
+GpPBeg1
+0.2078 0.6627 1 SC
+NP 1537 2106 m 1633 2010 l 1633 1873 l 1537 1969 l 1537 2106 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1537 2106 m 1633 2010 l 1633 1873 l 1537 1969 l 1537 2106 l CP 
+stroke
+GSE
+GpPBeg1
+0.4156 0.7529 1 SC
+NP 1137 1969 m 1537 1969 l 1537 2106 l 1137 2106 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1137 2106 m 1537 2106 l 1537 1969 l 1137 1969 l 1137 2106 l CP 
+stroke
+GSE
+GpPBeg1
+0.8470 0.5764 0.5529 SC
+NP 1137 1951 m 1344 1951 l 1439 1856 l 1232 1856 l 1137 1951 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1137 1951 m 1344 1951 l 1439 1856 l 1232 1856 l 1137 1951 l CP 
+stroke
+GSE
+GpPBeg1
+0.6078 0.2392 0.2078 SC
+NP 1344 1969 m 1439 1874 l 1439 1856 l 1344 1951 l 1344 1969 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1344 1969 m 1439 1874 l 1439 1856 l 1344 1951 l 1344 1969 l CP 
+stroke
+GSE
+GpPBeg1
+0.7529 0.3137 0.2745 SC
+NP 1137 1951 m 1344 1951 l 1344 1969 l 1137 1969 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1137 1969 m 1344 1969 l 1344 1951 l 1137 1951 l 1137 1969 l CP 
+stroke
+GSE
+GpPBeg1
+0.7803 0.8470 0.6470 SC
+NP 1331 1951 m 1538 1951 l 1633 1856 l 1426 1856 l 1331 1951 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1331 1951 m 1538 1951 l 1633 1856 l 1426 1856 l 1331 1951 l CP 
+stroke
+GSE
+GpPBeg1
+0.5176 0.6392 0.2705 SC
+NP 1538 1969 m 1633 1874 l 1633 1856 l 1538 1951 l 1538 1969 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1538 1969 m 1633 1874 l 1633 1856 l 1538 1951 l 1538 1969 l CP 
+stroke
+GSE
+GpPBeg1
+0.6156 0.7333 0.3803 SC
+NP 1331 1951 m 1538 1951 l 1538 1969 l 1331 1969 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1331 1969 m 1538 1969 l 1538 1951 l 1331 1951 l 1331 1969 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 1591 1972 m 1587 1972 1583 1982 1583 1994 c 1583 2007 1587 2017 1591 2017 c 1723 2017 l 1723 1972 l 1591 1972 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1591 1972 m 1587 1972 1583 1982 1583 1994 c 1583 2007 1587 2017 1591 2017 c 1723 2017 l 1723 1972 l 1591 1972 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 1723 1972 m 1727 1972 1731 1982 1731 1994 c 1731 2007 1727 2017 1723 2017 c 1718 2017 1714 2007 1714 1994 c 1714 1982 1718 1972 1723 1972 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1723 1972 m 1727 1972 1731 1982 1731 1994 c 1731 2007 1727 2017 1723 2017 c 1718 2017 1714 2007 1714 1994 c 1714 1982 1718 1972 1723 1972 c CP 
+stroke
+GSE
+GpPBeg1
+0.6745 0.8627 1 SC
+NP 1691 1969 m 2091 1969 l 2187 1873 l 1786 1873 l 1691 1969 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1691 1969 m 2091 1969 l 2187 1873 l 1786 1873 l 1691 1969 l CP 
+stroke
+GSE
+GpPBeg1
+0.2078 0.6627 1 SC
+NP 2091 2106 m 2187 2010 l 2187 1873 l 2091 1969 l 2091 2106 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2091 2106 m 2187 2010 l 2187 1873 l 2091 1969 l 2091 2106 l CP 
+stroke
+GSE
+GpPBeg1
+0.4156 0.7529 1 SC
+NP 1691 1969 m 2091 1969 l 2091 2106 l 1691 2106 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1691 2106 m 2091 2106 l 2091 1969 l 1691 1969 l 1691 2106 l CP 
+stroke
+GSE
+GpPBeg1
+0.8470 0.5764 0.5529 SC
+NP 1691 1951 m 1898 1951 l 1993 1856 l 1785 1856 l 1691 1951 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1691 1951 m 1898 1951 l 1993 1856 l 1785 1856 l 1691 1951 l CP 
+stroke
+GSE
+GpPBeg1
+0.6078 0.2392 0.2078 SC
+NP 1898 1969 m 1993 1874 l 1993 1856 l 1898 1951 l 1898 1969 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1898 1969 m 1993 1874 l 1993 1856 l 1898 1951 l 1898 1969 l CP 
+stroke
+GSE
+GpPBeg1
+0.7529 0.3137 0.2745 SC
+NP 1691 1951 m 1898 1951 l 1898 1969 l 1691 1969 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1691 1969 m 1898 1969 l 1898 1951 l 1691 1951 l 1691 1969 l CP 
+stroke
+GSE
+GpPBeg1
+0.7803 0.8470 0.6470 SC
+NP 1885 1951 m 2092 1951 l 2187 1856 l 1979 1856 l 1885 1951 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1885 1951 m 2092 1951 l 2187 1856 l 1979 1856 l 1885 1951 l CP 
+stroke
+GSE
+GpPBeg1
+0.5176 0.6392 0.2705 SC
+NP 2092 1969 m 2187 1874 l 2187 1856 l 2092 1951 l 2092 1969 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2092 1969 m 2187 1874 l 2187 1856 l 2092 1951 l 2092 1969 l CP 
+stroke
+GSE
+GpPBeg1
+0.6156 0.7333 0.3803 SC
+NP 1885 1951 m 2092 1951 l 2092 1969 l 1885 1969 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1885 1969 m 2092 1969 l 2092 1951 l 1885 1951 l 1885 1969 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2450 1971 m 2443 1971 2438 1981 2438 1993 c 2438 2005 2443 2015 2450 2015 c 2544 2015 l 2544 1971 l 2450 1971 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2450 1971 m 2443 1971 2438 1981 2438 1993 c 2438 2005 2443 2015 2450 2015 c 2544 2015 l 2544 1971 l 2450 1971 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2544 1971 m 2551 1971 2556 1981 2556 1993 c 2556 2005 2551 2015 2544 2015 c 2538 2015 2533 2005 2533 1993 c 2533 1981 2538 1971 2544 1971 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2544 1971 m 2551 1971 2556 1981 2556 1993 c 2556 2005 2551 2015 2544 2015 c 2538 2015 2533 2005 2533 1993 c 2533 1981 2538 1971 2544 1971 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2155 1971 m 2148 1971 2143 1981 2143 1993 c 2143 2005 2148 2015 2155 2015 c 2249 2015 l 2249 1971 l 2155 1971 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2155 1971 m 2148 1971 2143 1981 2143 1993 c 2143 2005 2148 2015 2155 2015 c 2249 2015 l 2249 1971 l 2155 1971 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2249 1971 m 2256 1971 2261 1981 2261 1993 c 2261 2005 2256 2015 2249 2015 c 2243 2015 2237 2005 2237 1993 c 2237 1981 2243 1971 2249 1971 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2249 1971 m 2256 1971 2261 1981 2261 1993 c 2261 2005 2256 2015 2249 2015 c 2243 2015 2237 2005 2237 1993 c 2237 1981 2243 1971 2249 1971 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2285 1993 m 2285 1984 2292 1977 2301 1977 c 2309 1977 2317 1984 2317 1993 c 2317 2002 2309 2009 2301 2009 c 2292 2009 2285 2002 2285 1993 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2285 1993 m 2285 1984 2292 1977 2301 1977 c 2309 1977 2317 1984 2317 1993 c 2317 2002 2309 2009 2301 2009 c 2292 2009 2285 2002 2285 1993 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2339 1993 m 2339 1984 2347 1977 2355 1977 c 2364 1977 2371 1984 2371 1993 c 2371 2002 2364 2009 2355 2009 c 2347 2009 2339 2002 2339 1993 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2339 1993 m 2339 1984 2347 1977 2355 1977 c 2364 1977 2371 1984 2371 1993 c 2371 2002 2364 2009 2355 2009 c 2347 2009 2339 2002 2339 1993 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2387 1993 m 2387 1984 2394 1977 2403 1977 c 2412 1977 2419 1984 2419 1993 c 2419 2002 2412 2009 2403 2009 c 2394 2009 2387 2002 2387 1993 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2387 1993 m 2387 1984 2394 1977 2403 1977 c 2412 1977 2419 1984 2419 1993 c 2419 2002 2412 2009 2403 2009 c 2394 2009 2387 2002 2387 1993 c CP 
+stroke
+GSE
+GpPBeg1
+0.6745 0.8627 1 SC
+NP 2507 1968 m 2907 1968 l 3003 1872 l 2603 1872 l 2507 1968 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2507 1968 m 2907 1968 l 3003 1872 l 2603 1872 l 2507 1968 l CP 
+stroke
+GSE
+GpPBeg1
+0.2078 0.6627 1 SC
+NP 2907 2104 m 3003 2009 l 3003 1872 l 2907 1968 l 2907 2104 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2907 2104 m 3003 2009 l 3003 1872 l 2907 1968 l 2907 2104 l CP 
+stroke
+GSE
+GpPBeg1
+0.4156 0.7529 1 SC
+NP 2507 1968 m 2907 1968 l 2907 2104 l 2507 2104 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2507 2104 m 2907 2104 l 2907 1968 l 2507 1968 l 2507 2104 l CP 
+stroke
+GSE
+GpPBeg1
+0.8470 0.5764 0.5529 SC
+NP 2507 1949 m 2714 1949 l 2809 1855 l 2602 1855 l 2507 1949 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2507 1949 m 2714 1949 l 2809 1855 l 2602 1855 l 2507 1949 l CP 
+stroke
+GSE
+GpPBeg1
+0.6078 0.2392 0.2078 SC
+NP 2714 1967 m 2809 1873 l 2809 1855 l 2714 1949 l 2714 1967 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2714 1967 m 2809 1873 l 2809 1855 l 2714 1949 l 2714 1967 l CP 
+stroke
+GSE
+GpPBeg1
+0.7529 0.3137 0.2745 SC
+NP 2507 1949 m 2714 1949 l 2714 1967 l 2507 1967 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2507 1967 m 2714 1967 l 2714 1949 l 2507 1949 l 2507 1967 l CP 
+stroke
+GSE
+GpPBeg1
+0.7803 0.8470 0.6470 SC
+NP 2701 1949 m 2908 1949 l 3003 1855 l 2796 1855 l 2701 1949 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2701 1949 m 2908 1949 l 3003 1855 l 2796 1855 l 2701 1949 l CP 
+stroke
+GSE
+GpPBeg1
+0.5176 0.6392 0.2705 SC
+NP 2908 1967 m 3003 1873 l 3003 1855 l 2908 1949 l 2908 1967 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2908 1967 m 3003 1873 l 3003 1855 l 2908 1949 l 2908 1967 l CP 
+stroke
+GSE
+GpPBeg1
+0.6156 0.7333 0.3803 SC
+NP 2701 1949 m 2908 1949 l 2908 1967 l 2701 1967 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2701 1967 m 2908 1967 l 2908 1949 l 2701 1949 l 2701 1967 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 1350 2069 m 1354 2064 1351 2053 1342 2044 c 1333 2035 1322 2032 1318 2037 c 1184 2170 l 1216 2202 l 1350 2069 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1350 2069 m 1354 2064 1351 2053 1342 2044 c 1333 2035 1322 2032 1318 2037 c 1184 2170 l 1216 2202 l 1350 2069 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 1216 2202 m 1212 2207 1201 2203 1192 2194 c 1183 2186 1180 2175 1184 2170 c 1189 2165 1200 2169 1209 2178 c 1218 2186 1221 2197 1216 2202 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1216 2202 m 1212 2207 1201 2203 1192 2194 c 1183 2186 1180 2175 1184 2170 c 1189 2165 1200 2169 1209 2178 c 1218 2186 1221 2197 1216 2202 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 1907 2069 m 1911 2064 1908 2053 1899 2044 c 1890 2035 1880 2032 1875 2037 c 1742 2170 l 1773 2202 l 1907 2069 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1907 2069 m 1911 2064 1908 2053 1899 2044 c 1890 2035 1880 2032 1875 2037 c 1742 2170 l 1773 2202 l 1907 2069 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 1773 2202 m 1769 2207 1758 2203 1749 2194 c 1740 2186 1737 2175 1742 2170 c 1746 2165 1757 2169 1766 2178 c 1775 2186 1778 2197 1773 2202 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1773 2202 m 1769 2207 1758 2203 1749 2194 c 1740 2186 1737 2175 1742 2170 c 1746 2165 1757 2169 1766 2178 c 1775 2186 1778 2197 1773 2202 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 747 2253 m 742 2253 738 2263 738 2275 c 738 2288 742 2298 747 2298 c 878 2298 l 878 2253 l 747 2253 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 747 2253 m 742 2253 738 2263 738 2275 c 738 2288 742 2298 747 2298 c 878 2298 l 878 2253 l 747 2253 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 878 2253 m 882 2253 886 2263 886 2275 c 886 2288 882 2298 878 2298 c 873 2298 869 2288 869 2275 c 869 2263 873 2253 878 2253 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 878 2253 m 882 2253 886 2263 886 2275 c 886 2288 882 2298 878 2298 c 873 2298 869 2288 869 2275 c 869 2263 873 2253 878 2253 c CP 
+stroke
+GSE
+GpPBeg1
+0.6745 0.8627 1 SC
+NP 855 2252 m 1256 2252 l 1351 2157 l 951 2157 l 855 2252 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 855 2252 m 1256 2252 l 1351 2157 l 951 2157 l 855 2252 l CP 
+stroke
+GSE
+GpPBeg1
+0.2078 0.6627 1 SC
+NP 1256 2389 m 1351 2293 l 1351 2157 l 1256 2252 l 1256 2389 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1256 2389 m 1351 2293 l 1351 2157 l 1256 2252 l 1256 2389 l CP 
+stroke
+GSE
+GpPBeg1
+0.4156 0.7529 1 SC
+NP 855 2252 m 1256 2252 l 1256 2389 l 855 2389 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 855 2389 m 1256 2389 l 1256 2252 l 855 2252 l 855 2389 l CP 
+stroke
+GSE
+GpPBeg1
+0.8470 0.5764 0.5529 SC
+NP 855 2234 m 1063 2234 l 1157 2140 l 950 2140 l 855 2234 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 855 2234 m 1063 2234 l 1157 2140 l 950 2140 l 855 2234 l CP 
+stroke
+GSE
+GpPBeg1
+0.6078 0.2392 0.2078 SC
+NP 1063 2252 m 1157 2157 l 1157 2140 l 1063 2234 l 1063 2252 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1063 2252 m 1157 2157 l 1157 2140 l 1063 2234 l 1063 2252 l CP 
+stroke
+GSE
+GpPBeg1
+0.7529 0.3137 0.2745 SC
+NP 855 2234 m 1063 2234 l 1063 2252 l 855 2252 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 855 2252 m 1063 2252 l 1063 2234 l 855 2234 l 855 2252 l CP 
+stroke
+GSE
+GpPBeg1
+0.7803 0.8470 0.6470 SC
+NP 1049 2234 m 1257 2234 l 1351 2140 l 1144 2140 l 1049 2234 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1049 2234 m 1257 2234 l 1351 2140 l 1144 2140 l 1049 2234 l CP 
+stroke
+GSE
+GpPBeg1
+0.5176 0.6392 0.2705 SC
+NP 1257 2252 m 1351 2157 l 1351 2140 l 1257 2234 l 1257 2252 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1257 2252 m 1351 2157 l 1351 2140 l 1257 2234 l 1257 2252 l CP 
+stroke
+GSE
+GpPBeg1
+0.6156 0.7333 0.3803 SC
+NP 1049 2234 m 1257 2234 l 1257 2252 l 1049 2252 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1049 2252 m 1257 2252 l 1257 2234 l 1049 2234 l 1049 2252 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 1308 2255 m 1304 2255 1300 2265 1300 2278 c 1300 2290 1304 2300 1308 2300 c 1439 2300 l 1439 2255 l 1308 2255 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1308 2255 m 1304 2255 1300 2265 1300 2278 c 1300 2290 1304 2300 1308 2300 c 1439 2300 l 1439 2255 l 1308 2255 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 1439 2255 m 1444 2255 1447 2265 1447 2278 c 1447 2290 1444 2300 1439 2300 c 1435 2300 1431 2290 1431 2278 c 1431 2265 1435 2255 1439 2255 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1439 2255 m 1444 2255 1447 2265 1447 2278 c 1447 2290 1444 2300 1439 2300 c 1435 2300 1431 2290 1431 2278 c 1431 2265 1435 2255 1439 2255 c CP 
+stroke
+GSE
+GpPBeg1
+0.6745 0.8627 1 SC
+NP 1403 2252 m 1804 2252 l 1899 2157 l 1499 2157 l 1403 2252 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1403 2252 m 1804 2252 l 1899 2157 l 1499 2157 l 1403 2252 l CP 
+stroke
+GSE
+GpPBeg1
+0.2078 0.6627 1 SC
+NP 1804 2389 m 1899 2293 l 1899 2157 l 1804 2252 l 1804 2389 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1804 2389 m 1899 2293 l 1899 2157 l 1804 2252 l 1804 2389 l CP 
+stroke
+GSE
+GpPBeg1
+0.4156 0.7529 1 SC
+NP 1403 2252 m 1804 2252 l 1804 2389 l 1403 2389 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1403 2389 m 1804 2389 l 1804 2252 l 1403 2252 l 1403 2389 l CP 
+stroke
+GSE
+GpPBeg1
+0.8470 0.5764 0.5529 SC
+NP 1403 2234 m 1611 2234 l 1705 2140 l 1498 2140 l 1403 2234 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1403 2234 m 1611 2234 l 1705 2140 l 1498 2140 l 1403 2234 l CP 
+stroke
+GSE
+GpPBeg1
+0.6078 0.2392 0.2078 SC
+NP 1611 2252 m 1705 2157 l 1705 2140 l 1611 2234 l 1611 2252 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1611 2252 m 1705 2157 l 1705 2140 l 1611 2234 l 1611 2252 l CP 
+stroke
+GSE
+GpPBeg1
+0.7529 0.3137 0.2745 SC
+NP 1403 2234 m 1611 2234 l 1611 2252 l 1403 2252 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1403 2252 m 1611 2252 l 1611 2234 l 1403 2234 l 1403 2252 l CP 
+stroke
+GSE
+GpPBeg1
+0.7803 0.8470 0.6470 SC
+NP 1597 2234 m 1805 2234 l 1899 2140 l 1692 2140 l 1597 2234 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1597 2234 m 1805 2234 l 1899 2140 l 1692 2140 l 1597 2234 l CP 
+stroke
+GSE
+GpPBeg1
+0.5176 0.6392 0.2705 SC
+NP 1805 2252 m 1899 2157 l 1899 2140 l 1805 2234 l 1805 2252 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1805 2252 m 1899 2157 l 1899 2140 l 1805 2234 l 1805 2252 l CP 
+stroke
+GSE
+GpPBeg1
+0.6156 0.7333 0.3803 SC
+NP 1597 2234 m 1805 2234 l 1805 2252 l 1597 2252 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1597 2252 m 1805 2252 l 1805 2234 l 1597 2234 l 1597 2252 l CP 
+stroke
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+4.1661 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 3462 1635 m 3481 1659 3481 1693 3462 1717 c 3244 1934 l 3225 1958 3225 1992 3244 2015 c 3220 1996 3186 1996 3163 2015 c 2756 2422 l 2732 2441 2699 2441 2675 2422 c stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2727 2067 m 2731 2063 2728 2052 2719 2043 c 2710 2034 2700 2031 2695 2036 c 2562 2169 l 2593 2201 l 2727 2067 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2727 2067 m 2731 2063 2728 2052 2719 2043 c 2710 2034 2700 2031 2695 2036 c 2562 2169 l 2593 2201 l 2727 2067 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2593 2201 m 2589 2205 2578 2202 2569 2193 c 2560 2185 2557 2174 2562 2169 c 2566 2164 2577 2168 2586 2177 c 2595 2185 2598 2196 2593 2201 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2593 2201 m 2589 2205 2578 2202 2569 2193 c 2560 2185 2557 2174 2562 2169 c 2566 2164 2577 2168 2586 2177 c 2595 2185 2598 2196 2593 2201 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2161 2254 m 2154 2254 2149 2264 2149 2276 c 2149 2289 2154 2299 2161 2299 c 2255 2299 l 2255 2254 l 2161 2254 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2161 2254 m 2154 2254 2149 2264 2149 2276 c 2149 2289 2154 2299 2161 2299 c 2255 2299 l 2255 2254 l 2161 2254 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2255 2254 m 2262 2254 2267 2264 2267 2276 c 2267 2289 2262 2299 2255 2299 c 2249 2299 2243 2289 2243 2276 c 2243 2264 2249 2254 2255 2254 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2255 2254 m 2262 2254 2267 2264 2267 2276 c 2267 2289 2262 2299 2255 2299 c 2249 2299 2243 2289 2243 2276 c 2243 2264 2249 2254 2255 2254 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 1995 2276 m 1995 2268 2002 2260 2011 2260 c 2020 2260 2027 2268 2027 2276 c 2027 2285 2020 2292 2011 2292 c 2002 2292 1995 2285 1995 2276 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1995 2276 m 1995 2268 2002 2260 2011 2260 c 2020 2260 2027 2268 2027 2276 c 2027 2285 2020 2292 2011 2292 c 2002 2292 1995 2285 1995 2276 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2050 2276 m 2050 2268 2057 2260 2066 2260 c 2075 2260 2082 2268 2082 2276 c 2082 2285 2075 2292 2066 2292 c 2057 2292 2050 2285 2050 2276 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2050 2276 m 2050 2268 2057 2260 2066 2260 c 2075 2260 2082 2268 2082 2276 c 2082 2285 2075 2292 2066 2292 c 2057 2292 2050 2285 2050 2276 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 2097 2276 m 2097 2268 2105 2260 2113 2260 c 2122 2260 2129 2268 2129 2276 c 2129 2285 2122 2292 2113 2292 c 2105 2292 2097 2285 2097 2276 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2097 2276 m 2097 2268 2105 2260 2113 2260 c 2122 2260 2129 2268 2129 2276 c 2129 2285 2122 2292 2113 2292 c 2105 2292 2097 2285 2097 2276 c CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 1859 2254 m 1853 2254 1848 2264 1848 2276 c 1848 2289 1853 2299 1859 2299 c 1954 2299 l 1954 2254 l 1859 2254 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1859 2254 m 1853 2254 1848 2264 1848 2276 c 1848 2289 1853 2299 1859 2299 c 1954 2299 l 1954 2254 l 1859 2254 l CP 
+stroke
+GSE
+GpPBeg1
+1 0.8509 0.3960 SC
+NP 1954 2254 m 1960 2254 1966 2264 1966 2276 c 1966 2289 1960 2299 1954 2299 c 1947 2299 1942 2289 1942 2276 c 1942 2264 1947 2254 1954 2254 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1954 2254 m 1960 2254 1966 2264 1966 2276 c 1966 2289 1960 2299 1954 2299 c 1947 2299 1942 2289 1942 2276 c 1942 2264 1947 2254 1954 2254 c CP 
+stroke
+GSE
+GpPBeg1
+0.2705 0.1176 0.3843 SC
+NP 2761 1522 m 2761 1522 2234 1523 1997 1524 c 1658 1859 l 1056 1859 l 1124 1884 l 1007 1910 l 1235 1910 1698 1908 1698 1908 c 1698 1908 1890 1719 2037 1573 c 2622 1572 l 2281 1909 l 3219 1908 l 3336 1881 l 3269 1857 l 2405 1859 l 2538 1723 2761 1522 2761 1522 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+3.1606 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2761 1522 m 2761 1522 2234 1523 1997 1524 c 1658 1859 l 1056 1859 l 1124 1884 l 1007 1910 l 1235 1910 1698 1908 1698 1908 c 1698 1908 1890 1719 2037 1573 c 2622 1572 l 2281 1909 l 3219 1908 l 3336 1881 l 3269 1857 l 2405 1859 l 2538 1723 2761 1522 2761 1522 c CP 
+stroke
+GSE
+%%EndDocument
+Pscript_WinNT_Compat dup /suspend get exec
+Pscript_WinNT_Incr dup /resume get exec
+/DeviceRGB dup setcolorspace /colspABC exch def
+0 0 0 1 scol Pscript_WinNT_Incr begin
+%%BeginResource: file Pscript_Text 5.0 0
+/TextInit{TextInitialised? not{/Pscript_Windows_Font & d/TextInitialised? T d
+/fM[1 0 0 1 0 0]d/mFM matrix d/iMat[1 0 0.212557 1 0 0]d}if}b/copyfont{1 ^
+length add dict `{1 ^/FID ne{d}{! !}?}forall & E}b/EncodeDict 11 dict d/bullets
+{{/bullet}repeat}b/rF{3 copyfont @ ` ~ EncodeDict ~ get/Encoding ~ 3 ^/0 eq{&
+/CharStrings known{CharStrings/Eth known not{! EncodeDict/ANSIEncodingOld get}
+if}if}if d E}b/mF{@ 7 1 $ findfont ~{@/Encoding get @ StandardEncoding eq{! T}{
+{ISOLatin1Encoding}stopped{! F}{eq}?{T}{@ ` T 32 1 127{Encoding 1 ^ get
+StandardEncoding 3 -1 $ get eq and}for E}?}?}{F}?{1 ^ ~ rF}{0 copyfont}? 6 -2 $
+! ! ~ !/pd_charset @ where{~ get 128 eq{@ FDV 2 copy get @ length array copy
+put pd_CoverFCRange}if}{!}? 2 ^ ~ definefont fM 5 4 -1 $ put fM 4 0 put fM
+makefont Pscript_Windows_Font 3 1 $ put}b/sLT{: Lw -M currentpoint snap M 0 - 0
+Lc K ;}b/xUP null d/yUP null d/uW null d/xSP null d/ySP null d/sW null d/sSU{N
+/uW ~ d/yUP ~ d/xUP ~ d}b/sU{xUP yUP uW sLT}b/sST{N/sW ~ d/ySP ~ d/xSP ~ d}b/sT
+{xSP ySP sW sLT}b/sR{: + R 0 0 M}b/sRxy{: matrix astore concat 0 0 M}b/eR/; , d
+/AddOrigFP{{&/FontInfo known{&/FontInfo get length 6 add}{6}? dict `
+/WinPitchAndFamily ~ d/WinCharSet ~ d/OrigFontType ~ d/OrigFontStyle ~ d
+/OrigFontName ~ d & E/FontInfo ~ d}{! ! ! ! !}?}b/mFS{makefont
+Pscript_Windows_Font 3 1 $ put}b/mF42D{0 copyfont `/FontName ~ d 2 copy ~ sub 1
+add dict `/.notdef 0 d 2 copy 1 ~{@ 3 ^ sub Encoding ~ get ~ d}for & E
+/CharStrings ~ d ! ! & @ E/FontName get ~ definefont}b/mF42{15 dict ` @ 4 1 $
+FontName ~ d/FontType 0 d/FMapType 2 d/FontMatrix[1 0 0 1 0 0]d 1 ^ 254 add 255
+idiv @ array/Encoding ~ d 0 1 3 -1 $ 1 sub{@ Encoding 3 1 $ put}for/FDepVector
+Encoding length array d/CharStrings 2 dict `/.notdef 0 d & E d 0 1 Encoding
+length 1 sub{@ @ 10 lt{! FontName length 1 add string}{100 lt{FontName length 2
+add string}{FontName length 3 add string}?}? @ 0 FontName @ length string cvs
+putinterval @ 3 -1 $ @ 4 1 $ 3 string cvs FontName length ~ putinterval cvn 1 ^
+256 mul @ 255 add 3 -1 $ 4 ^ findfont mF42D FDepVector 3 1 $ put}for & @ E
+/FontName get ~ definefont ! ! ! mF}b/mF_OTF_V{~ ! ~ ! 4 -1 $ ! findfont 2 ^ ~
+definefont fM @ @ 4 6 -1 $ neg put 5 0 put 90 matrix R matrix concatmatrix
+makefont Pscript_Windows_Font 3 1 $ put}b/mF_TTF_V{3{~ !}repeat 3 -1 $ !
+findfont 1 ^ ~ definefont Pscript_Windows_Font 3 1 $ put}b/UmF{L2?
+{Pscript_Windows_Font ~ undef}{!}?}b/UmF42{@ findfont/FDepVector get{/FontName
+get undefinefont}forall undefinefont}b
+%%EndResource
+end reinitialize
+Pscript_WinNT_Incr begin
+%%BeginResource: file Pscript_Encoding256 5.0 0
+/CharCol256Encoding[/.notdef/breve/caron/dotaccent/dotlessi/fi/fl/fraction
+/hungarumlaut/Lslash/lslash/minus/ogonek/ring/Zcaron/zcaron/.notdef/.notdef
+/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef/.notdef
+/.notdef/.notdef/.notdef/.notdef/.notdef/space/exclam/quotedbl/numbersign
+/dollar/percent/ampersand/quotesingle/parenleft/parenright/asterisk/plus/comma
+/hyphen/period/slash/zero/one/two/three/four/five/six/seven/eight/nine/colon
+/semicolon/less/equal/greater/question/at/A/B/C/D/E/F/G/H/I/J/K/L/M/N/O/P/Q/R/S
+/T/U/V/W/X/Y/Z/bracketleft/backslash/bracketright/asciicircum/underscore/grave
+/a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z/braceleft/bar/braceright
+/asciitilde/.notdef/Euro/.notdef/quotesinglbase/florin/quotedblbase/ellipsis
+/dagger/daggerdbl/circumflex/perthousand/Scaron/guilsinglleft/OE/.notdef
+/.notdef/.notdef/.notdef/quoteleft/quoteright/quotedblleft/quotedblright/bullet
+/endash/emdash/tilde/trademark/scaron/guilsinglright/oe/.notdef/.notdef
+/Ydieresis/.notdef/exclamdown/cent/sterling/currency/yen/brokenbar/section
+/dieresis/copyright/ordfeminine/guillemotleft/logicalnot/.notdef/registered
+/macron/degree/plusminus/twosuperior/threesuperior/acute/mu/paragraph
+/periodcentered/cedilla/onesuperior/ordmasculine/guillemotright/onequarter
+/onehalf/threequarters/questiondown/Agrave/Aacute/Acircumflex/Atilde/Adieresis
+/Aring/AE/Ccedilla/Egrave/Eacute/Ecircumflex/Edieresis/Igrave/Iacute
+/Icircumflex/Idieresis/Eth/Ntilde/Ograve/Oacute/Ocircumflex/Otilde/Odieresis
+/multiply/Oslash/Ugrave/Uacute/Ucircumflex/Udieresis/Yacute/Thorn/germandbls
+/agrave/aacute/acircumflex/atilde/adieresis/aring/ae/ccedilla/egrave/eacute
+/ecircumflex/edieresis/igrave/iacute/icircumflex/idieresis/eth/ntilde/ograve
+/oacute/ocircumflex/otilde/odieresis/divide/oslash/ugrave/uacute/ucircumflex
+/udieresis/yacute/thorn/ydieresis]def EncodeDict/256 CharCol256Encoding put
+%%EndResource
+end reinitialize
+%%IncludeResource: font Helvetica
+F /F0 0 /256 T /Helvetica mF 
+/F0S64 F0 [100 0 0 -100 0 0 ] mFS
+F0S64 Ji 
+2038 1239 M (multiple stages of )[83 56 22 28 22 56 22 56 27 50 28 56 55 56 50 28 55 28  0]xS 
+1979 1359 M (execution resources)[56 50 55 50 56 28 22 55 56 28 33 56 50 55 56 33 50 56  0]xS 
+30000 VM?
+Pscript_WinNT_Compat begin /$x mysetup def end
+Pscript_WinNT_Incr dup /suspend get exec
+Pscript_WinNT_Compat dup /initialize get exec
+%%BeginDocument: Pscript_Win_PassThrough
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+4.1661 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1560 1458 m 1563 1436 1580 1419 1602 1417 c 2390 1417 l 2411 1414 2429 1397 2431 1375 c 2433 1397 2451 1414 2472 1417 c 3377 1417 l 3399 1419 3416 1436 3418 1458 c stroke
+GSE
+%%EndDocument
+Pscript_WinNT_Compat dup /suspend get exec
+Pscript_WinNT_Incr dup /resume get exec
+/DeviceRGB dup setcolorspace /colspABC exch def
+0 0 0 1 scol 3193 2103 M (redundant )[33 56 56 55 56 55 56 56 27  0]xS 
+3084 2203 M (heterogeneous )[56 55 28 56 33 56 55 56 55 56 56 55 50  0]xS 
+2993 2303 M (exec)[56 50 55  0]xS 
+3204 2303 M (. )[28  0]xS 
+3260 2303 M (resources for )[33 56 50 56 55 33 50 56 50 28 28 55 33  0]xS 
+3173 2403 M (each stage)[56 55 50 56 28 50 27 56 56  0]xS 
+1235 2616 M (flexible interconnect)[28 22 56 50 22 55 23 55 28 22 56 28 55 34 50 55 56 55 56 50  0]xS 
+30000 VM?
+Pscript_WinNT_Compat begin /$x mysetup def end
+Pscript_WinNT_Incr dup /suspend get exec
+Pscript_WinNT_Compat dup /initialize get exec
+%%BeginDocument: Pscript_Win_PassThrough
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+6.2492 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1348 2368 m 1379 2521 l 2020 2354 l stroke
+GSE
+GpPBeg1
+0 0 0 SC
+NP 1339 2327 m 1377 2375 l 1358 2370 1339 2374 1324 2386 c 1339 2327 l CP 
+eofill
+GSE
+GpPBeg1
+0 0 0 SC
+NP 2060 2344 m 2014 2384 l 2018 2365 2013 2345 2001 2331 c 2060 2344 l CP 
+eofill
+GSE
+%%EndDocument
+Pscript_WinNT_Compat dup /suspend get exec
+Pscript_WinNT_Incr dup /resume get exec
+/DeviceRGB dup setcolorspace /colspABC exch def
+0 0 0 1 scol 3185 1341 M (faulty resource)[28 55 56 22 28 50 28 33 56 50 55 56 33 50  0]xS 
+30000 VM?
+Pscript_WinNT_Compat begin /$x mysetup def end
+Pscript_WinNT_Incr dup /suspend get exec
+Pscript_WinNT_Compat dup /initialize get exec
+%%BeginDocument: Pscript_Win_PassThrough
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+6.2492 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 3360 1361 m 3285 1479 l stroke
+GSE
+GpPBeg1
+0 0 0 SC
+NP 3263 1514 m 3269 1454 l 3279 1470 3296 1481 3315 1483 c 3263 1514 l CP 
+eofill
+GSE
+%%EndDocument
+Pscript_WinNT_Compat dup /suspend get exec
+Pscript_WinNT_Incr dup /resume get exec
+/DeviceRGB dup setcolorspace /colspABC exch def
+0 0 0 1 scol 1046 1246 M (energy manager)[56 55 56 33 56 50 28 83 55 56 56 55 56  0]xS 
+841 1422 M (fault manager)[28 55 56 22 28 28 83 56 55 56 56 55  0]xS 
+30000 VM?
+Pscript_WinNT_Compat begin /$x mysetup def end
+Pscript_WinNT_Incr dup /suspend get exec
+Pscript_WinNT_Compat dup /initialize get exec
+%%BeginDocument: Pscript_Win_PassThrough
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+6.2492 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1439 1430 m 1541 1503 l stroke
+GSE
+GpPBeg1
+0 0 0 SC
+NP 1575 1527 m 1514 1517 l 1531 1508 1543 1492 1546 1473 c 1575 1527 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+6.2492 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 1676 1269 m 1828 1493 l stroke
+GSE
+GpPBeg1
+0 0 0 SC
+NP 1851 1527 m 1798 1497 l 1817 1495 1834 1483 1843 1467 c 1851 1527 l CP 
+eofill
+GSE
+GpPBeg1
+0.6745 0.8627 1 SC
+NP 2215 2252 m 2616 2252 l 2711 2157 l 2311 2157 l 2215 2252 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2215 2252 m 2616 2252 l 2711 2157 l 2311 2157 l 2215 2252 l CP 
+stroke
+GSE
+GpPBeg1
+0.2078 0.6627 1 SC
+NP 2616 2389 m 2711 2293 l 2711 2157 l 2616 2252 l 2616 2389 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2616 2389 m 2711 2293 l 2711 2157 l 2616 2252 l 2616 2389 l CP 
+stroke
+GSE
+GpPBeg1
+0.4156 0.7529 1 SC
+NP 2215 2252 m 2616 2252 l 2616 2389 l 2215 2389 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2215 2389 m 2616 2389 l 2616 2252 l 2215 2252 l 2215 2389 l CP 
+stroke
+GSE
+GpPBeg1
+0.8470 0.5764 0.5529 SC
+NP 2215 2234 m 2423 2234 l 2517 2140 l 2310 2140 l 2215 2234 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2215 2234 m 2423 2234 l 2517 2140 l 2310 2140 l 2215 2234 l CP 
+stroke
+GSE
+GpPBeg1
+0.6078 0.2392 0.2078 SC
+NP 2423 2252 m 2517 2157 l 2517 2140 l 2423 2234 l 2423 2252 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2423 2252 m 2517 2157 l 2517 2140 l 2423 2234 l 2423 2252 l CP 
+stroke
+GSE
+GpPBeg1
+0.7529 0.3137 0.2745 SC
+NP 2215 2234 m 2423 2234 l 2423 2252 l 2215 2252 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2215 2252 m 2423 2252 l 2423 2234 l 2215 2234 l 2215 2252 l CP 
+stroke
+GSE
+GpPBeg1
+0.7803 0.8470 0.6470 SC
+NP 2409 2234 m 2617 2234 l 2711 2140 l 2504 2140 l 2409 2234 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2409 2234 m 2617 2234 l 2711 2140 l 2504 2140 l 2409 2234 l CP 
+stroke
+GSE
+GpPBeg1
+0.5176 0.6392 0.2705 SC
+NP 2617 2252 m 2711 2157 l 2711 2140 l 2617 2234 l 2617 2252 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2617 2252 m 2711 2157 l 2711 2140 l 2617 2234 l 2617 2252 l CP 
+stroke
+GSE
+GpPBeg1
+0.6156 0.7333 0.3803 SC
+NP 2409 2234 m 2617 2234 l 2617 2252 l 2409 2252 l CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.9997 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 2409 2252 m 2617 2252 l 2617 2234 l 2409 2234 l 2409 2252 l CP 
+stroke
+GSE
+GpPBeg1
+0.2705 0.1176 0.3843 SC
+NP 831 2109 m 895 2149 l 727 2210 l 2834 2208 l 3003 2147 l 2939 2107 l 2939 2107 2044 2109 831 2109 c CP 
+eofill
+GSE
+GpPBeg1
+1 setlinecap
+1 setlinejoin
+10 setmiterlimit
+1.3833 setlinewidth
+[] 0 setdash
+0 0 0 SC
+NP 831 2109 m 895 2149 l 727 2210 l 2834 2208 l 3003 2147 l 2939 2107 l 2939 2107 2044 2109 831 2109 c CP 
+stroke
+GSE
+%%EndDocument
+Pscript_WinNT_Compat dup /suspend get exec
+Pscript_WinNT_Incr dup /resume get exec
+/DeviceRGB dup setcolorspace /colspABC exch def
+1 1 1 1 scol 938 2192 M (dynamically configured execution pipeline)[56 50 55 56 83 22 50 56 22 22 50 28 50 56 55 28 22 56 56 33 55 56 28 55 50 56 50 56 27 23 55 56
+28 55 22 56 56 22 22 56  0]xS 
+LH
+%%PageTrailer
+%%Trailer
+%%BoundingBox: 15 15 580 827
+%%DocumentNeededResources: 
+%%+ font Helvetica
+%%DocumentSuppliedResources: 
+%%+ procset Pscript_WinNT_ErrorHandler 5.0 0
+%%+ procset Pscript_FatalError 5.0 0
+%%+ procset Pscript_Win_Basic 5.0 0
+%%+ procset Pscript_Win_Utils_L2 5.0 0
+%%+ procset Pscript_WinNT_Compat 5.0 0
+%%+ procset Pscript_Text 5.0 0
+%%+ procset Pscript_Encoding256 5.0 0
+Pscript_WinNT_Incr dup /terminate get exec
+ehsave restore
+%%Pages: 1
+%%Trailer
+cleartomark
+countdictstack
+exch sub { end } repeat
+restore
+%%EOF
