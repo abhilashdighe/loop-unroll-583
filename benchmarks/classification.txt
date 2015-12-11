@@ -1,7 +1,7 @@
 ##################################################
 Classification based on usage in ML algorithm
 ##################################################
-Test Benchmarks:
+Train Benchmarks:
 470.lbm
 462.libquantum
 458.sjeng
@@ -10,7 +10,7 @@ Test Benchmarks:
 401.bzip2
 g445.gobmk
 
-Train Benchmarks:
+Test Benchmarks:
 g429.mcf
 444.namd
 g483.xalancbmk
