@@ -1,6 +1,6 @@
 from sklearn.cross_validation import StratifiedKFold, StratifiedShuffleSplit
 from sklearn.grid_search import GridSearchCV
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score , classification_report
 
 def perform_classification(classifier, param_grid,  train_features, y_labels, test_size, iters, num_folds):
     '''
@@ -53,7 +53,7 @@ def perform_classification(classifier, param_grid,  train_features, y_labels, te
         iter += 1
 
     print ("Test Classification Report")
-    # print (classification_report(overall_y_true, overall_y_pred))
+    print (classification_report(overall_y_true, overall_y_pred))
     print ("Accuracy: %.3f" % accuracy_score(overall_y_true, overall_y_pred))
     skf_final= StratifiedKFold(y_labels, n_folds=num_folds, shuffle=True, random_state=None)
     clf = GridSearchCV(classifier, param_grid,cv=skf_final)

@@ -1,6 +1,4 @@
 benchmark, unique_loop_id, loop_nest_level, dynOp_count, floatOp_count, branchOp_count, memOp_count, operands_count, implicit_instr_count, unique_pred_count, trip_count, loop_calls, reuse_count, use_count, def_count, store_count, load_count
-benchmark, unique_loop_id, loop_nest_level, dynOp_count, floatOp_count, branchOp_count, memOp_count, operands_count, implicit_instr_count, unique_pred_count, trip_count, loop_calls, reuse_count, use_count, def_count, store_count, load_count
-benchmark, unique_loop_id, loop_nest_level, dynOp_count, floatOp_count, branchOp_count, memOp_count, operands_count, implicit_instr_count, unique_pred_count, trip_count, loop_calls, reuse_count, use_count, def_count, store_count, load_count
 403.gcc,403.gcc_1,1,25,0,0.16,0.36,1.76,0.24,0.08,1,6,0,0.96,0, 0, 0.24, 0
 403.gcc,403.gcc_2,2,52,0,0.0961538,0.461538,1.76923,0.269231,0.0384615,1,0,0,1,0, 0, 0.269231, 0
 403.gcc,403.gcc_3,1,33,0,0.242424,0.363636,1.75758,0.0909091,0.0606061,1,6674,0,0.939394,0, 0.0606061, 0.212121, 0
