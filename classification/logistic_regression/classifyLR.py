@@ -46,5 +46,5 @@ preds = clf.predict(X_test)
 accuracy = metrics.accuracy_score(y_test, preds)
 print accuracy   
 
-feature_order = [i[0] for i in sorted(enumerate(abs(clf.coef_[0])), key=lambda x:x[1] , reverse=True)]
+feature_order = [i[0] for i in sorted(enumerate(abs(clf.coef_[1])), key=lambda x:x[1] , reverse=True)]
 print feature_order
