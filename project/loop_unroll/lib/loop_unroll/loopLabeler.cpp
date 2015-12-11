@@ -24,7 +24,10 @@ using namespace llvm;
 
 static cl::opt<std::string> benchmark_name("benchmark", cl::desc("Specify benchmark name filename for loop labeler"), cl::value_desc("filename"));
 
+static cl::opt<std::string> outfile_name("label-outfile", cl::desc("Specify outfile name for loop labeler"), cl::value_desc("outfile"));
+
 void LoopLabelMap::getAnalysisUsage(AnalysisUsage &AU) const {
+	AU.setPreservesCFG();
     AU.setPreservesAll();
 }
 
@@ -48,5 +51,11 @@ bool LoopLabelMap::runOnLoop(Loop* L, LPPassManager &LPM)
 	LoopToIdMap[BB] = unique_loop_id;
 	
 	llvm::errs() << unique_loop_id << " " << L << " " << BB << " " <<  "\n";
-	return true;
+
+	if (outfile_name.c_str()) {
+		std::ofstream outputFile(outfile_name.c_str(), std::fstream::app);
+  		outputFile << unique_loop_id << "\n";
+  		outputFile.close();
+	}
+	return false;
 }

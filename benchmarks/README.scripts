@@ -27,7 +27,7 @@ for i in 4*; do cp -r $i/run_feature.sh  $LLVM_PATH/projects/test-suite/External
 cd ..
 
 cp TEST.simplify.Makefile ~/llvm-3.3.src/projects/test-suite/.
-cp cpu*.sh ~/llvm-3.3.src/projects/test-suite/External/SPEC/CINT2006/.
+cp cpu*.sh ~/llvm-3.3.src/projects/test-suite/External/SPEC/.
 
 Run sample file to check if files are correctly copied:
 cd $LLVM_PATH/projects/test-suite/External/SPEC/CINT2006/400.perlbench/

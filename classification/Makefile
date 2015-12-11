@@ -4,19 +4,20 @@ fann:
 	cd neural_nets_fann && ./train_nn
 	cd neural_nets_fann && ./test_nn
 
+gather-results:
+	python data_conversion/convert_results.py
+
 clean-fann:
 	rm -f neural_nets_fann/train_nn neural_nets_fann/test_nn neural_nets_fann/trained.net	
 
 nn:
-	python neural_nets/skflowNN.py data.train data.test
+	python all_classifiers.py nn
 
 rf:
-	python random_forests/classifyRF.py data.train data.test
-	
+	python all_classifiers.py rf
 
 lr:
-	python logistic_regression/classifyLR.py data.train data.test
-
+	python all_classifiers.py lr
 
 svm:
-	python support_vector/classifySVM.py data.train data.test
+	python all_classifiers.py svm

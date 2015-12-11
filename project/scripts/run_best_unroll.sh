@@ -6,6 +6,8 @@
 #    Set and export these environment variables in your /etc/profile OR /etc/bash.rc files
 
 unroll_factors_file="factors.csv"
+
+label_file="labels.csv"
 # Replace with bench
 fname=$1
 project_name="loop_unroll"
@@ -13,9 +15,7 @@ PASS_HOME="../$project_name"
 
 clang -emit-llvm -o $fname.bc -c $fname.c || { echo "Failed to emit llvm bc"; exit 1; }
 
-rm pre.main.dot
-rm post.main.dot
-
+rm *.dot
 echo "Making CFG of test file"
 opt -dot-cfg $fname.bc
 mv cfg.main.dot pre.main.dot
@@ -25,6 +25,15 @@ opt  -loop-simplify -mem2reg -loop-rotate < $fname.bc > $fname.rotate.ls.link.bc
 
 echo "unrolling loop"
 opt -load $PASS_HOME/Release+Asserts/lib/$project_name.so -best-unroll -factors-file $unroll_factors_file -benchmark $fname -debug  < $fname.rotate.ls.link.bc > $fname.best.unroll.bc || { echo "Failed to unroll loop"; exit 1; }
+opt -loop-simplify -mem2reg -loop-rotate < $fname.bc > $fname.rotate.ls.link.bc  || { echo "Failed to opt loop-simplify loop rotate and mem2reg"; exit 1; }
+
+echo "getting labels before unrolling"
+rm $label_file
+opt -load $PASS_HOME/Release+Asserts/lib/$project_name.so -loop-label -label-outfile $label_file -benchmark $fname < $fname.rotate.ls.link.bc || { echo "Failed to opt loop labeler"; exit 1; }
+
+echo "unrolling loop"
+opt -load $PASS_HOME/Release+Asserts/lib/$project_name.so -best-unroll -factors-file $unroll_factors_file -label-infile $label_file < $fname.rotate.ls.link.bc > $fname.best.unroll.bc || { echo "Failed to unroll loop"; exit 1; }
+
 
 echo "Making CFG of unrolled file"
 opt -dot-cfg $fname.best.unroll.bc
