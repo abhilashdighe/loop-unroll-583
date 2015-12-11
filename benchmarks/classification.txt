@@ -1,0 +1,58 @@
+##################################################
+Classification based on usage in ML algorithm
+##################################################
+Test Benchmarks:
+470.lbm
+462.libquantum
+458.sjeng
+456.hmmer
+429.mcf
+401.bzip2
+g445.gobmk
+
+Train Benchmarks:
+g429.mcf
+444.namd
+g483.xalancbmk
+470.lbm
+450.soplex
+g403.gcc
+g473.astar
+g458.sjeng
+g471.omnetpp
+g401.bzip2
+433.milc
+g400.perlbench
+g456.hmmer
+447.dealII
+g462.libquantum
+g464.h264ref
+
+##################################################
+Classification based on operations
+##################################################
+Floating Point Benchmarks:
+444.namd
+470.lbm
+450.soplex
+433.milc
+447.dealII
+
+Integer Benchmarks:
+g429.mcf
+g483.xalancbmk
+g403.gcc
+g473.astar
+g458.sjeng
+g471.omnetpp
+g401.bzip2
+g445.gobmk
+g400.perlbench
+g456.hmmer
+g462.libquantum
+g464.h264ref
+
+
+
+
+
