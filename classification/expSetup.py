@@ -14,7 +14,6 @@ def perform_classification(classifier, param_grid,  train_features, y_labels, te
     :param coeffs:
     :return:
     '''
-
     iter = 0
     sss = StratifiedShuffleSplit(y_labels, iters, test_size, random_state=None)
     overall_y_pred = []
@@ -59,5 +58,3 @@ def perform_classification(classifier, param_grid,  train_features, y_labels, te
     clf = GridSearchCV(classifier, param_grid,cv=skf_final)
     clf.fit(train_features, y_labels)
     return clf
-
-

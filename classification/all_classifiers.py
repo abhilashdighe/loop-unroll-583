@@ -101,4 +101,4 @@ elif command == 'nn':
 elif command == 'svm':
     clf = test_support_vectors(X_norm, y)
 
-predict_results_to_file(clf, X_test, loopids_test, 'perlbench_preds.csv' )
+predict_results_to_file(clf, X_test, loopids_test, 'prediction_results/perlbench_preds_'+command+'.csv' )

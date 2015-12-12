@@ -57,11 +57,10 @@ def neural_network_classifier(X , y, test_size , iters, num_folds ):
                     best_accuracy = model_accuracy
                     best_model = [level1,level2,level3]
                     print "Better Model Found:" , best_model
-
+    print "Accuracy:" , best_accuracy
     sys.stdout = open('trash' , 'w')
     clf = skflow.TensorFlowDNNClassifier(hidden_units=best_model, n_classes=n_classes)
     clf.fit(X_train, y_train)
-
 
     # preds = clf.predict(X_test)
     # sys.stdout = saved_stdout
