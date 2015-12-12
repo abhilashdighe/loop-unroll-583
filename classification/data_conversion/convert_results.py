@@ -6,9 +6,9 @@ import cPickle as pickle
 
 results_path = "../results/"
 benchmarks_train = ['401.bzip2', '429.mcf', '456.hmmer' , '458.sjeng' , '462.libquantum' , '470.lbm' ]
-benchmarks_test = [ '447.dealII' ]
+benchmarks_test = [   '400.perlbench',]
                     # '403.gcc','444.namd' , '483.xalancbmk', '450.soplex', '473.astar', '471.omnetpp',]
-                     # '433.milc',  '464.h264ref' ,   '400.perlbench' ]
+                     # '433.milc',  '464.h264ref' ,   '447.dealII']
 unroll_factors_range = range(1,9)
 
 loop_to_features = {}

@@ -108,6 +108,7 @@ elif command == 'svm':
     clf = test_support_vectors(X_norm, y)
 
 if command == 'random':
-    random_results_to_file( X_test, loopids_test, 'prediction_results/perlbench_preds_'+command+'.csv' )    
+    benchmark = sys.argv[2]
+    random_results_to_file( X_test, loopids_test, 'prediction_results/'+benchmark+'_preds_'+command+'.csv' )    
 else:
     predict_results_to_file(clf, X_test, loopids_test, 'prediction_results/perlbench_preds_'+command+'.csv' )
