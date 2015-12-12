@@ -8,11 +8,11 @@ Reference - https://dmz-portal.mips.com/wiki/LLVM_SPEC_2006
 C) cd ~/llvm-3.3.src/projects/test-suite
 
 D) Configure llvm testsuite - link to the llvm source and build, download spec benchmark, extract and link the path to llvm as below:
-./configure --with-llvmsrc=/home/vgogte/llvm-3.3.src --with-llvmobj=/home/vgogte/build --with-externels=/home/vgogte/SPEC_CPU2006v1.1/benchspec
+./configure --with-llvmsrc=/home/vgogte/llvm-3.3.src --with-llvmobj=/home/vgogte/build --with-externels=/home/vgogte/spec2006/benchspec
 
 
 E) Change in Makefile.config
-SPEC2006_ROOT :=  /home/vgogte/SPEC_CPU2006v1.1/benchspec
+SPEC2006_ROOT :=  /home/vgogte/spec2006/benchspec
 
 
 F) Test that implments the pass: TEST.unroll.Makefile in test-suite folder that runs the unroll pass

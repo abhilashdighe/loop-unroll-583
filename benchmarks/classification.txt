@@ -11,22 +11,17 @@ Train Benchmarks:
 g445.gobmk
 
 Test Benchmarks:
-g429.mcf
 444.namd
 g483.xalancbmk
-470.lbm
 450.soplex
 g403.gcc
 g473.astar
-g458.sjeng
 g471.omnetpp
-g401.bzip2
 433.milc
 g400.perlbench
-g456.hmmer
 447.dealII
-g462.libquantum
 g464.h264ref
+g445.gobmk
 
 ##################################################
 Classification based on operations
