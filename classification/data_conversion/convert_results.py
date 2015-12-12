@@ -113,7 +113,6 @@ with open('optimal_unroll_factors.csv','w') as optimal_file:
     for i,loopid in enumerate(loopids):
         optimal_csv.writerow([loopid , y[i]+1])
 
-
 # X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.33, random_state=0 , stratify=y)
 
 data = {}
