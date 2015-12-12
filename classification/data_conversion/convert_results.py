@@ -6,9 +6,9 @@ import cPickle as pickle
 
 results_path = "../results/"
 benchmarks_train = ['401.bzip2', '429.mcf', '456.hmmer' , '458.sjeng' , '462.libquantum' , '470.lbm' ]
-benchmarks_test = [ '403.gcc', ]
-                    # '444.namd' , '483.xalancbmk', '450.soplex', '473.astar', '471.omnetpp',]
-                     # '433.milc', '400.perlbench', '447.dealII', '464.h264ref']
+benchmarks_test = [ '400.perlbench', ]
+                    # '403.gcc','444.namd' , '483.xalancbmk', '450.soplex', '473.astar', '471.omnetpp',]
+                     # '433.milc', '447.dealII', '464.h264ref']
 unroll_factors_range = range(1,9)
 
 loop_to_features = {}
@@ -86,19 +86,27 @@ with open('labelled_data.csv' , 'wb') as labelled_file:
     labelled_csv = csv.writer(labelled_file)
     for loopid in sorted(loop_to_features.keys()):
         if loopid in loop_to_timings:
-            features = loop_to_features[loopid]
+            features = list(loop_to_features[loopid])
             X.append(features)
             label = loop_to_label[loopid]
             y.append(int(label)-1)
+            features = list(features)
             features.append(label)
             labelled_csv.writerow(features)
             loopids.append(loopid)
 
 X_test = []
+loopids_test = []
 for loopid in sorted(loop_to_features_test.keys()):
-    X_test.append(np.array(loop_to_features_test[loopid]))
+    X_test.append(loop_to_features_test[loopid])
+    loopids_test.append(loopid)
 
 print len(X_test), len(X_test[0])
+print len(X) , len(X[100])
+count = 0 
+for x in X:
+    if len(x) == 16:
+        count+=1
 
 with open('optimal_unroll_factors.csv','w') as optimal_file:
     optimal_csv = csv.writer(optimal_file)
@@ -112,6 +120,7 @@ data = {}
 data['X'] = X
 data['y'] = y
 data['X_test'] = X_test
+data['loopids_test'] = loopids_test
 # data['X_train'] = X_train
 # data['X_test'] = X_test
 # data['y_train'] = y_train
