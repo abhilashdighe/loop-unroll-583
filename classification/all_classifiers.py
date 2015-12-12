@@ -1,5 +1,6 @@
 import csv
 import sys
+import random
 import cPickle as pickle
 import numpy as np
 from sklearn.linear_model import LogisticRegression
@@ -53,7 +54,11 @@ def predict_results_to_file(clf , X, loopids, filename):
         for i,pred in enumerate(preds):
             pred_csv.writerow([loopids[i], pred+1]) 
 
-
+def random_results_to_file(X , loopids , filename):
+    with open(filename,'wb') as pred_file:
+        pred_csv = csv.writer(pred_file)
+        for i,loop in enumerate(loopids):
+            pred_csv.writerow([loopids[i], random.randint(1,8)]) 
 
 def normalize_features(X):
     X_mean = X.mean(axis=0)
@@ -69,11 +74,12 @@ y = np.array(data['y'])
 X_test = data['X_test']
 X_test = np.array(X_test)
 
+# print sorted(zip(X[:,1] , y) , reverse=True)
 # print X_test.shape
 # print type(X_test)
 
 
-print X.shape
+# print X.shape
 # print np.sum(X[:,8]==0) , X[:,8].shape
 # print y[X[:,8]==1]
 
@@ -101,4 +107,7 @@ elif command == 'nn':
 elif command == 'svm':
     clf = test_support_vectors(X_norm, y)
 
-predict_results_to_file(clf, X_test, loopids_test, 'prediction_results/perlbench_preds_'+command+'.csv' )
+if command == 'random':
+    random_results_to_file( X_test, loopids_test, 'prediction_results/perlbench_preds_'+command+'.csv' )    
+else:
+    predict_results_to_file(clf, X_test, loopids_test, 'prediction_results/perlbench_preds_'+command+'.csv' )
