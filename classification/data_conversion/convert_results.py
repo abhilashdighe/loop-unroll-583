@@ -6,15 +6,15 @@ import cPickle as pickle
 
 results_path = "../results/"
 benchmarks_train = ['401.bzip2', '429.mcf', '456.hmmer' , '458.sjeng' , '462.libquantum' , '470.lbm' ]
-benchmarks_test = [   '400.perlbench',]
+# benchmarks_test = [  '464.h264ref' ]
                     # '403.gcc','444.namd' , '483.xalancbmk', '450.soplex', '473.astar', '471.omnetpp',]
-                     # '433.milc',  '464.h264ref' ,   '447.dealII']
+                     # '433.milc',  '400.perlbench',  '447.dealII']
 unroll_factors_range = range(1,9)
+benchmarks_test = [sys.argv[1]]
 
 loop_to_features = {}
 loop_to_timings = {}
 for benchmark_name in benchmarks_train:
-
     with open(results_path+benchmark_name+'_train.txt') as features_file:
         features_csv = csv.reader(features_file)
         head = features_csv.next()
@@ -56,7 +56,7 @@ for benchmark_name in benchmarks_test:
         head = features_csv.next()
         for sample in features_csv:
             benchmark , loopid = sample[:2]
-            features = map(float , sample[2:])
+            features = map(float , sample[2:17])
             # if features[-1] == 1:
             #     continue
             loop_to_features_test[loopid] = features
