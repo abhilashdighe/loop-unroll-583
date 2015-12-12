@@ -5,7 +5,7 @@ from sklearn.cross_validation import train_test_split
 import cPickle as pickle
 
 results_path = "../results/"
-benchmarks_train = ['401.bzip2', '429.mcf', '456.hmmer' , '458.sjeng' , '462.libquantum' , '470.lbm' ]
+benchmarks_train = ['401.bzip2', '429.mcf', '456.hmmer' , '458.sjeng' , '462.libquantum' , '470.lbm', '445.gobmk' ]
 # benchmarks_test = [  '464.h264ref' ]
                     # '403.gcc','444.namd' , '483.xalancbmk', '450.soplex', '473.astar', '471.omnetpp',]
                      # '433.milc',  '400.perlbench',  '447.dealII']
@@ -29,7 +29,8 @@ for benchmark_name in benchmarks_train:
         extension = '\.csv.csv'
         if benchmark_name == '470.lbm':
             extension = '\.txt.csv'
-
+        if benchmark_name == '445.gobmk' and unroll_factor == 8:
+            continue
         with open(results_path+benchmark_name+'_train'+str(unroll_factor)+extension) as runtime_file:
             runtimes_csv = csv.reader(runtime_file)
             head = runtimes_csv.next()
@@ -64,7 +65,6 @@ for benchmark_name in benchmarks_test:
 
 loop_to_label = {}
 for loopid in loop_to_timings:
-    
     best_factor = -1
     best_time = sys.maxint
     for unroll_factor in loop_to_timings[loopid]:
