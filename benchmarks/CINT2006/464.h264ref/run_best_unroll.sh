@@ -24,6 +24,9 @@ ARGUMENTS=" -d $(basename "$INPUTFILE")"
 PATH=$PATH:/home/vgogte/build/Release+Asserts/bin
 
 cd Output
+cp /home/vgogte/spec2006/benchspec/CPU2006/464.h264ref/data/all/input/foreman_qcif.yuv ./.
+cp /home/vgogte/spec2006/benchspec/CPU2006/464.h264ref/data/test/input/foreman_test_encoder_baseline.cfg ./.
+
 
 cp /home/vgogte/perlbench_preds.csv ./$unroll_factors_file
 

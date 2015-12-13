@@ -26,6 +26,8 @@ NTS=" -I/home/vgogte/spec2006/benchspec/CPU2006/400.perlbench/data/all/input/lib
 PATH=$PATH:/home/vgogte/build/Release+Asserts/bin
 
 cd Output
+cp /home/vgogte/spec2006/benchspec/CPU2006/473.astar/data/test/input/lake.cfg ./.
+cp /home/vgogte/spec2006/benchspec/CPU2006/473.astar/data/test/input/lake.bin ./.
 
 cp /home/vgogte/perlbench_preds.csv ./$unroll_factors_file
 

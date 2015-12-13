@@ -24,6 +24,7 @@ ARGUMENTS=" $(basename "$INPUTFILE")"
 PATH=$PATH:/home/vgogte/build/Release+Asserts/bin
 
 cd Output
+cp /home/vgogte/spec2006/benchspec/CPU2006/471.omnetpp/data/test/input/omnetpp.ini ./.
 
 cp /home/vgogte/perlbench_preds.csv ./$unroll_factors_file
 

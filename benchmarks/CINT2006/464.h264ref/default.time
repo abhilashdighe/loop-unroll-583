@@ -1,5 +1,4 @@
-Cannot open configuration file foreman_test_encoder_baseline.cfg.
 
-real	0m0.001s
-user	0m0.000s
-sys	0m0.001s
+real	0m16.651s
+user	0m16.622s
+sys	0m0.012s
