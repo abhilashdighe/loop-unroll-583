@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.11.25)  13 DEC 2015 18:55
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.11.14)  14 DEC 2015 14:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**hola
+**hola.tex
 (./hola.tex
 LaTeX2e <2011/06/27>
 Babel <3.9h> and hyphenation patterns for 78 languages loaded.
@@ -412,7 +412,7 @@ LaTeX Info: Redefining \cite on input line 302.
 LaTeX Info: Redefining \nocite on input line 373.
 Package: cite 2010/09/10  v 5.3
 )
-(/usr/share/texmf/tex/latex/local/multirow.sty
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
 \bigstrutjot=\dimen144
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
@@ -528,24 +528,33 @@ LaTeX Warning: No \author given.
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
-] (./hola.bbl) [2
-
 ]
-(./hola.aux) ) 
+Overfull \hbox (22.53265pt too wide) in paragraph at lines 109--109
+[]\secfnt METHODOLOGY AND IN-FRAS-TRUC-TURE 
+ []
+
+
+Overfull \hbox (9.77646pt too wide) in paragraph at lines 136--136
+[]\secfnt EXPERIMENTS WITH CLAS-SI-FI-CA-TION
+ []
+
+(./hola.bbl) [2
+
+] (./hola.aux) ) 
 Here is how much of TeX's memory you used:
- 7472 strings out of 493304
- 111621 string characters out of 6139870
- 284039 words of memory out of 5000000
- 10778 multiletter control sequences out of 15000+600000
+ 7486 strings out of 493304
+ 111995 string characters out of 6139870
+ 284086 words of memory out of 5000000
+ 10792 multiletter control sequences out of 15000+600000
  40877 words of font info for 54 fonts, out of 8000000 for 9000
  959 hyphenation exceptions out of 8191
- 41i,9n,40p,1048b,227s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/urw/times/utmb8a.pfb>
-Output written on hola.pdf (2 pages, 54975 bytes).
+ 41i,9n,40p,1052b,227s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/urw/times/utmb8a.pfb>
+Output written on hola.pdf (2 pages, 60048 bytes).
 PDF statistics:
  28 PDF objects out of 1000 (max. 8388607)
  19 compressed objects within 1 object stream

@@ -106,11 +106,53 @@ Loop unrolling, however, results in some of the obvious side-effects that can re
 
 Aggressive loop unrolling can lead to degraded performance of an application. We develop heuristics to determine the profitable loop candidates for unrolling at the compile time.
 
+\section{Methodology and Infrastructure}
+\label{sec:methodology}
 
-\section{Experimental Methodology}\label{sec:methodology}
+\subsection{Supervised Learning}
+\label{subsec:SupervisedLearning}
+
+\subsection{Compiler and Platform}
+\label{subsec:CompilerPlatform}
+
+\subsection{Loop Instrumentation}
+\label{subsec:LoopInstrumentation}
+
+\subsection{Data collection}
+\label{subsec:DataCollection}
+
+\section{Multi-class Classification}
+\label{sec:Multi-classClassification}
+
+\subsection{SVM}
+\label{subsec:SVM}
+
+\subsection{Neural Networks}
+\label{subsec:NeuralNetworks}
+
+\subsection{Random Forest}
+\label{subsec:RandomForest}
+
+\section{Experiments with Classification Algorithms}
+\label{sec:ExperimentsClassification}
+
+\subsection{Computing the Accuracy}
+\label{subsec:ComputingAccuracy}
+
+
+\section{Experimental Methodology}\label{sec:experimental_methodology}
 We develop a random forest trained heuristic for Open Source LLVM Compiler version 3.3. We implement all the custom passes to unroll and instrument loops and to collect features in LLVM. In addition, we use SPEC 2006 integer and floating point C++ applications to train and test our heuristics. Due to the limited resources available to us, we train our heuristics on the set of applications having lower number of loops. We train our heuristics on a training set including 470.lbm, 462.libquantum, 458.sjeng, 456.hmmer, 429.mcf, 401.bzip2, and 445.gobmk applications. Our testing set involves rest of the SPEC 2006 applications. We train and test our heuristics on Intel Xeon 64-bit 2.2GHz 12-core server with 32KB L1 cache and 256KB L2 cache.
 
-\section{Conclusion}
+
+\section{Discussion}
+\label{sec:Discussion}
+
+
+\section{Related Work}
+\label{sec:RelatedWork}
+
+\section{Conclusions and Future Work}
+\label{sec:FutureWork}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\bibliographystyle{IEEEtran}
