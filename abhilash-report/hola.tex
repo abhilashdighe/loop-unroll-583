@@ -163,21 +163,22 @@ To extract features for loops in the train benchmarks, we run each benchmark thr
 \section{Multi-class Classification}
 \label{sec:Multi-classClassification}
 
+Multi-class Classification is a supervised machine learning problem where the number of different class values is greater than 2. Many binary classifiers can be easily extended to the multi-class domain while some require combining multiple binary classifiers. In this section, we take a look at the different multi-class classification techniques we tried out and their properties. 
 
 \subsection{Logistic Regression}
 \label{subsec:LogisticRegression}
 
-Logistic Regression is a commonly used linear model for classification. It uses the logistic function to calculate the loss and generates a weight vector which can be multiplied with the features to predict new samples. Being a binary classification problem it isn't directly extendable to the multi-class setting and uses methods such as one-vs-all and one-vs-one for combining multiple binary classifiers into a multi-class classifier.
+Logistic Regression is a commonly used linear model for classification. It uses the logistic function to calculate the loss and generates a weight vector which can be multiplied with the features to predict new samples. Being a binary classification problem it isn't directly extendable to the multi-class setting and uses methods such as one-vs-all and one-vs-one for combining multiple binary classifiers into a multi-class classifier. 
 
 \subsection{SVM}
 \label{subsec:SVM}
 
-
+Support Vector Machines are a powerful supervised classification technique which can perform linear as well as non-linear classification using the kernel trick where they map the features into another high dimensional space. The SVM model involves storing multiple data points as representatives of their class so that the gap between the two classes is as wide as possible. When used for multi-class problems they also use techniques similar to Logistic Regression. 
 
 \subsection{Neural Networks}
 \label{subsec:NeuralNetworks}
 
-
+Neural Networks are a machine learning tool modeled after the way neurons interact and learn in the nervous system. It involves learning the weights of the connections in a network of nodes arranged in multiple layers. There is an input layer which has neurons equal to the number of features to train on and an output layer which has a neuron for every possible class output. The network uses the backpropogation algorithm to learn the various weights given labeled training data. 
 
 \subsection{Random Forest}
 \label{subsec:RandomForest}
@@ -187,7 +188,12 @@ Random Forests are an ensemble methods which work by generating N random subsets
 \section{Experiments with Classification Algorithms}
 \label{sec:ExperimentsClassification}
 
-We used a standard pipeline shown in Figure~\ref{fig:mlPipeline} for experimenting on and evaluating our classification algorithms. Prior to starting the pipeline we gather the features and the optimal unroll factors from all the benchmarks in the training set. We then split the training set into a dev set and a holldout set. Oftentimes, classification algorithms need the programmers to set values for certain model parameters such as the regularization parameter in the case of SVM or network structure in the case of Neural Networks. It is imperative to find the optimal values for these parameters to get the most out of the classifier and correctly judge its accuracy. To find the best model parameters, we first create a grid of possible parameters and then for every candidate parameter, we use K-fold Cross-Validation to obtain an estimate of its accuracy. K-fold Cross-Validation involves initially splitting the data up into K mutually exclusive and equally sized chunks. Then you iterate through each of the chunks to be kept away as the testing set while all the other chunks combine to form the training set. The average of the accuracy achieved over the K-folds is taken as a valid estimate of the goodness of the candidate parameter. The Grid Search along with K-Fold Cross-Validation is done to decide the best model parameter on the dev set and then the entire dev set is fed into the classifier as training data using that obtained best model parameter. This best classifier is then tested on the holdout set that its not seen before which gives us a measure of the accuracy of the classification technique on the given labelled training data. This division into the dev and holdout sets is repeated multiple times to avoid wrong estimates due to bad splits. The average of the final accuracies obtained at each iteration is considered as a true estimate of the performance of the particular classification technique on that dataset. 
+As mentioned above, we tried 4 different methods to predict the optimal unroll factors but we need a robust method to evaluate which method works the best for our problem. In this section we go over the details of the pipeline we used to assess the goodness of each of the methods, how we implemented them and the results of our experiments. 
+
+\subsection{Machine Learning Pipeline}
+\label{subsec:MachineLearningPipeline}
+
+We used a standard pipeline shown in Figure~\ref{fig:mlPipeline} for experimenting on and evaluating our classification algorithms. Prior to starting the pipeline we gather the features and the optimal unroll factors from all the benchmarks in the training set. We then split the training set into a dev set and a holdout set. Oftentimes, classification algorithms need the programmers to set values for certain model parameters such as the regularization parameter in the case of SVM or network structure in the case of Neural Networks. It is imperative to find the optimal values for these parameters to get the most out of the classifier and correctly judge its accuracy. To find the best model parameters, we first create a grid of possible parameters and then for every candidate parameter, we use K-fold Cross-Validation to obtain an estimate of its accuracy. K-fold Cross-Validation involves initially splitting the data up into K mutually exclusive and equally sized chunks. Then we iterate through each of the chunks to be kept away as the testing set while all the other chunks combine to form the training set. The average of the accuracy achieved over the K-folds is taken as a valid estimate of the goodness of the candidate parameter. The Grid Search along with K-Fold Cross-Validation is done to decide the best model parameter on the dev set and then the entire dev set is fed into the classifier as training data using that obtained best model parameter. This best classifier is then tested on the holdout set that its not seen before which gives us a measure of the accuracy of the classification technique on the given labelled training data. This division into the dev and holdout sets is repeated multiple times to avoid wrong estimates due to bad splits. The average of the final accuracies obtained at each iteration is considered as a true estimate of the performance of the particular classification technique on that dataset. 
 
 This final classifier is designed using the entire training set as a dev set with grid search and K-fold cross-validation to find the best model parameter using which the entire training set is fed to the classifier for learning. The features obtained from the test benchmarks are then run through the final classifier to get the predicted unroll factors for each of the loops. 
 
@@ -198,7 +204,18 @@ This final classifier is designed using the entire training set as a dev set wit
   \label{fig:mlPipeline}
 \end{figure*}
 
-We compared various classification techniques using their accuracies on the data from our training benchmarks and the results can be seen in Figure~\ref{fig:mlResults}. This being a multiclass problem with 8 classes the prediction accuracy didn't feel like a good enough estimate. With this in mind, we also computed the Mean Absolute Error which is the mean of the absolute difference between the predicted and the optimal values. In both cases Random Forests performed the best and we chose to continue with Random Forests to predict the unroll factors for the test benchmarks as well. 
+\subsection{Implementation Details}
+\label{subsec:ImplementationDetails}
+
+The Logistic Regression, SVM and Random Forest Classifiers were implemented using the \emph{scikit-learn} module in Python. The module additionally provides implementations of grid search and cross-validation which makes creating the pipeline a bit easier. Neural Networks were implemented using \emph{skflow} which is a \emph{scikit-learn} like interface into Google's recently released Tensorflow library for deep neural networks. 
+
+The Support Vector Machines were trained using a radial basis function kernel which tries to capture non linear interaction in the features. Neural Networks used were structured as having 3 hidden layers each consisting of 5 to 25 neurons. This was done to follow a rule of thumb approach that the hidden layers shouldn't have more than twice the number of neurons in the input layer.
+
+
+\subsection{Machine Learning Evaluation}
+\label{subsec:MachineLearningEvaluation}
+
+We compared various classification techniques using their accuracies on the data from our training benchmarks and the results can be seen in Figure~\ref{fig:mlResults}. In addition to the standard accuracy of predicting the optimal unroll factor, we also compute a near optimal accuracy which also takes into account the case of the predicted value being just 1 unroll factor away from the optimal. This being a multiclass problem with 8 classes the prediction accuracy didn't feel like a good enough estimate. With this in mind, we also computed the Mean Absolute Error which is the mean of the absolute difference between the predicted and the optimal values. In both cases Random Forests performed the best and we chose to continue with Random Forests to predict the unroll factors for the test benchmarks as well. 
 
 \begin{figure*}
   \center
@@ -207,11 +224,11 @@ We compared various classification techniques using their accuracies on the data
   \label{fig:mlResults}
 \end{figure*}
 
+% \subsection{Computing the Accuracy}
+% \label{subsec:ComputingAccuracy}
 
-\subsection{Computing the Accuracy}
-\label{subsec:ComputingAccuracy}
+% Sort of feel I covered it in the previous sections. 
 
-Sort of feel I covered it in the previous sections. 
 
 \section{Experimental Methodology}\label{sec:experimental_methodology}
 We develop a random forest trained heuristic for Open Source LLVM Compiler version 3.3. We implement all the custom passes to unroll and instrument loops and to collect features in LLVM. In addition, we use SPEC 2006 integer and floating point C++ applications to train and test our heuristics. Due to the limited resources available to us, we train our heuristics on the set of applications having lower number of loops. We train our heuristics on a training set including 470.lbm, 462.libquantum, 458.sjeng, 456.hmmer, 429.mcf, 401.bzip2, and 445.gobmk applications. Our testing set involves rest of the SPEC 2006 applications. We train and test our heuristics on Intel Xeon 64-bit 2.2GHz 12-core server with 32KB L1 cache and 256KB L2 cache.
