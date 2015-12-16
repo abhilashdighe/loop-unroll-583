@@ -183,19 +183,59 @@ To extract features for loops in the train benchmarks, we run each benchmark thr
 We develop a random forest trained heuristic for Open Source LLVM Compiler version 3.3. We implement all the custom passes to unroll and instrument loops and to collect features in LLVM. In addition, we use SPEC 2006 integer and floating point C++ applications to train and test our heuristics. Due to the limited resources available to us, we train our heuristics on the set of applications having lower number of loops. We train our heuristics on a training set including 470.lbm, 462.libquantum, 458.sjeng, 456.hmmer, 429.mcf, 401.bzip2, and 445.gobmk applications. Our testing set involves rest of the SPEC 2006 applications. We train and test our heuristics on Intel Xeon 64-bit 2.2GHz 12-core server with 32KB L1 cache and 256KB L2 cache.
 
 
+\section{Experimental Results}\label{sec:experimental_results}
+In this section we see if the predicted unroll factors indeed yield program speedups. We test our chosen Random Forest classifier on  400.perlbench, 403.gcc, 458.sjeng, 464.h264ref, 471.omnetpp, 473.as.tar and 483.xalancbmk from SPEC CINT 2006. We also tested for speedups on 444.namd, 447.dealll and 450.soplex from SPEC CFP 2006. The test benchmarks are first run through the custom pass for feature extraction. The extracted features are fed to the chosen trained classifier and its output per loop recorded. The test benchmarks are then run through the custom pass for unrolling the loops by the predicted unroll factors In this way we yet again see how well the learned classifier performs on loops not seen before. At this point we run the benchmarks first with no unrolling and with software pipelining disabled. The program run times with no unrolling establish the baseline for us. We then run the benchmarks with loops unrolled by the optimal unroll factors as predicted by our classifier. For comparison sake we also run the benchmarks through LLVM's default unroll pass and through a custom pass which unrolls every loop with a randomly chosen unroll factor from 1 through 8. The run times of each test are recorded and the percentage performance improvement achieved in each case is calculated as follows:
+\begin{equation}
+ \% improvement = \frac{baseline\ run\  time}{test\ run\ time - 1}
+\end{equation}
+
+Figure~\ref{fig:cintResults} shows the results on the SPEC CINT 2006 benchmarks. 
+While our benchmarks achieve speedups comparable to  LLVM's default heuristics, they almost always beat the random unroll pass.  
+
+Figure~\ref{fig:cfpResults} shows the results on the SPEC CFP 2006 benchmarks. 
+\begin{figure}
+  \center
+  \includegraphics[width=0.90\linewidth]{fig/cint.png}
+  \caption{Performance improvement on SPEC CINT 2006 benchmarks}
+  \label{fig:cfpResults}
+\end{figure}
+\begin{figure}
+  \center
+  \includegraphics[width=0.90\linewidth]{fig/cfp.png}
+  \caption{Performance improvement on SPEC CFP 2006 benchmarks}
+  \label{fig:cfpResults}
+\end{figure}
+
+HOLA beats LLVM default on all of the CFP benchmarks we tested our predictions on. These results clearly indicate the potential of the machine learning based heuristic to beat the LLVM default heuristic. We achieve an average performance improvement of $33.15 \%$  on the CINT benchmarks and an average improvement of $55.27 \%$. Whereas LLVM default achieves an improvement of $42.57 \%$ on CINT benchmarks and $50.98 \%$ on the CFP benchmarks. 
+
 \section{Discussion}
 \label{sec:Discussion}
+Compilers are complex tools. It is nearly impossible to know what choices to make based on simple models and assumptions. The scheduler, the register allocator, and the underlying architecture interact in mysterious ways. The
+only way to truly know what will work is by empirically evaluating decisions. The goal of our research is to use em-
+pirical observations to train a compiler to make informed decisions using machine learning based techniques. We believe that machine learning techniques have a strong potential to alter traditional compiler construction techniques. The traditional techniques suffer from some major drawbacks. Consider the case of loop unrolling,  a considerable amount of key information is lost by using heuristics based on thresholding on static features. Also, such compiler heuristics heavily depend upon detailed  knowledge of the system with regards to the implementation of different program transformations, optimizations and the interactions between them. Also, coming up with such heuristics and tuning them efficiently for every platform is anything but pure grunt work. To get rid of this grunt work, we can leverage upon the potential of machine learning based methods to automatically learn and fine tune learned heuristics. This can leave the compiler designers to focus on the actual job of improving the system, build new transformations and optimizations.  However, there are still many issues which need to be addressed before this vision becomes reality. 
 
+Some of the key issues are related to data acquisition and feature engineering. Extracting optimal unroll factors for every loop and generating a large dataset for training can be a  slow process. However, we believe that this was an unsupervised process requiring minimal interference on our part. Another argument is that the compiler writers will have to spend time on feature extraction. Although, most of the features used by us are readily available using LLVM's infrastructure, some of the advanced features might require detailed knowledge of the compiler infrastructure and underlying architecture. However, we believe that features can be made available through special tools within the compiler infrastructure much like various data flow analysis packages are made available. This can cut down on the time required to extract features. Once the data is generated the process of training machine learning classifiers and the online process of prediction is quick. Overall, the effort required is much lesser than the one required for designing heuristics on the part of the compiler writer.  
+
+Another key aspect on which the accuracy of machine learning techniques depends on is the instrumentation process to extract loop labels. The instrumentation to extract loop execution times has its own overhead which can in turn affect the optimal unroll factor introducing noise in the data. One way to counter this would be to use libraries which extract execution times without making use of intrusive system calls. These can be made available within the compiler infrastructure for the greater good of the community.
 
 \section{Related Work}
 \label{sec:RelatedWork}
+In this section we discuss the related work in the domain and how our approach differs from the ones followed by them.
+Stephensen et al. use a classifier based on nearest neighbor technique for predicting the loop unroll factors in Open Research Compiler. They use Euclidean distance between loop feature vectors as the similarity metric. To generate the loop data they only consider loops that are run for at least 50,000 cycles. The near neighbors algorithm makes prediction based on the labels of points that lie within a specified radius of the new point. They also experiment with an SVM based classifier which performs better than the NN classifier. The NN classifier achieves a classification rate of 62\% while the SVM classifier achieves an accuracy of 65\%. 
+
+Monsifrot et al. use a classifier based on “Boosted” decision tree learning to determine which loops to unroll. While the methodology we present in this paper is similar, our work differs in several important ways. Their work only considers binary classification, while our work employ multi-class classification to determine the optimal unroll factor. 
+
+Cavazos et  al. use a machine learning technique namely neuro-evolution, to automatically induce effective method inlining from a set of features deemed useful for inlining. Neuro-evolution is a technique of unsupervised machine learning using neural networks. This methodology can be used in the absence of a good labelled dataset for training purposes. They tested their technique on Maxine VM achieving a speedup of 11\% over the default inlining heuristic in Maxine VM. However, this technique suffers from various drawbacks including long training times and model overfitting.
+
+
+As far as our knowledge is concerned, we believe that our work is the first of its kind using LLVM's infrastructure using a Random Forest classifier. In our work, we  explore all the loops of the program as against related work in the domain which only considers innermost loops or loops based on their cycle count.
 
 \section{Conclusions and Future Work}
 \label{sec:FutureWork}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\bibliographystyle{IEEEtran}
-\bibliographystyle{IEEEtranS}
+\bibliographystyle{IEEEtran}
 \begin{scriptsize}
   \bibliography{references}
 \end{scriptsize}
