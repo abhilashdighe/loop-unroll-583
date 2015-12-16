@@ -106,20 +106,59 @@ Loop unrolling, however, results in some of the obvious side-effects that can re
 
 Aggressive loop unrolling can lead to degraded performance of an application. We develop heuristics to determine the profitable loop candidates for unrolling at the compile time.
 
-\section{Methodology and Infrastructure}
-\label{sec:methodology}
+\section{Approach and Infrastructure}
+\label{sec:Approach}
+
+This section discusses how learning good heuristics for loop unrolling can be modeled as a supervised learning problem. It is followed by a discussion of the infrastructure that was used to perform the experiments. 
 
 \subsection{Supervised Learning}
 \label{subsec:SupervisedLearning}
+Supervised learning is the machine learning task of inferring a function from \emph{training data}. The training data consist of a set of \emph{training examples}. Each example is a pair  $<\mathbf{x_i}, y_j>$ consisting of an input feature vector, $\mathbf{x_i}$ that contains characteristics of the object under consideration and a desired output label $y_j$. A supervised learning algorithm analyzes the training data and produces an inferred function, which is called a classifier, such that the overall classification error on the training data is minimized. The inferred function should then be able to predict correct output value for any valid input feature vector. 
+
+For the task of loop unrolling, the feature vector captures the characteristics of the loop being unrolled. In our experiments, we used features such as trip call count, number of calls to the loop, number of operations in the loop body, etc. to characterize the loops. Feature vectors are extracted for every candidate for loop unrolling in the set of training benchmarks. For feature extraction, every loop is first assigned a unique identifier. The loops are then canonicalized such that every loop has a preheader and exactly one backedge. A subset of features that are based on profiling information and loop-carried dependencies are then extracted. Features such as trip count, that require require additional compiler optimizations like promoting memory references to register references, analyzing scalar expressions in loops etc. are extracted separately, so that they don't affect the statistics for other features. Figure~\ref{fig:features} summarizes the features used to train the classifier in this experiment.
+
+\begin{figure}
+  \center
+  \includegraphics[width=0.90\linewidth]{fig/features.pdf}
+  \caption{Features used for the classification task}
+  \label{fig:features}
+\end{figure}
+
+For the training dataset, we also extract label for each candidate loop in our train benchmark suite. The label for a loop indicates the best unrolling factor for the loop. In this study, the unroll factor (1,2,..8) yielding the best performance for the loop is used as the label for the loop. Thus, each example in the training set corresponds to a feature vector indicating loop characteristics, and a label indicating the best unroll factor derived empirically. The classifier then learns how to best map these loop characteristics, $\mathbf{x_i}$, to their corresponding unroll factor $y_j$. Features for loops in the test bechmark suite are extracted similarly, but since extracting labels is expensive, no labels are extracted for the test benchmark suite. Training the classifier is offline; this approach incurs no overhead at run-time. 
 
 \subsection{Compiler and Platform}
 \label{subsec:CompilerPlatform}
 
+We used LLVM (version 3.3) that provides a modern source- and target-independent optimizer, along with code generation support for many popular CPUs. The modules to extract features and labels for the loops along with the module to unroll the loop were written using LLVM. LLVM was selected as it is easy to use and integrate various analysis and transformation passes for feature extraction, label extraction and loop unrolling.  The experiments in this paper were performed on 2.2 GHz Intel Xeon 64-bit 12 core server with 32KB L1 cache, 256KB L2 cache and 16MB L3 cache. For all our experiments all optimizations except for loop-simplify were disabled unless required by another analysis or transform pass. 
+
+
 \subsection{Loop Instrumentation}
 \label{subsec:LoopInstrumentation}
 
+In order to collect labels for the loops in the train benchmark suite, the loops must be instrumented. We evaluated three approaches to unroll loops. First, if the profiling is done at program level, all different combinations of unroll factors for the loops in the program must be tried to identify the combination yielding the best performance. Owing to combinatorial considerations, this solution is computationally intractable. Second, the computational intractability in loop level profiling can be handled by analyzing the loops from innermost to outermost such that optimal unroll factor for the innermost loop is first identified. Subsequent loops are analyzed after the innermost loop is unrolled by the optimal unroll factor. However, this approach is expensive because the program being analyzed must be executed \emph{no. of loops * no. of unroll factor} times. Also, to implement such a system is not straightforward. We instead used \emph{loop level profiling} wherein each loop is analyzed in independently of other loops. The central idea is to instrument each loop so the execution time for each loop can be determined, and then unroll every loop in the program by an unroll factor (1,2...8). Optimal unroll factors for each loop are then determined based on their performance. Although the instrumentation at loop level is a bit intrusive, the program has to be executed only once for each unroll factor, reducing the time/cost of generating the training dataset.
+
+We invested much engineering effort minimizing the impact that the instrumentation code has on the execution of the program. Instead of relying on a third-party instrumentation library, we wrote our own instrumentation library consisting of two functions namely, \emph{startTimer} and \emph{endTimer} . Our loop instrumentor inserts an instruction that calls the start timer function at the start of the loop. An instruction to call the end timer function is inserted at each exit of the loop. In our preliminary experiments, we printed the running time of each loop at loop exit. But this instrumentation technique was abandoned due to high file I/O overhead incurred at each loop exit. This problem was aggravated for inner loops that are executed more frequently than outer loops. To reduce this overhead, at all exit points in the program a call is made to our instrumentation library to print the cumulative running time of each loop in the program. Figure~\ref{fig:instrumentation} shows how the calls to the library are inserted at the start and exits of the loop.
+
+We realize that we cannot possibly measure loop runtimes without affecting the execution in some way. However, since the instrumentation will affect loops with all unroll factors similarly, it does not affect the choice of optimal unroll factor for a loop. 
+
+\begin{figure}
+  \center
+  \includegraphics[width=0.90\linewidth]{fig/instrumentation.pdf}
+  \caption{Instrumentation of loops}
+  \label{fig:instrumentation}
+\end{figure}
+
 \subsection{Data collection}
 \label{subsec:DataCollection}
+
+To extract features for loops in the train benchmarks, we run each benchmark through a series of passes that assign a unique label to the loop, canonicalize the loop, profile the edges in the loop, extract profile-based features and extract trip count of the loop. The benchmark is then instrumented and simulation times are found for all unroll factors up to eight; an unroll factor of one corresponds to leaving the loop intact (rolled). For each loop the optimal unroll factor is determined based on the runtime for each unroll factor. Figure~\ref{fig:systemArchitecture} shows the system architecture of HOLA. Once the training data is collected, a classifier is trained to learn the mapping from loop characteristics to optimal unroll factor. The trained classifier is then used to predict best unroll factor for the loops in the test benchmark suite based on their features extracted the same way as the features for loop in train benchmark suite. The predicted optimal unroll factors for each loop in the test benchmark suite are then applied to the corresponding loops. The test benchmarks are then compiled and executed to assess improvement in performance. 
+
+\begin{figure*}
+  \center
+  \includegraphics[width=0.9\linewidth]{fig/systemArchitecture.pdf}
+  \caption{System Architecture.}
+  \label{fig:systemArchitecture}
+\end{figure*}
 
 \section{Multi-class Classification}
 \label{sec:Multi-classClassification}
