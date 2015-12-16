@@ -24,7 +24,7 @@ ARGUMENTS=" --fixed 0 --mean 325 --num 45000 --sd 200 --seed 0 $(basename "$INPU
 PATH=$PATH:/home/vgogte/build/Release+Asserts/bin
 
 cd Output
-
+cp /home/vgogte/spec2006/benchspec/CPU2006/456.hmmer/data/test/input/bombesin.hmm ./.
 cp /home/vgogte/perlbench_preds.csv ./$unroll_factors_file
 
 echo "simplifying and rotating loop"
