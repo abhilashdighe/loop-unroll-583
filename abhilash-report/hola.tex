@@ -227,8 +227,8 @@ The Support Vector Machines were trained using a radial basis function kernel wh
 We compared various classification techniques using their accuracies on the data from our training benchmarks and the results can be seen in Figure~\ref{fig:mlResults}. In addition to the standard accuracy of predicting the optimal unroll factor, we also compute a near optimal accuracy which also takes into account the case of the predicted value being just 1 unroll factor away from the optimal. This being a multiclass problem with 8 classes the prediction accuracy didn't feel like a good enough estimate. With this in mind, we also computed the Mean Absolute Error which is the mean of the absolute difference between the predicted and the optimal values. In both cases Random Forests performed the best and we chose to continue with Random Forests to predict the unroll factors for the test benchmarks as well. 
 
 \begin{figure*}
-  \center
-  \includegraphics[width=0.9\linewidth]{fig/mlResults.pdf}
+  % \center
+  \includegraphics[width=0.4\linewidth]{fig/mlResults.pdf}
   \caption{Machine Learning Results.}
   \label{fig:mlResults}
 \end{figure*}
@@ -237,7 +237,8 @@ To see how well our algorithm was doing we also decided to map out the distribut
 
 \begin{figure*}
   \center
-  \includegraphics[width=0.9\linewidth]{fig/mlPredictions.pdf}
+  \includegraphics[width=0.3\linewidth]{fig/mlPredictions.pdf}
+
   \caption{Predictions Distribution.}
   \label{fig:mlPredictions}
 \end{figure*}
@@ -255,12 +256,14 @@ We develop a random forest trained heuristic for Open Source LLVM Compiler versi
 \section{Discussion}
 \label{sec:Discussion}
 
-
 \section{Related Work}
 \label{sec:RelatedWork}
 
+Davidson et. al. [cite][http://link.springer.com/chapter/10.1007/3-540-61053-7_53] argue that agressive unrolling leads to significant speedup more often than not. This differs from our approach greatly where our method also is capable of doing aggressive unrolling but only when the classification algorithm on extracted features predicts a high unroll factor. 
+
 \section{Conclusions and Future Work}
 \label{sec:FutureWork}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\bibliographystyle{IEEEtran}
