@@ -151,7 +151,15 @@ We realize that we cannot possibly measure loop runtimes without affecting the e
 \subsection{Data collection}
 \label{subsec:DataCollection}
 
-To extract features for loops in the train benchmarks, we run each benchmark through a series of passes that assign a unique label to the loop, canonicalize the loop, profile the edges in the loop, extract profile-based features and extract trip count of the loop. The benchmark is then instrumented and simulation times are found for all unroll factors up to eight; an unroll factor of one corresponds to leaving the loop intact (rolled). For each loop the optimal unroll factor is determined based on the runtime for each unroll factor. Figure~\ref{fig:systemArchitecture} shows the system architecture of HOLA. Once the training data is collected, a classifier is trained to learn the mapping from loop characteristics to optimal unroll factor. The trained classifier is then used to predict best unroll factor for the loops in the test benchmark suite based on their features extracted the same way as the features for loop in train benchmark suite. The predicted optimal unroll factors for each loop in the test benchmark suite are then applied to the corresponding loops. The test benchmarks are then compiled and executed to assess improvement in performance. 
+To extract features for loops in the train benchmarks, we run each benchmark through a series of passes that assign a unique label to the loop, canonicalize the loop, profile the edges in the loop, extract profile-based features and extract trip count of the loop. The benchmark is then instrumented and simulation times are found for all unroll factors up to eight; an unroll factor of one corresponds to leaving the loop intact (rolled). For each loop the optimal unroll factor is determined based on the runtime for each unroll factor. Figure~\ref{fig:systemArchitecture} shows the system architecture of HOLA. Once the training data is collected, a classifier is trained to learn the mapping from loop characteristics to optimal unroll factor. A histogram of the different optimal unroll factor labels in our traning set is shown in Figure~\ref{fig:trainingHistogram}. The trained classifier is then used to predict best unroll factor for the loops in the test benchmark suite based on their features extracted the same way as the features for loop in train benchmark suite. The predicted optimal unroll factors for each loop in the test benchmark suite are then applied to the corresponding loops. The test benchmarks are then compiled and executed to assess improvement in performance. 
+
+\begin{figure}
+  \center
+  \includegraphics[width=0.90\linewidth]{fig/histogram.png}
+  \caption{Training Labels Histogram}
+  \label{fig:trainingHistogram}
+\end{figure}
+
 
 \begin{figure*}
   \center
@@ -204,6 +212,7 @@ This final classifier is designed using the entire training set as a dev set wit
   \label{fig:mlPipeline}
 \end{figure*}
 
+
 \subsection{Implementation Details}
 \label{subsec:ImplementationDetails}
 
@@ -222,6 +231,15 @@ We compared various classification techniques using their accuracies on the data
   \includegraphics[width=0.9\linewidth]{fig/mlResults.pdf}
   \caption{Machine Learning Results.}
   \label{fig:mlResults}
+\end{figure*}
+
+To see how well our algorithm was doing we also decided to map out the distribution of predicted unroll factor vs optimal unroll factor. As seen in Figure~\ref{fig:mlPredictions} our algorithm does well on predicting lower unroll factors while on higher one it doesn't do as well. We believe this is because of the slight skew observed in our training data shown in Figure~\ref{fig:trainingHistogram}
+
+\begin{figure*}
+  \center
+  \includegraphics[width=0.9\linewidth]{fig/mlPredictions.pdf}
+  \caption{Predictions Distribution.}
+  \label{fig:mlPredictions}
 \end{figure*}
 
 % \subsection{Computing the Accuracy}
