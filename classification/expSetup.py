@@ -1,6 +1,38 @@
 from sklearn.cross_validation import StratifiedKFold, StratifiedShuffleSplit
 from sklearn.grid_search import GridSearchCV
 from sklearn.metrics import accuracy_score , classification_report
+import matplotlib.pyplot as plt
+import numpy as np
+def unroll_distance_accuracy(preds , truth):
+    distance = []
+    for i in range(len(preds)):
+        distance.append(abs(preds[i]-truth[i]))
+
+    weights = {}
+    for p,t in zip(preds,truth):
+        if (p,t) in weights:
+            weights[(p,t)] += 1
+        else:
+            weights[(p,t)] = 1
+
+    x = [p+1 for p,t in sorted(weights.keys())]
+    y = [t+1 for p,t in sorted(weights.keys())]
+    w = [weights[(p,t)] for p,t in sorted(weights.keys())]
+
+    plt.scatter(x , y , s=w , c='#ff9e00')
+    plt.xlabel("Predicted Values")
+    plt.ylabel("Optimal Values")
+    plt.show()
+    return np.mean(distance) , np.std(distance)
+
+def near_accuracy_score(preds, truths):
+    total = len(preds)
+    correct = 0.0
+    for p,t in zip(preds,truths):
+        if abs(p-t) < 2:
+            correct += 1.0
+    return correct / total
+
 
 def perform_classification(classifier, param_grid,  train_features, y_labels, test_size, iters, num_folds):
     '''
@@ -51,9 +83,11 @@ def perform_classification(classifier, param_grid,  train_features, y_labels, te
         overall_y_true.extend(test_labels.tolist())
         iter += 1
 
+
     print ("Test Classification Report")
     print (classification_report(overall_y_true, overall_y_pred))
-    print ("Accuracy: %.3f" % accuracy_score(overall_y_true, overall_y_pred))
+    print ("Accuracy: %.3f" % near_accuracy_score(overall_y_true, overall_y_pred))
+    # print unroll_distance_accuracy(overall_y_pred, overall_y_true)
     skf_final= StratifiedKFold(y_labels, n_folds=num_folds, shuffle=True, random_state=None)
     clf = GridSearchCV(classifier, param_grid,cv=skf_final)
     clf.fit(train_features, y_labels)
