@@ -12,13 +12,13 @@ describe each group member's contribution in detail, and all members should
 agree on this form before submission. Feel free to add more entries if your
 group has more than 3 members.
 
-HATE THIS PART :D  (Mera 25% daal dena yaar eval mein :P - Vaibhav) 
 
 A. Abhilash Dighe
 
-* contribution 1
-* contribution 2
-* contribution 3
+* Wrote/Collaborated on the Machine Learning Pipeline
+* Experimented with multiple machine learning techniques to determing the best approach.
+* Collaborated on final project report and presentation
+* Collaborated on evaluation
 
 B. Nikita Bhutani
 
@@ -31,11 +31,16 @@ B. Nikita Bhutani
 
 C. Pallavi Moghe
 
-* contribution 1
-* contribution 2
-* contribution 3
+* Wrote/collaborated on a pass for instrumentiation
+* Wrote/collaborated on a pass that unrolls the loops by the predicted
+* unroll factors
+* Wrote/collaborated on a pass for feature extractor
+* Collaborated on ML pipeline and evaluation
+* Collaborated on final project report and presentation
 
 D. Vaibhav Gogte
 * Wrote a pass for unrolling every loop with unroll factors 1 to 8
 * Set up the SPEC benchmarks for LLVM
 * Generated labeled data from SPEC benchmarks for training
+* Collaborated on final project report and presentation
+* Collaborated on evaluation

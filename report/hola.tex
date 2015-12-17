@@ -72,7 +72,7 @@
   \texttt{nbhutani@umich.edu}
   \and
   Pallavi Moghe\\
-  \texttt{palmoghe@umich.edu} 
+  \texttt{pallavim@umich.edu} 
   \and
   Vaibhav Gogte\\
   \texttt{vgogte@umich.edu}
@@ -285,7 +285,7 @@ Figure~\ref{fig:cfpResults} shows the results on the SPEC CFP 2006 benchmarks.
   \center
   \includegraphics[width=0.90\linewidth]{fig/cint.png}
   \caption{Performance improvement on SPEC CINT 2006 benchmarks}
-  \label{fig:cfpResults}
+  \label{fig:cintResults}
 \end{figure}
 \begin{figure}
   \center
@@ -306,17 +306,20 @@ Another key aspect on which the accuracy of machine learning techniques depends 
 
 \section{Related Work}
 \label{sec:RelatedWork}
-Stephensen et al. use a classifier based on nearest neighbor technique for predicting the loop unroll factors in Open Research Compiler. They use Euclidean distance between loop feature vectors as the similarity metric. To generate the loop data they only consider loops that are run for at least 50,000 cycles. The near neighbors algorithm makes prediction based on the labels of points that lie within a specified radius of the new point. They also experiment with an SVM based classifier which performs better than the NN classifier. The NN classifier achieves a classification rate of 62\% while the SVM classifier achieves an accuracy of 65\%. 
+Stephensen et al. use a classifier based on nearest neighbor technique for predicting the loop unroll factors in Open Research Compiler. \cite{stephenson2005predicting} They use Euclidean distance between loop feature vectors as the similarity metric. To generate the loop data they only consider loops that are run for at least 50,000 cycles. The near neighbors algorithm makes prediction based on the labels of points that lie within a specified radius of the new point. They also experiment with an SVM based classifier which performs better than the NN classifier. The NN classifier achieves a classification rate of 62\% while the SVM classifier achieves an accuracy of 65\%.
 
-Monsifrot et al. use a classifier based on ``Boosted'' decision tree learning to determine which loops to unroll. While the methodology we present in this paper is similar, our work differs in several important ways. Their work only considers binary classification, while our work employ multi-class classification to determine the optimal unroll factor. 
+Monsifrot et al. use a classifier based on ``Boosted'' decision tree
+learning to determine which loops to unroll \cite{monsifrot2002machine}.  While the methodology we present in this paper is similar, our work differs in several important ways. Their work only considers binary classification, while our work employ multi-class classification to determine the optimal unroll factor. 
 
-Cavazos et  al. use a machine learning technique namely neuro-evolution, to automatically induce effective method inlining from a set of features deemed useful for inlining. Neuro-evolution is a technique of unsupervised machine learning using neural networks. This methodology can be used in the absence of a good labelled dataset for training purposes. They tested their technique on Maxine VM achieving a speedup of 11\% over the default inlining heuristic in Maxine VM. However, this technique suffers from various drawbacks including long training times and model overfitting.
+Cavazos et  al. use a machine learning technique namely neuro-evolution, to automatically induce effective method inlining from a set of features deemed useful for inlining \cite{kulkarni2013automatic}. Neuro-evolution is a technique of unsupervised machine learning using neural networks. This methodology can be used in the absence of a good labelled dataset for training purposes. They tested their technique on Maxine VM achieving a speedup of 11\% over the default inlining heuristic in Maxine VM. However, this technique suffers from various drawbacks including long training times and model overfitting.
 
-As far as we know, our work is the first of its kind that uses LLVM's infrastructure and Random Forest classifier to learn heuristics for loop unrolling. In our work, we explore all the loops of the program as against related work in the domain which only considers innermost loops or loops based on their cycle count.
+Davidson et. al. argue that aggressive unrolling leads to significant speedup more often than not\cite{davidson1996aggressive}. This differs from our approach greatly where our method also is capable of doing aggressive unrolling but only when the classification algorithm on extracted features predicts a high unroll factor.
+
+As far as we know, our work is the first of its kind that uses LLVM's infrastructure and Random Forest classifier to learn heuristics for loop unrolling. In our work, we explore all the loops of the program as against related work in the domain which only considers innermost loops or  loops based on their cycle count.
 
 \section{Future Work}
 \label{sec:FutureWork}
-In the future we would like to explore techniques of less intrusive instrumentation. We also plan on experimenting with instrumenting just the inner loops in a nested loop structure where most of the computation time is spent. In the techniques we explored so far in this work, the predicted unroll factor has a bound which is fixed by the unroll factors we explored during the data generation process. There might be cases when a very high unroll factor for loops might prove to be beneficial. Our technique will not be ablFutureWorke to leverage upon this benefit. To counter this, we plan to implement a regression based classifier which can predict optimal unroll factors beyond the range of labels the classifier is trained on.
+In the future we would like to explore techniques of less intrusive instrumentation. We also plan on experimenting with instrumenting just the inner loops in a nested loop structure where most of the computation time is spent. In the techniques we explored so far in this work, the predicted unroll factor has a bound which is fixed by the unroll factors we explored during the data generation process. There might be cases when a very high unroll factor for loops might prove to be beneficial. Our technique will not be able to leverage upon this benefit. To counter this, we plan to implement a regression based classifier which can predict optimal unroll factors beyond the range of labels the classifier is trained on.
 
 After an initial evaluation of the results of this work, we infer that increasing the size of the train data set and including additional features involving data flow analysis like ``No. of reaching definitions'', ``Max. dependence height of computations'',  ``No. of memory to memory loop carried dependencies'' etc should lead to an improved accuracy of the classifiers we explored. Additionally, we also plan on exploring more sophisticated machine learning techniques like neural networks which heavily rely upon availability of large training data.
 
@@ -329,11 +332,6 @@ While supervised classification can effectively find good heuristics for multi-c
 
 Overall, it is a more generalizable approach than platform dependent threshold based heuristics and can automatically learn the optimal parameters. This technique definitely has a huge potential in compiler optimizations like loop unrolling.
 
-
-%\section{References}
-%\label{sec:References}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\bibliographystyle{IEEEtran}
 \bibliographystyle{IEEEtran}
 \begin{scriptsize}
   \bibliography{references}
