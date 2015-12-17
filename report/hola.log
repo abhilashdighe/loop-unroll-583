@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2015.12.16)  16 DEC 2015 21:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2015.12.16)  16 DEC 2015 21:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**hola
+**hola.tex
 (./hola.tex
 LaTeX2e <2015/01/01>
 Babel <3.9l> and hyphenation patterns for 79 languages loaded.
@@ -586,7 +586,7 @@ File: fig/mlApproxResults.pdf Graphic file (type pdf)
 
 <use fig/mlApproxResults.pdf>
 Package pdftex.def Info: fig/mlApproxResults.pdf used on input line 250.
-(pdftex.def)             Requested size: 0.0pt x 0.0pt.
+(pdftex.def)             Requested size: 215.99854pt x 82.3473pt.
 
 <fig/mlPredictions.pdf, id=87, 345.88274pt x 274.40959pt>
 File: fig/mlPredictions.pdf Graphic file (type pdf)
@@ -595,6 +595,10 @@ File: fig/mlPredictions.pdf Graphic file (type pdf)
 Package pdftex.def Info: fig/mlPredictions.pdf used on input line 259.
 (pdftex.def)             Requested size: 215.99854pt x 171.36739pt.
 
+Underfull \vbox (badness 2762) has occurred while \output is active []
+
+ [5 <./fig/mlPipeline.pdf> <./fig/mlApproxResults.pdf> <./fig/mlPredictions.pdf
+>]
 Overfull \hbox (5.92326pt too wide) in paragraph at lines 274--275
 \T1/aer/m/n/9 est clas-si-fier on 400.perl-bench, 403.gcc, 458.sjeng, 464.h264r
 ef,
@@ -605,8 +609,7 @@ Overfull \hbox (7.66411pt too wide) in paragraph at lines 274--275
 \T1/aer/m/n/9 471.om-netpp, 473.as.tar and 483.xalancbmk from SPEC CINT
  []
 
-[5 <./fig/mlPipeline.pdf> <./fig/mlApproxResults.pdf> <./fig/mlPredictions.pdf>
-] <fig/cint.png, id=144, 766.865pt x 431.6125pt>
+<fig/cint.png, id=144, 766.865pt x 431.6125pt>
 File: fig/cint.png Graphic file (type png)
  <use fig/cint.png>
 Package pdftex.def Info: fig/cint.png used on input line 285.
@@ -631,7 +634,7 @@ Here is how much of TeX's memory you used:
  10933 multiletter control sequences out of 15000+600000
  51969 words of font info for 73 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
- 41i,9n,40p,1914b,372s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,9n,40p,1918b,372s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/base/8r.e
 nc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-dist/font
@@ -645,7 +648,7 @@ ti9.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb></usr/share
 /texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-dist/fonts/ty
 pe1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a
 .pfb>
-Output written on hola.pdf (7 pages, 397541 bytes).
+Output written on hola.pdf (7 pages, 397575 bytes).
 PDF statistics:
  204 PDF objects out of 1000 (max. 8388607)
  145 compressed objects within 2 object streams
