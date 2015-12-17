@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2015.12.16)  16 DEC 2015 20:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2015.12.16)  16 DEC 2015 20:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -543,10 +543,10 @@ Package pdftex.def Info: fig/systemArchitecture.pdf used on input line 102.
 File: fig/features.pdf Graphic file (type pdf)
 
 <use fig/features.pdf>
-Package pdftex.def Info: fig/features.pdf used on input line 149.
+Package pdftex.def Info: fig/features.pdf used on input line 148.
 (pdftex.def)             Requested size: 215.99854pt x 259.7597pt.
  [2 <./fig/systemArchitecture.pdf> <./fig/features.pdf>]
-Overfull \hbox (5.41577pt too wide) in paragraph at lines 159--160
+Overfull \hbox (5.41577pt too wide) in paragraph at lines 158--159
 []\T1/aer/m/n/9 We used LLVM (ver-sion 3.3) that pro-vides a mod-ern source-
  []
 
@@ -554,21 +554,17 @@ Overfull \hbox (5.41577pt too wide) in paragraph at lines 159--160
 File: fig/instrumentation.pdf Graphic file (type pdf)
 
 <use fig/instrumentation.pdf>
-Package pdftex.def Info: fig/instrumentation.pdf used on input line 172.
+Package pdftex.def Info: fig/instrumentation.pdf used on input line 171.
 (pdftex.def)             Requested size: 215.99854pt x 189.77155pt.
-
-
-LaTeX Warning: Reference `fig:systemArchitecture' on page \thepage  undefined o
-n input line 181.
 
 <fig/histogram.png, id=60, 630.355pt x 405.515pt>
 File: fig/histogram.png Graphic file (type png)
  <use fig/histogram.png>
-Package pdftex.def Info: fig/histogram.png used on input line 186.
+Package pdftex.def Info: fig/histogram.png used on input line 185.
 (pdftex.def)             Requested size: 215.99854pt x 138.9561pt.
 
 [3 <./fig/instrumentation.pdf>]
-Overfull \hbox (9.77646pt too wide) in paragraph at lines 216--216
+Overfull \hbox (9.77646pt too wide) in paragraph at lines 215--215
 []\secfnt EXPERIMENTS WITH CLAS-SI-FI-CA-TION
  []
 
@@ -579,10 +575,10 @@ Underfull \vbox (badness 3439) has occurred while \output is active []
 <fig/mlPipeline.pdf, id=81, 676.1631pt x 326.42632pt>
 File: fig/mlPipeline.pdf Graphic file (type pdf)
  <use fig/mlPipeline.pdf>
-Package pdftex.def Info: fig/mlPipeline.pdf used on input line 230.
+Package pdftex.def Info: fig/mlPipeline.pdf used on input line 229.
 (pdftex.def)             Requested size: 453.59692pt x 218.97842pt.
 
-Overfull \hbox (1.38438pt too wide) in paragraph at lines 239--240
+Overfull \hbox (1.38438pt too wide) in paragraph at lines 238--239
 \T1/aer/m/n/9 re-cently re-leased Ten-sor-flow li-brary for deep neu-ral net-wo
 rks. 
  []
@@ -591,27 +587,27 @@ rks.
 <fig/mlResults.pdf, id=86, 466.12523pt x 159.76157pt>
 File: fig/mlResults.pdf Graphic file (type pdf)
  <use fig/mlResults.pdf>
-Package pdftex.def Info: fig/mlResults.pdf used on input line 251.
+Package pdftex.def Info: fig/mlResults.pdf used on input line 250.
 (pdftex.def)             Requested size: 0.0pt x 0.0pt.
 
 
 LaTeX Warning: Reference `fig:mlPredictions' on page \thepage  undefined on inp
-ut line 256.
+ut line 255.
 
 <fig/mlPredictions.pdf, id=87, 345.88274pt x 274.40959pt>
 File: fig/mlPredictions.pdf Graphic file (type pdf)
 
 <use fig/mlPredictions.pdf>
-Package pdftex.def Info: fig/mlPredictions.pdf used on input line 260.
+Package pdftex.def Info: fig/mlPredictions.pdf used on input line 259.
 (pdftex.def)             Requested size: 215.99854pt x 171.36739pt.
 
-Overfull \hbox (5.92326pt too wide) in paragraph at lines 275--276
+Overfull \hbox (5.92326pt too wide) in paragraph at lines 274--275
 \T1/aer/m/n/9 est clas-si-fier on 400.perl-bench, 403.gcc, 458.sjeng, 464.h264r
 ef,
  []
 
 
-Overfull \hbox (7.66411pt too wide) in paragraph at lines 275--276
+Overfull \hbox (7.66411pt too wide) in paragraph at lines 274--275
 \T1/aer/m/n/9 471.om-netpp, 473.as.tar and 483.xalancbmk from SPEC CINT
  []
 
@@ -619,16 +615,16 @@ Overfull \hbox (7.66411pt too wide) in paragraph at lines 275--276
 <fig/cint.png, id=148, 766.865pt x 431.6125pt>
 File: fig/cint.png Graphic file (type png)
  <use fig/cint.png>
-Package pdftex.def Info: fig/cint.png used on input line 286.
+Package pdftex.def Info: fig/cint.png used on input line 285.
 (pdftex.def)             Requested size: 215.99854pt x 121.56853pt.
 
 <fig/cfp.png, id=149, 768.8725pt x 362.35374pt>
 File: fig/cfp.png Graphic file (type png)
  <use fig/cfp.png>
-Package pdftex.def Info: fig/cfp.png used on input line 292.
+Package pdftex.def Info: fig/cfp.png used on input line 291.
 (pdftex.def)             Requested size: 215.99854pt x 101.79562pt.
  [6 <./fig/cint.png> <./fig/cfp.png>]
-Overfull \hbox (2.8847pt too wide) in paragraph at lines 331--332
+Overfull \hbox (2.8847pt too wide) in paragraph at lines 330--331
 \T1/aer/m/n/9 heuris-tics for multi-class clas-si-fi-ca-tion, such tech-niques 
 highly
  []
@@ -642,10 +638,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 7642 strings out of 493089
- 113406 string characters out of 6140693
+ 7641 strings out of 493089
+ 113382 string characters out of 6140693
  296562 words of memory out of 5000000
- 10935 multiletter control sequences out of 15000+600000
+ 10934 multiletter control sequences out of 15000+600000
  54809 words of font info for 78 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  41i,9n,40p,1914b,372s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -661,7 +657,7 @@ share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/share/texmf-dis
 t/fonts/type1/public/txfonts/t1xtt.pfb></usr/share/texmf-dist/fonts/type1/urw/h
 elvetic/uhvb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><
 /usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>
-Output written on hola.pdf (7 pages, 396000 bytes).
+Output written on hola.pdf (7 pages, 396457 bytes).
 PDF statistics:
  208 PDF objects out of 1000 (max. 8388607)
  148 compressed objects within 2 object streams
