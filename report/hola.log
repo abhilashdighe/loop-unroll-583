@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2015.12.16)  16 DEC 2015 20:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2015.12.16)  16 DEC 2015 21:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -417,11 +417,7 @@ Package: cite 2015/02/27  v 5.5
 )
 (/usr/share/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
-) (./hola.aux
-
-LaTeX Warning: Label `fig:cfpResults' multiply defined.
-
-)
+) (./hola.aux)
 \openout1 = `hola.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 83.
@@ -438,7 +434,8 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 83.
 LaTeX Font Info:    ... okay on input line 83.
 LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 83.
 LaTeX Font Info:    Try loading font information for LGR+cmr on input line 83.
- (/usr/share/texmf-dist/tex/latex/cbfonts-fd/lgrcmr.fd
+
+(/usr/share/texmf-dist/tex/latex/cbfonts-fd/lgrcmr.fd
 File: lgrcmr.fd 2013/09/01 v1.0 Greek European Computer Regular
 )
 LaTeX Font Info:    ... okay on input line 83.
@@ -584,15 +581,12 @@ rks.
  []
 
 [4 <./fig/histogram.png>]
-<fig/mlResults.pdf, id=86, 466.12523pt x 159.76157pt>
-File: fig/mlResults.pdf Graphic file (type pdf)
- <use fig/mlResults.pdf>
-Package pdftex.def Info: fig/mlResults.pdf used on input line 250.
+<fig/mlApproxResults.pdf, id=86, 514.60867pt x 196.18756pt>
+File: fig/mlApproxResults.pdf Graphic file (type pdf)
+
+<use fig/mlApproxResults.pdf>
+Package pdftex.def Info: fig/mlApproxResults.pdf used on input line 250.
 (pdftex.def)             Requested size: 0.0pt x 0.0pt.
-
-
-LaTeX Warning: Reference `fig:mlPredictions' on page \thepage  undefined on inp
-ut line 255.
 
 <fig/mlPredictions.pdf, id=87, 345.88274pt x 274.40959pt>
 File: fig/mlPredictions.pdf Graphic file (type pdf)
@@ -611,14 +605,14 @@ Overfull \hbox (7.66411pt too wide) in paragraph at lines 274--275
 \T1/aer/m/n/9 471.om-netpp, 473.as.tar and 483.xalancbmk from SPEC CINT
  []
 
-[5 <./fig/mlPipeline.pdf> <./fig/mlResults.pdf> <./fig/mlPredictions.pdf>]
-<fig/cint.png, id=148, 766.865pt x 431.6125pt>
+[5 <./fig/mlPipeline.pdf> <./fig/mlApproxResults.pdf> <./fig/mlPredictions.pdf>
+] <fig/cint.png, id=144, 766.865pt x 431.6125pt>
 File: fig/cint.png Graphic file (type png)
  <use fig/cint.png>
 Package pdftex.def Info: fig/cint.png used on input line 285.
 (pdftex.def)             Requested size: 215.99854pt x 121.56853pt.
 
-<fig/cfp.png, id=149, 768.8725pt x 362.35374pt>
+<fig/cfp.png, id=145, 768.8725pt x 362.35374pt>
 File: fig/cfp.png Graphic file (type png)
  <use fig/cfp.png>
 Package pdftex.def Info: fig/cfp.png used on input line 291.
@@ -629,38 +623,32 @@ Overfull \hbox (2.8847pt too wide) in paragraph at lines 330--331
 highly
  []
 
-(./hola.bbl) [7] (./hola.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+(./hola.bbl) [7] (./hola.aux) ) 
 Here is how much of TeX's memory you used:
- 7641 strings out of 493089
- 113382 string characters out of 6140693
+ 7635 strings out of 493089
+ 113365 string characters out of 6140693
  296562 words of memory out of 5000000
- 10934 multiletter control sequences out of 15000+600000
- 54809 words of font info for 78 fonts, out of 8000000 for 9000
+ 10933 multiletter control sequences out of 15000+600000
+ 51969 words of font info for 73 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  41i,9n,40p,1914b,372s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmbx6.pfb></usr/share/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmbx9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-mi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/s
-hare/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
-msy9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/
-share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/share/texmf-dis
-t/fonts/type1/public/txfonts/t1xtt.pfb></usr/share/texmf-dist/fonts/type1/urw/h
-elvetic/uhvb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><
-/usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>
-Output written on hola.pdf (7 pages, 396457 bytes).
+{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.e
+nc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></usr/share/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texmf-dist/font
+s/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/shar
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmti7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+ti9.pfb></usr/share/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb></usr/share
+/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-dist/fonts/ty
+pe1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8a
+.pfb>
+Output written on hola.pdf (7 pages, 397541 bytes).
 PDF statistics:
- 208 PDF objects out of 1000 (max. 8388607)
- 148 compressed objects within 2 object streams
+ 204 PDF objects out of 1000 (max. 8388607)
+ 145 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
