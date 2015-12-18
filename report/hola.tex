@@ -72,7 +72,7 @@
   \texttt{nbhutani@umich.edu}
   \and
   Pallavi Moghe\\
-  \texttt{palmoghe@umich.edu} 
+  \texttt{pallavim@umich.edu} 
   \and
   Vaibhav Gogte\\
   \texttt{vgogte@umich.edu}
@@ -100,7 +100,7 @@ Compilers rely on efficiency of the intermediate passes to optimize the machine 
 \begin{figure*}
   \center
   \includegraphics[width=0.90\linewidth]{fig/systemArchitecture.pdf}
-  \caption{Features used for the classification task}
+  \caption{System Architecture}
   \label{fig:systemArchitechture}
 \end{figure*}
 
@@ -112,7 +112,6 @@ Emerging machine learning techniques are known to analyze a huge search space of
 Random forest technique works on the principle of decisions trees; it generates multiple decision trees, obtains classification from each of them, and chooses the classification that gets majority of the votes. Unlike decision trees, random forests are not prone to overfitting and hence a better candidate while deploying a heuristic working on a wide variety of data set.
 
 We train a random forest based heuristic on a subset of loops in SPEC 2006 benchmarks. SPEC 2006 benchmarks are used widely by the research community to evaluate performance of both, the compiler optimization and the underlying hardware. We divide a set of applications in SPEC 2006 benchmark in two categories  training set and testing set. We generate a set of features for a loop and the unroll factor that enables the best runtime of that loop over the training set to obtain a labeled dataset. We use this labeled data to train the heuristic and finally deploy it on the testing set for evaluation.
-
 
 \section{Loop unrolling}\label{sec:unroll}
 Loop unrolling is a widely used compiler optimization pass targeting simpler loops in the program. Programs spend a significant duration of their execution time in the loops and hence, it is important to efficiently schedule instructions in a loop to exploit parallelism in them. Due to the iterative nature of the loop, control flow has to branch to the header every time the loop condition is satisfied. These branches are expensive and result in underutilization of hardware optimizations such as superscalar processors, load-store coalescing, cache locality etc. Loop unrolling technique expands the loops several times while reducing the number of iterations and consequently, diminishing the number of branches. The advantages of loop unrolling are several as listed below:
@@ -178,7 +177,7 @@ We realize that we cannot possibly measure loop runtimes without affecting the e
 \label{subsec:DataCollection}
 
 
-To extract features for loops in the train benchmarks, we run each benchmark through a series of passes that assign a unique label to the loop, canonicalize the loop, profile the edges in the loop, extract profile-based features and extract trip count of the loop. The benchmark is then instrumented and simulation times are found for all unroll factors up to eight; an unroll factor of one corresponds to leaving the loop intact (rolled). For each loop the optimal unroll factor is determined based on the runtime for each unroll factor. Figure~\ref{fig:systemArchitecture} shows the system architecture of HOLA. Once the training data is collected, a classifier is trained to learn the mapping from loop characteristics to optimal unroll factor. A histogram of the different optimal unroll factor labels in our traning set is shown in Figure~\ref{fig:trainingHistogram}. The trained classifier is then used to predict best unroll factor for the loops in the test benchmark suite based on their features extracted the same way as the features for loop in train benchmark suite. The predicted optimal unroll factors for each loop in the test benchmark suite are then applied to the corresponding loops. The test benchmarks are then compiled and executed to assess improvement in performance. 
+To extract features for loops in the train benchmarks, we run each benchmark through a series of passes that assign a unique label to the loop, canonicalize the loop, profile the edges in the loop, extract profile-based features and extract trip count of the loop. The benchmark is then instrumented and simulation times are found for all unroll factors up to eight; an unroll factor of one corresponds to leaving the loop intact (rolled). For each loop the optimal unroll factor is determined based on the runtime for each unroll factor. Figure 1. shows the system architecture of HOLA. Once the training data is collected, a classifier is trained to learn the mapping from loop characteristics to optimal unroll factor. A histogram of the different optimal unroll factor labels in our traning set is shown in Figure~\ref{fig:trainingHistogram}. The trained classifier is then used to predict best unroll factor for the loops in the test benchmark suite based on their features extracted the same way as the features for loop in train benchmark suite. The predicted optimal unroll factors for each loop in the test benchmark suite are then applied to the corresponding loops. The test benchmarks are then compiled and executed to assess improvement in performance. 
 
 
 \begin{figure}
@@ -191,39 +190,39 @@ To extract features for loops in the train benchmarks, we run each benchmark thr
 \section{Multi-class Classification}
 \label{sec:Multi-classClassification}
 
-Multi-class Classification is a supervised machine learning problem where the number of different class values is greater than 2. Many binary classifiers can be easily extended to the multi-class domain while some require combining multiple binary classifiers. In this section, we take a look at the different multi-class classification techniques we tried out and their properties. 
+Multi-class classification is a supervised machine learning problem where the number of different class values is greater than 2. Many binary classifiers can be easily extended to the multi-class domain while some require combining multiple binary classifiers. In this section, we take a look at the different multi-class classification techniques we tried out and their properties. 
 
 \subsection{Logistic Regression}
 \label{subsec:LogisticRegression}
 
-Logistic Regression is a commonly used linear model for classification. It uses the logistic function to calculate the loss and generates a weight vector which can be multiplied with the features to predict new samples. Being a binary classification problem it isn't directly extendable to the multi-class setting and uses methods such as one-vs-all and one-vs-one for combining multiple binary classifiers into a multi-class classifier. 
+Logistic Regression is a commonly used linear model for classification. It measures the relationship between the dependent variable and one or more independent variables by estimating probabilities using a logistic function. It generates a weight vector for the indepdent variables which can be used to predict the dependent variable for the new unseen samples. Being a binary classification problem it isn't directly extendable to the multi-class setting and uses methods such as one-vs-all and one-vs-one for combining multiple binary classifiers into a multi-class classifier. 
 
 \subsection{SVM}
 \label{subsec:SVM}
 
-Support Vector Machines are a powerful supervised classification technique which can perform linear as well as non-linear classification using the kernel trick where they map the features into another high dimensional space. The SVM model involves storing multiple data points as representatives of their class so that the gap between the two classes is as wide as possible. When used for multi-class problems they also use techniques similar to Logistic Regression. 
+Support Vector Machine is a powerful supervised classification technique which can perform linear as well as non-linear classification using the kernel trick where they map the features into a high dimensional space. The SVM model involves storing multiple data points as representatives of the classes so that the gap between the two classes is as wide as possible. When used for multi-class problems it uses techniques similar to logistic regression. 
 
-\subsection{Neural Networks}
-\label{subsec:NeuralNetworks}
+\subsection{Neural Network}
+\label{subsec:NeuralNetwork}
 
-Neural Networks are a machine learning tool modeled after the way neurons interact and learn in the nervous system. It involves learning the weights of the connections in a network of nodes arranged in multiple layers. There is an input layer which has neurons equal to the number of features to train on and an output layer which has a neuron for every possible class output. The network uses the backpropogation algorithm to learn the various weights given labeled training data. 
+Neural Network is a machine learning tool inspired by the way neurons interact and learn in the nervous system. It involves learning the weights of the connections in a network of nodes arranged in multiple layers. There is an input layer which has neurons equal to the number of features to train on and an output layer which has a neuron for every possible class output. The network uses the backpropogation algorithm to learn the various weights given labeled training data. 
 
 \subsection{Random Forest}
 \label{subsec:RandomForest}
 
-Random Forests are an ensemble methods which work by generating N random subsets on the training data in terms of samples and features and constructing a separate decision tree for each subset. It also uses only a subset of all the features available which along with the variable datasets help avoid overfitting. Whenever a test sample comes in it then runs that same sample through all the generated decision trees and takes a vote to decide the predicted class. Random Forests are also easily extended from a binary classification problem to a multi-class one as they can assign any label to leaf nodes. 
+Random Forest is an ensemble method which works by generating N random subsets on the training data in terms of samples and features and constructing a separate decision tree for each subset. It uses only a subset of all the features available which along with the variable datasets help avoid overfitting. For every new unseen data sample, it runs the sample through all the generated decision trees and takes a vote to decide the predicted class. A random forest can also be easily extended to multi-class domain as it can assign any label to leaf nodes. 
 
 \section{Experiments with Classification Algorithms}
 \label{sec:ExperimentsClassification}
 
-As mentioned above, we tried 4 different methods to predict the optimal unroll factors but we need a robust method to evaluate which method works the best for our problem. In this section we go over the details of the pipeline we used to assess the goodness of each of the methods, how we implemented them and the results of our experiments. 
+As mentioned in the previous section, we tried 4 different machine learning algorithms to predict the optimal unroll factors. We needed an experimental setup to to evaluate the average performance of the various machine learning algorithms. In this section we go over the details of the pipeline we used to assess the goodness of each of the methods, how we implemented them and the results of our experiments. 
 
 \subsection{Machine Learning Pipeline}
 \label{subsec:MachineLearningPipeline}
 
-We used a standard pipeline shown in Figure~\ref{fig:mlPipeline} for experimenting on and evaluating our classification algorithms. Prior to starting the pipeline we gather the features and the optimal unroll factors from all the benchmarks in the training set. We then split the training set into a dev set and a holdout set. Oftentimes, classification algorithms need the programmers to set values for certain model parameters such as the regularization parameter in the case of SVM or network structure in the case of Neural Networks. It is imperative to find the optimal values for these parameters to get the most out of the classifier and correctly judge its accuracy. To find the best model parameters, we first create a grid of possible parameters and then for every candidate parameter, we use K-fold Cross-Validation to obtain an estimate of its accuracy. K-fold Cross-Validation involves initially splitting the data up into K mutually exclusive and equally sized chunks. Then we iterate through each of the chunks to be kept away as the testing set while all the other chunks combine to form the training set. The average of the accuracy achieved over the K-folds is taken as a valid estimate of the goodness of the candidate parameter. The Grid Search along with K-Fold Cross-Validation is done to decide the best model parameter on the dev set and then the entire dev set is fed into the classifier as training data using that obtained best model parameter. This best classifier is then tested on the holdout set that its not seen before which gives us a measure of the accuracy of the classification technique on the given labelled training data. This division into the dev and holdout sets is repeated multiple times to avoid wrong estimates due to bad splits. The average of the final accuracies obtained at each iteration is considered as a true estimate of the performance of the particular classification technique on that dataset. 
+We used a standard pipeline shown in Figure~\ref{fig:mlPipeline} for experimenting and evaluating our classification algorithms. Prior to starting the pipeline we gather the features and the optimal unroll factors from all the benchmarks in the training set. We then split the training set into a dev set and a holdout set. Often, classification algorithms need the programmers to set values for certain model parameters such as the regularization parameter in the case of SVM or network structure in the case of Neural Networks. It is imperative to find the optimal values for these parameters to get the most out of the classifier. To find the best model parameters, we first create a grid of possible parameters and then for every candidate parameter, we use K-fold cross-validation to obtain an estimate of its accuracy. K-fold cross-validation involves initially splitting the data into K mutually exclusive and equally sized chunks. Each of the chunks is then kept aside as testing set while the remanining chunks are combined to form the training set. The average of the accuracy achieved over the K-folds is taken as a valid estimate of the goodness of the candidate parameter. The grid search along with K-Fold Cross-Validation is done to decide the best model parameter on the dev set and then the entire dev set is fed into the classifier as training data and the best model parameters are obtained. This best classifier is then tested on the holdout set that its not seen before which gives us a measure of the accuracy of the classification technique on the given labelled training data. This division into the dev and holdout sets is repeated multiple times to avoid wrong estimates due to bad splits. The average of the final accuracies obtained at each iteration is considered as a true estimate of the performance of the particular classification technique on that dataset. 
 
-This final classifier is designed using the entire training set as a dev set with grid search and K-fold cross-validation to find the best model parameter using which the entire training set is fed to the classifier for learning. The features obtained from the test benchmarks are then run through the final classifier to get the predicted unroll factors for each of the loops. 
+This final classifier is designed using the entire training set as a dev set with grid search and K-fold cross-validation to find the best model parameters using which the entire training set is fed to the classifier for learning. The features obtained from the test benchmarks are then run through the final classifier to get the predicted unroll factors for each of the loops. 
 
 \begin{figure*}
   \center
@@ -244,22 +243,22 @@ The Support Vector Machines were trained using a radial basis function kernel wh
 \subsection{Machine Learning Evaluation}
 \label{subsec:MachineLearningEvaluation}
 
-We compared various classification techniques using their accuracies on the data from our training benchmarks and the results can be seen in Figure~\ref{fig:mlResults}. In addition to the standard accuracy of predicting the optimal unroll factor, we also compute a near optimal accuracy which also takes into account the case of the predicted value being just 1 unroll factor away from the optimal. This being a multiclass problem with 8 classes the prediction accuracy didn't feel like a good enough estimate. With this in mind, we also computed the Mean Absolute Error which is the mean of the absolute difference between the predicted and the optimal values. In both cases Random Forests performed the best and we chose to continue with Random Forests to predict the unroll factors for the test benchmarks as well. 
+We compared various classification techniques using their accuracies on the data from our training benchmarks. Figure~\ref{fig:mlResults} shows the performance of the various classification techniques employed in this work. In addition to the standard accuracy of predicting the optimal unroll factor, we also compute a near optimal accuracy which takes into account the cases when the predicted unroll factor differs from the actual unroll factor by a factor of 1. Since, for a multi-class classification problem with 8 classes, prediction accuracy does not accuratelt reflect the performance of the machine learning algorithm. We, therefore, also computed the Mean Absolute Error. It is the mean of the absolute difference between the predicted and the optimal values. In both cases, Random Forests outperformed other machine learning algoriths. All future experiments to predict the unroll factors for the test benchmarks were then performed using Random Forests.
 
 \begin{figure}
   %\center
-  \includegraphics[width=0.\linewidth]{fig/mlResults.pdf}
-  \caption{Machine Learning Results.}
+  \includegraphics[width=0.9\linewidth]{fig/mlApproxResults.pdf}
+  \caption{Machine Learning Results}
   \label{fig:mlResults}
 \end{figure}
 
-To see how well our algorithm was doing we also decided to map out the distribution of predicted unroll factor vs optimal unroll factor. As seen in Figure~\ref{fig:mlPredictions} our algorithm does well on predicting lower unroll factors while on higher one it doesn't do as well. We believe this is because of the slight skew observed in our training data shown in Figure~\ref{fig:trainingHistogram}
+To see how well our algorithm was doing we also decided to map out the distribution of predicted unroll factor vs optimal unroll factor. As can be seen in Figure~\ref{fig:mlPredictions}, our algorithm performed better on lower unroll factors. This can be explained by the slight skew observed in our training data shown in Figure~\ref{fig:trainingHistogram}
 
 \begin{figure}
   \center
   \includegraphics[width=0.90\linewidth]{fig/mlPredictions.pdf}
   \caption{Predictions Distribution}
-  \label{fig:cfpResults}
+  \label{fig:mlPredictions}
 \end{figure}
 
 % \subsection{Computing the Accuracy}
@@ -268,11 +267,11 @@ To see how well our algorithm was doing we also decided to map out the distribut
 % Sort of feel I covered it in the previous sections. 
 
 \section{Experimental Methodology}\label{sec:experimental_methodology}
-We develop a random forest trained heuristic for Open Source LLVM Compiler version 3.3. We implement all the custom passes to unroll and instrument loops and to collect features in LLVM. In addition, we use SPEC 2006 integer and floating point C++ applications to train and test our heuristics. Due to the limited resources available to us, we train our heuristics on the set of applications having lower number of loops. We train our heuristics on a training set including 470.lbm, 462.libquantum, 458.sjeng, 456.hmmer, 429.mcf, 401.bzip2, and 445.gobmk applications. Our testing set involves rest of the SPEC 2006 applications. We train and test our heuristics on Intel Xeon 64-bit 2.2GHz 12-core server with 32KB L1 cache and 256KB L2 cache.
+We developed a random forest trained heuristic for Open Source LLVM Compiler version 3.3. We implemented all the custom passes to unroll and instrument loops and to collect features in LLVM. In addition, we used SPEC 2006 integer and floating point C++ applications to train and test our heuristics. Due to the limited resources available to us, we trained our heuristics on the set of applications having lower number of loops. We trained our heuristics on a training set including 470.lbm, 462.libquantum, 458.sjeng, 456.hmmer, 429.mcf, 401.bzip2, and 445.gobmk applications. Our testing set comprised of the remaining SPEC 2006 applications. We trained and tested our heuristics on Intel Xeon 64-bit 2.2GHz 12-core server with 32KB L1 cache and 256KB L2 cache.
 
 
 \section{Experimental Results}\label{sec:experimental_results}
-In this section we see if the predicted unroll factors indeed yield program speedups. We test our chosen Random Forest classifier on  400.perlbench, 403.gcc, 458.sjeng, 464.h264ref, 471.omnetpp, 473.as.tar and 483.xalancbmk from SPEC CINT 2006. We also tested for speedups on 444.namd, 447.dealll and 450.soplex from SPEC CFP 2006. The test benchmarks are first run through the custom pass for feature extraction. The extracted features are fed to the chosen trained classifier and its output per loop recorded. The test benchmarks are then run through the custom pass for unrolling the loops by the predicted unroll factors In this way we yet again see how well the learned classifier performs on loops not seen before. At this point we run the benchmarks first with no unrolling and with software pipelining disabled. The program run times with no unrolling establish the baseline for us. We then run the benchmarks with loops unrolled by the optimal unroll factors as predicted by our classifier. For comparison sake we also run the benchmarks through LLVM's default unroll pass and through a custom pass which unrolls every loop with a randomly chosen unroll factor from 1 through 8. The run times of each test are recorded and the percentage performance improvement achieved in each case is calculated as follows:
+In this section we analyze if the predicted unroll factors yield program speedups. We tested our chosen Random Forest classifier on  400.perlbench, 403.gcc, 458.sjeng, 464.h264ref, 471.omnetpp, 473.as.tar and 483.xalancbmk from SPEC CINT 2006. We also tested for speedups on 444.namd, 447.dealll and 450.soplex from SPEC CFP 2006. The test benchmarks are first run through the custom pass for feature extraction. The extracted features are fed to the chosen trained classifier and its output per loop recorded. The test benchmarks are then run through the custom pass for unrolling the loops by the predicted unroll factors In this way we yet again see how well the learned classifier performs on loops not seen before. At this point we run the benchmarks first with no unrolling and with software pipelining disabled. The program run times with no unrolling establish the baseline for us. We then run the benchmarks with loops unrolled by the optimal unroll factors as predicted by our classifier. For comparison, we also run the benchmarks through LLVM's default unroll pass and through a custom pass which unrolls every loop with a randomly chosen unroll factor from 1 through 8. The run times of each test are recorded and the percentage performance improvement achieved in each case is calculated as follows:
 \begin{equation}
  \% improvement = \frac{baseline\ run\  time}{test\ run\ time - 1}
 \end{equation}
@@ -285,7 +284,7 @@ Figure~\ref{fig:cfpResults} shows the results on the SPEC CFP 2006 benchmarks.
   \center
   \includegraphics[width=0.90\linewidth]{fig/cint.png}
   \caption{Performance improvement on SPEC CINT 2006 benchmarks}
-  \label{fig:cfpResults}
+  \label{fig:cintResults}
 \end{figure}
 \begin{figure}
   \center
@@ -298,9 +297,7 @@ HOLA beats LLVM default on all of the CFP benchmarks we tested our predictions o
 
 \section{Discussion}
 \label{sec:Discussion}
-Compilers are complex tools. It is nearly impossible to know what choices to make based on simple models and assumptions. The scheduler, the register allocator, and the underlying architecture interact in mysterious ways. The
-only way to truly know what will work is by empirically evaluating decisions. The goal of our research is to use em-
-pirical observations to train a compiler to make informed decisions using machine learning based techniques. We believe that machine learning techniques have a strong potential to alter traditional compiler construction techniques. The traditional techniques suffer from some major drawbacks. Consider the case of loop unrolling,  a considerable amount of key information is lost by using heuristics based on thresholding on static features. Also, such compiler heuristics heavily depend upon detailed  knowledge of the system with regards to the implementation of different program transformations, optimizations and the interactions between them. Also, coming up with such heuristics and tuning them efficiently for every platform is anything but pure grunt work. To get rid of this grunt work, we can leverage upon the potential of machine learning based methods to automatically learn and fine tune learned heuristics. This can leave the compiler designers to focus on the actual job of improving the system, build new transformations and optimizations.  However, there are still many issues which need to be addressed before this vision becomes reality. 
+Compilers are complex tools. It is nearly impossible to know what choices to make based on simple models and assumptions. The scheduler, the register allocator, and the underlying architecture interact in mysterious ways. The only way to truly know what will work is by empirically evaluating decisions. The goal of our research is to use empirical observations to train a compiler to make informed decisions using machine learning based techniques. We believe that machine learning techniques have a strong potential to alter traditional compiler construction techniques. The traditional techniques suffer from some major drawbacks. Consider the case of loop unrolling,  a considerable amount of key information is lost by using heuristics based on thresholding on static features. Also, such compiler heuristics heavily depend upon detailed  knowledge of the system with regards to the implementation of different program transformations, optimizations and the interactions between them. Also, coming up with such heuristics and tuning them efficiently for every platform is anything but pure grunt work. To get rid of this grunt work, we can leverage upon the potential of machine learning based methods to automatically learn and fine tune learned heuristics. This can leave the compiler designers to focus on the actual job of improving the system, build new transformations and optimizations.  However, there are still many issues which need to be addressed before this vision becomes reality. 
 
 Some of the key issues are related to data acquisition and feature engineering. Extracting optimal unroll factors for every loop and generating a large dataset for training can be a  slow process. However, we believe that this was an unsupervised process requiring minimal interference on our part. Another argument is that the compiler writers will have to spend time on feature extraction. Although, most of the features used by us are readily available using LLVM's infrastructure, some of the advanced features might require detailed knowledge of the compiler infrastructure and underlying architecture. However, we believe that features can be made available through special tools within the compiler infrastructure much like various data flow analysis packages are made available. This can cut down on the time required to extract features. Once the data is generated the process of training machine learning classifiers and the online process of prediction is quick. Overall, the effort required is much lesser than the one required for designing heuristics on the part of the compiler writer.  
 
@@ -308,20 +305,20 @@ Another key aspect on which the accuracy of machine learning techniques depends 
 
 \section{Related Work}
 \label{sec:RelatedWork}
-In this section we discuss the related work in the domain and how our approach differs from the ones followed by them.
-Stephensen et al. use a classifier based on nearest neighbor technique for predicting the loop unroll factors in Open Research Compiler. They use Euclidean distance between loop feature vectors as the similarity metric. To generate the loop data they only consider loops that are run for at least 50,000 cycles. The near neighbors algorithm makes prediction based on the labels of points that lie within a specified radius of the new point. They also experiment with an SVM based classifier which performs better than the NN classifier. The NN classifier achieves a classification rate of 62\% while the SVM classifier achieves an accuracy of 65\%. 
+Stephensen et al. use a classifier based on nearest neighbor technique for predicting the loop unroll factors in Open Research Compiler. \cite{stephenson2005predicting} They use Euclidean distance between loop feature vectors as the similarity metric. To generate the loop data they only consider loops that are run for at least 50,000 cycles. The near neighbors algorithm makes prediction based on the labels of points that lie within a specified radius of the new point. They also experiment with an SVM based classifier which performs better than the NN classifier. The NN classifier achieves a classification rate of 62\% while the SVM classifier achieves an accuracy of 65\%.
 
-Monsifrot et al. use a classifier based on ``Boosted'' decision tree learning to determine which loops to unroll. While the methodology we present in this paper is similar, our work differs in several important ways. Their work only considers binary classification, while our work employ multi-class classification to determine the optimal unroll factor. 
+Monsifrot et al. use a classifier based on ``Boosted'' decision tree
+learning to determine which loops to unroll \cite{monsifrot2002machine}.  While the methodology we present in this paper is similar, our work differs in several important ways. Their work only considers binary classification, while our work employ multi-class classification to determine the optimal unroll factor. 
 
-Cavazos et  al. use a machine learning technique namely neuro-evolution, to automatically induce effective method inlining from a set of features deemed useful for inlining. Neuro-evolution is a technique of unsupervised machine learning using neural networks. This methodology can be used in the absence of a good labelled dataset for training purposes. They tested their technique on Maxine VM achieving a speedup of 11\% over the default inlining heuristic in Maxine VM. However, this technique suffers from various drawbacks including long training times and model overfitting.
+Cavazos et  al. use a machine learning technique namely neuro-evolution, to automatically induce effective method inlining from a set of features deemed useful for inlining \cite{kulkarni2013automatic}. Neuro-evolution is a technique of unsupervised machine learning using neural networks. This methodology can be used in the absence of a good labelled dataset for training purposes. They tested their technique on Maxine VM achieving a speedup of 11\% over the default inlining heuristic in Maxine VM. However, this technique suffers from various drawbacks including long training times and model overfitting.
 
-Davidson et. al. [cite][] argue that agressive unrolling leads to significant speedup more often than not. This differs from our approach greatly where our method also is capable of doing aggressive unrolling but only when the classification algorithm on extracted features predicts a high unroll factor.
+Davidson et. al. argue that aggressive unrolling leads to significant speedup more often than not\cite{davidson1996aggressive}. This differs from our approach greatly where our method also is capable of doing aggressive unrolling but only when the classification algorithm on extracted features predicts a high unroll factor.
 
-As far as our knowledge is concerned, we believe that our work is the first of its kind using LLVM's infrastructure using a Random Forest classifier. In our work, we  explore all the loops of the program as against related work in the domain which only considers innermost loops or loops based on their cycle count.
+As far as we know, our work is the first of its kind that uses LLVM's infrastructure and Random Forest classifier to learn heuristics for loop unrolling. In our work, we explore all the loops of the program as against related work in the domain which only considers innermost loops or  loops based on their cycle count.
 
 \section{Future Work}
 \label{sec:FutureWork}
-In the future we would like to explore techniques of less intrusive instrumentation. We also plan on experimenting with instrumenting just the inner loops in a nested loop structure where most of the computation time is spent. In the techniques we explored so far in this work, the predicted unroll factor has a bound which is fixed by the unroll factors we explored during the data generation process. There might be cases when a very high unroll factor for loops might prove to be beneficial. Our technique will not be ablFutureWorke to leverage upon this benefit. To counter this, we plan to implement a regression based classifier which can predict optimal unroll factors beyond the range of labels the classifier is trained on.
+In the future we would like to explore techniques of less intrusive instrumentation. We also plan on experimenting with instrumenting just the inner loops in a nested loop structure where most of the computation time is spent. In the techniques we explored so far in this work, the predicted unroll factor has a bound which is fixed by the unroll factors we explored during the data generation process. There might be cases when a very high unroll factor for loops might prove to be beneficial. Our technique will not be able to leverage upon this benefit. To counter this, we plan to implement a regression based classifier which can predict optimal unroll factors beyond the range of labels the classifier is trained on.
 
 After an initial evaluation of the results of this work, we infer that increasing the size of the train data set and including additional features involving data flow analysis like ``No. of reaching definitions'', ``Max. dependence height of computations'',  ``No. of memory to memory loop carried dependencies'' etc should lead to an improved accuracy of the classifiers we explored. Additionally, we also plan on exploring more sophisticated machine learning techniques like neural networks which heavily rely upon availability of large training data.
 
@@ -334,10 +331,6 @@ While supervised classification can effectively find good heuristics for multi-c
 
 Overall, it is a more generalizable approach than platform dependent threshold based heuristics and can automatically learn the optimal parameters. This technique definitely has a huge potential in compiler optimizations like loop unrolling.
 
-%\section{References}
-%\label{sec:References}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\bibliographystyle{IEEEtran}
 \bibliographystyle{IEEEtran}
 \begin{scriptsize}
   \bibliography{references}
